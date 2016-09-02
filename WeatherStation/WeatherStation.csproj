@@ -55,7 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\OpenHistoryWindowCommand.cs" />
+    <Compile Include="ViewModels\Commands\CloseApplicationCommand.cs" />
+    <Compile Include="ViewModels\Commands\OpenHistoryWindowCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="Views\HistoryWindow.xaml">
       <SubType>Designer</SubType>

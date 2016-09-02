@@ -15,7 +15,9 @@ namespace WeatherStation.MVVM
 
         public Window CreateMainWindow()
         {
-            var mainWindowViewModel = new MainWindowViewModel(new OpenHistoryWindowCommand(this));
+            var mainWindowViewModel = new MainWindowViewModel(
+                new OpenHistoryWindowCommand(this),
+                new CloseApplicationCommand());
             return new MainWindow {DataContext = mainWindowViewModel};
         }
     }

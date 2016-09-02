@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherStation"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="470" Width="640">
+        Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="470" MinWidth="640">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,7 +25,7 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Height="45" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="20"></RowDefinition>
