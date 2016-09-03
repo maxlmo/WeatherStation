@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using WeatherStation.Sensor;
 
-namespace WeatherStationTest.Sensor
+namespace WeatherStation.Test.Sensor
 {
     [TestFixture]
     public class RandomizedSensorTest
