@@ -16,22 +16,29 @@ namespace WeatherStation.Test.ViewModels
     [TestFixture]
     public class MainWindowViewModelTest
     {
+        private IEventAggregator _eventAggregator;
+
         [Test]
         public void MainWindowViewModel_UpdatesTemperature_OnTemperatureRead()
         {
             const double newTemperature = 123.34;
             const string expectedResult = "123.34";
-            var eventAggregator = new EventAggregator();
-            var classUnderTest = new MainWindowViewModel(
-                eventAggregator, 
+            _eventAggregator = new EventAggregator();
+            var classUnderTest = NewTestContext();
+            
+            _eventAggregator.GetEvent<NewTemperature>().Publish(new TemperatureMeasurement {Value = newTemperature });
+
+            Assert.That(classUnderTest.Temperature, Is.EqualTo(expectedResult));
+        }
+
+        private MainWindowViewModel NewTestContext()
+        {
+            return new MainWindowViewModel(
+                _eventAggregator,
                 Mock.Of<ICommand>(),
                 Mock.Of<ICommand>(),
                 Mock.Of<ICommand>(),
                 Mock.Of<ICommand>());
-
-            eventAggregator.GetEvent<NewTemperature>().Publish(new TemperatureMeasurement {Value = newTemperature });
-
-            Assert.That(classUnderTest.Temperature, Is.EqualTo(expectedResult));
         }
     }
 }
