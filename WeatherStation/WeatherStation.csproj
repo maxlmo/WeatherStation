@@ -60,6 +60,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrap.cs" />
+    <Compile Include="Model\CurrentDateTime.cs" />
+    <Compile Include="Messages\NewDateTime.cs" />
     <Compile Include="Model\BarPressureMeasurement.cs" />
     <Compile Include="Messages\NewBarPressure.cs" />
     <Compile Include="Messages\NewTemperature.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Sensor\TemperatureSensor.cs" />
     <Compile Include="Threads\IThread.cs" />
     <Compile Include="Threads\MeasurementThread.cs" />
+    <Compile Include="Threads\TimeThread.cs" />
     <Compile Include="ViewModels\Commands\CloseApplicationCommand.cs" />
     <Compile Include="ViewModels\Commands\GetNewMeasurementCommand.cs" />
     <Compile Include="ViewModels\Commands\OpenHistoryWindowCommand.cs" />

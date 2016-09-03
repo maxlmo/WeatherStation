@@ -11,7 +11,9 @@ namespace WeatherStation.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private string _barPressure;
+        private string _date;
         private string _temperature;
+        private string _time;
 
         public MainWindowViewModel(
             ICommand openHistoryWindowCommand,
@@ -25,8 +27,19 @@ namespace WeatherStation.ViewModels
             OpenHistoryWindowCommand = openHistoryWindowCommand;
             _eventAggregator.GetEvent<NewTemperature>().Subscribe(NewTemperatureMeasurement);
             _eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewBarPressureMeasurement);
+            _eventAggregator.GetEvent<NewDateTime>().Subscribe(DateTimeUpdate);
         }
-        
+
+        public string Time
+        {
+            get { return _time; }
+            set
+            {
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Temperature
         {
             get { return _temperature; }
@@ -47,12 +60,28 @@ namespace WeatherStation.ViewModels
             }
         }
 
+        public string Date
+        {
+            get { return _date; }
+            set
+            {
+                _date = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand OpenHistoryWindowCommand { get; }
         public ICommand CloseApplicationCommand { get; }
         public ICommand GetNewMeasurementCommand { get; }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void DateTimeUpdate(CurrentDateTime newTime)
+        {
+            Date = newTime.Current.ToString("d");
+            Time = newTime.Current.ToString("T");
+        }
 
         private void NewTemperatureMeasurement(TemperatureMeasurement newMeasurement)
         {

@@ -9,13 +9,15 @@ namespace WeatherStation
     {
         private MeasurementThread _temperatureThread;
         private MeasurementThread _barPressureThread;
+        private TimeThread _timeThread;
+        private IEventAggregator _eventAggregator;
 
         public void StartApplication()
         {
-            var eventAggregator = new EventAggregator();
-            var temperatureSensor = new TemperatureSensor(eventAggregator);
-            var barPressureSensor = new BarPressureSensor(eventAggregator);
-            var viewFactory = new MvvmViewFactory(eventAggregator, temperatureSensor);
+            _eventAggregator = new EventAggregator();
+            var temperatureSensor = new TemperatureSensor(_eventAggregator);
+            var barPressureSensor = new BarPressureSensor(_eventAggregator);
+            var viewFactory = new MvvmViewFactory(_eventAggregator, temperatureSensor);
             var mainWindow = viewFactory.CreateMainWindow();
             
             StartThreads(barPressureSensor, temperatureSensor);
@@ -26,6 +28,8 @@ namespace WeatherStation
         {
             _temperatureThread = new MeasurementThread(temperatureSensor);
             _barPressureThread = new MeasurementThread(barPressureSensor);
+            _timeThread = new TimeThread(_eventAggregator);
+            _timeThread.StartThread();
             _temperatureThread.StartThread();
             _barPressureThread.StartThread();
         }
@@ -34,6 +38,7 @@ namespace WeatherStation
         {
             _temperatureThread.CloseThread();
             _barPressureThread.CloseThread();
+            _timeThread.CloseThread();
         }
     }
 }
