@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using Prism.Events;
 using WeatherStation.MVVM;
+using WeatherStation.Sensor;
 
 namespace WeatherStation
 {
@@ -10,7 +12,9 @@ namespace WeatherStation
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var viewFactory = new MvvmViewFactory();
+            var eventAggregator = new EventAggregator();
+            var sensor = new RandomizedSensor(eventAggregator);
+            var viewFactory = new MvvmViewFactory(eventAggregator, sensor);
             var mainWindow = viewFactory.CreateMainWindow();
 
             mainWindow.Show();

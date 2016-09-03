@@ -1,21 +1,29 @@
 ﻿using System;
+using Prism.Events;
+using WeatherStation.Messages;
 
 namespace WeatherStation.Sensor
 {
     public class RandomizedSensor : ISensor
     {
+        private readonly IEventAggregator _eventAggregator;
         public static Random Random = new Random();
 
-        public double ReadTemp()
+        public RandomizedSensor(IEventAggregator eventAggregator)
         {
-            var randomNumber = Random.NextDouble()*60 - 20;
-            return randomNumber;
+            _eventAggregator = eventAggregator;
         }
 
-        public double ReadBar()
+        public void ReadTemp()
+        {
+            var randomNumber = Random.NextDouble()*60 - 20;
+            _eventAggregator.GetEvent<NewMeasurement>().Publish(new Measurement {Value = randomNumber});
+        }
+
+        public void ReadBar()
         {
             var randomNumber = Random.NextDouble()*70 + 980;
-            return randomNumber;
+            _eventAggregator.GetEvent<NewMeasurement>().Publish(new Measurement {Value = randomNumber});
         }
     }
 }
