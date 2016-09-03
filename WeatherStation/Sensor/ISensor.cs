@@ -2,7 +2,6 @@
 {
     public interface ISensor
     {
-        void ReadTemp();
-        void ReadBar();
+        void ReadMeasurement();
     }
 }

@@ -59,9 +59,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Messages\NewMeasurement.cs" />
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="Model\BarPressureMeasurement.cs" />
+    <Compile Include="Messages\NewBarPressure.cs" />
+    <Compile Include="Messages\NewTemperature.cs" />
+    <Compile Include="Model\TemperatureMeasurement.cs" />
+    <Compile Include="Sensor\BarPressureSensor.cs" />
     <Compile Include="Sensor\ISensor.cs" />
-    <Compile Include="Sensor\RandomizedSensor.cs" />
+    <Compile Include="Sensor\TemperatureSensor.cs" />
+    <Compile Include="Threads\IThread.cs" />
+    <Compile Include="Threads\MeasurementThread.cs" />
     <Compile Include="ViewModels\Commands\CloseApplicationCommand.cs" />
     <Compile Include="ViewModels\Commands\GetNewMeasurementCommand.cs" />
     <Compile Include="ViewModels\Commands\OpenHistoryWindowCommand.cs" />
@@ -116,6 +123,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

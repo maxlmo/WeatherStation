@@ -2,6 +2,7 @@
 using Prism.Events;
 using WeatherStation.MVVM;
 using WeatherStation.Sensor;
+using WeatherStation.Threads;
 
 namespace WeatherStation
 {
@@ -10,14 +11,17 @@ namespace WeatherStation
     /// </summary>
     public partial class App : Application
     {
+        private Bootstrap _bootstrap;
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            var eventAggregator = new EventAggregator();
-            var sensor = new RandomizedSensor(eventAggregator);
-            var viewFactory = new MvvmViewFactory(eventAggregator, sensor);
-            var mainWindow = viewFactory.CreateMainWindow();
+            _bootstrap = new Bootstrap();
+            _bootstrap.StartApplication();
+        }
 
-            mainWindow.Show();
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _bootstrap.CloseThreads();
         }
     }
 }

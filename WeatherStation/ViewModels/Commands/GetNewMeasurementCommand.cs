@@ -20,7 +20,7 @@ namespace WeatherStation.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            _sensor.ReadBar();
+            _sensor.ReadMeasurement();
         }
 
         public event EventHandler CanExecuteChanged;

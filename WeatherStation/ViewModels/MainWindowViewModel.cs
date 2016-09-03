@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Prism.Events;
 using WeatherStation.Messages;
+using WeatherStation.Model;
 
 namespace WeatherStation.ViewModels
 {
@@ -22,10 +23,10 @@ namespace WeatherStation.ViewModels
             GetNewMeasurementCommand = getNewMeasurement;
             CloseApplicationCommand = closeApplicationCommand;
             OpenHistoryWindowCommand = openHistoryWindowCommand;
-            _eventAggregator.GetEvent<NewMeasurement>().Subscribe(ReceivedMeasurement);
+            _eventAggregator.GetEvent<NewTemperature>().Subscribe(ReceivedMeasurement);
         }
 
-        private void ReceivedMeasurement(Measurement newMeasurement)
+        private void ReceivedMeasurement(TemperatureMeasurement newMeasurement)
         {
             MeasurementValue = newMeasurement.Value;
         }
