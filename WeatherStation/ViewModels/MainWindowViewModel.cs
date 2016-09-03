@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Prism.Events;
@@ -11,35 +10,39 @@ namespace WeatherStation.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IEventAggregator _eventAggregator;
-        private double _temperature;
+        private string _barPressure;
+        private string _temperature;
 
         public MainWindowViewModel(
-            ICommand openHistoryWindowCommand, 
-            ICommand closeApplicationCommand, 
-            IEventAggregator eventAggregator, 
+            ICommand openHistoryWindowCommand,
+            ICommand closeApplicationCommand,
+            IEventAggregator eventAggregator,
             ICommand getNewMeasurement)
         {
             _eventAggregator = eventAggregator;
             GetNewMeasurementCommand = getNewMeasurement;
             CloseApplicationCommand = closeApplicationCommand;
             OpenHistoryWindowCommand = openHistoryWindowCommand;
-            _eventAggregator.GetEvent<NewTemperature>().Subscribe(ReceivedMeasurement);
+            _eventAggregator.GetEvent<NewTemperature>().Subscribe(NewTemperatureMeasurement);
+            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewBarPressureMeasurement);
         }
-
-        private void ReceivedMeasurement(TemperatureMeasurement newMeasurement)
+        
+        public string Temperature
         {
-            Temperature = newMeasurement.Value;
-        }
-
-        public double Temperature
-        {
-            get
-            {
-                return _temperature;
-            }
+            get { return _temperature; }
             set
             {
                 _temperature = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string BarometricPressure
+        {
+            get { return _barPressure; }
+            set
+            {
+                _barPressure = value;
                 OnPropertyChanged();
             }
         }
@@ -50,6 +53,16 @@ namespace WeatherStation.ViewModels
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NewTemperatureMeasurement(TemperatureMeasurement newMeasurement)
+        {
+            Temperature = newMeasurement.Value.ToString("F");
+        }
+
+        private void NewBarPressureMeasurement(BarPressureMeasurement newMeasurement)
+        {
+            BarometricPressure = newMeasurement.Value.ToString("F");
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
