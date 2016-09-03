@@ -11,7 +11,7 @@ namespace WeatherStation.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IEventAggregator _eventAggregator;
-        private double _measurementValue = 0;
+        private double _temperature;
 
         public MainWindowViewModel(
             ICommand openHistoryWindowCommand, 
@@ -28,19 +28,19 @@ namespace WeatherStation.ViewModels
 
         private void ReceivedMeasurement(TemperatureMeasurement newMeasurement)
         {
-            MeasurementValue = newMeasurement.Value;
+            Temperature = newMeasurement.Value;
         }
 
-        public double MeasurementValue
+        public double Temperature
         {
             get
             {
-                return _measurementValue;
+                return _temperature;
             }
             set
             {
-                _measurementValue = value;
-                OnPropertyChanged("MeasurementValue");
+                _temperature = value;
+                OnPropertyChanged();
             }
         }
 

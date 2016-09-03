@@ -25,18 +25,81 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
-        <Grid Grid.Row="2" Height="45" VerticalAlignment="Top">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="20"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="20"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Button Grid.Row="1" Width="60" Command="{Binding GetNewMeasurementCommand}" Content="new"></Button>
-            <Button Grid.Row="2"  Content="exit" Command="{Binding CloseApplicationCommand}" Width="60" Height="25"></Button>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="60" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                     Text="{Binding Time, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
+            <TextBox Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                     Text="{Binding Temperature}" TextAlignment="Right" VerticalAlignment="Top" Width="120"
+                     FontSize="14" />
+            <TextBox Grid.Column="2" Grid.Row="8" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                     Text="{Binding BarometricPressure}" VerticalAlignment="Top" TextAlignment="Right" Width="120"
+                     FontSize="14" />
+            <TextBox Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" Height="25"
+                     Text="{Binding AverageTemperature}"
+                     VerticalAlignment="Top" Width="120" TextAlignment="Right">
+                <TextBox.TextWrapping>Wrap</TextBox.TextWrapping>
+            </TextBox>
+            <TextBox Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                     Text="{Binding Date}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
+
+            <Label Grid.Column="1" Grid.Row="2" Content="Time:" FontSize="14" HorizontalAlignment="Left"
+                   VerticalAlignment="Top" Height="33" />
+            <Label Grid.Column="1" Grid.Row="6" Content="Average Temperature:" FontSize="14" />
+            <Label Grid.Column="1" Grid.Row="0" Content="Date:" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   FontSize="14"
+                   Height="33" />
+            <Label Grid.Column="1" Grid.Row="4" Content="Temperature:" HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontSize="14" />
+            <Label Grid.Column="1" Grid.Row="8" Content="Barometric Pressure:" HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontSize="14" />
+            <Label Grid.Column="3" Grid.Row="4" Content="°C" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   FontSize="14" />
+            <Label Grid.Column="3" Grid.Row="6" Content="°C" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   FontSize="14" />
+            <Label Grid.Column="3" Grid.Row="8" Content="mBar" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   FontSize="14" />
+
+            <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="4">
+                <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
+                        Height="25" Command="{Binding NextTemperatureCommand}" />
+                <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
+                        Height="25" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="4" Grid.Row="8" Orientation="Horizontal">
+                <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
+                        Height="25" Command="{Binding NextBarometricPressureCommand}" />
+
+                <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
+                        Height="25" Command="{Binding OpenHistoryWindowCommand}" />
+            </StackPanel>
+
+            <Button Grid.Column="2" Grid.Row="10"  Content="exit" Command="{Binding CloseApplicationCommand}" Width="60" Height="25"></Button>
 
         </Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="302,57,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding MeasurementValue}" VerticalAlignment="Top"/>
     </Grid>
 </Window>
