@@ -10,12 +10,14 @@ namespace WeatherStation.MVVM
     public class MvvmViewFactory : IViewFactory
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly ISensor _sensor;
+        private readonly ISensor _temperatureSensor;
+        private readonly ISensor _barometricPressureSensor;
 
-        public MvvmViewFactory(IEventAggregator eventAggregator, ISensor sensor)
+        public MvvmViewFactory(IEventAggregator eventAggregator, ISensor temperatureSensor, ISensor barometricPressureSensor)
         {
             _eventAggregator = eventAggregator;
-            _sensor = sensor;
+            _temperatureSensor = temperatureSensor;
+            _barometricPressureSensor = barometricPressureSensor;
         }
 
         public Window CreateHistory()
@@ -27,9 +29,11 @@ namespace WeatherStation.MVVM
         public Window CreateMainWindow()
         {
             var mainWindowViewModel = new MainWindowViewModel(
+                _eventAggregator,
                 new OpenHistoryWindowCommand(this),
-                new CloseApplicationCommand(),_eventAggregator, 
-                new GetNewMeasurementCommand(_sensor));
+                new CloseApplicationCommand(), 
+                new ReadTemperatureCommand(_temperatureSensor),
+                new ReadBarPressureCommand(_barometricPressureSensor));
             return new MainWindow {DataContext = mainWindowViewModel};
         }
     }

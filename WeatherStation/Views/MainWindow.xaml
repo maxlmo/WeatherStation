@@ -86,14 +86,14 @@
 
             <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="4">
                 <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
-                        Height="25" Command="{Binding NextTemperatureCommand}" />
+                        Height="25" Command="{Binding ReadTemperatureCommand}" />
                 <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
                         Height="25" />
             </StackPanel>
 
             <StackPanel Grid.Column="4" Grid.Row="8" Orientation="Horizontal">
                 <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
-                        Height="25" Command="{Binding NextBarometricPressureCommand}" />
+                        Height="25" Command="{Binding ReadBarometricPressureCommand}" />
 
                 <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
                         Height="25" Command="{Binding OpenHistoryWindowCommand}" />

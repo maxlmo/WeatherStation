@@ -4,11 +4,11 @@ using WeatherStation.Sensor;
 
 namespace WeatherStation.ViewModels.Commands
 {
-    public class GetNewMeasurementCommand : ICommand
+    public class ReadTemperatureCommand : ICommand
     {
         private readonly ISensor _sensor;
 
-        public GetNewMeasurementCommand(ISensor sensor)
+        public ReadTemperatureCommand(ISensor sensor)
         {
             _sensor = sensor;
         }

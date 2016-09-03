@@ -16,11 +16,11 @@ namespace WeatherStation
         {
             _eventAggregator = new EventAggregator();
             var temperatureSensor = new TemperatureSensor(_eventAggregator);
-            var barPressureSensor = new BarPressureSensor(_eventAggregator);
-            var viewFactory = new MvvmViewFactory(_eventAggregator, temperatureSensor);
+            var barometricPressureSensor = new BarPressureSensor(_eventAggregator);
+            var viewFactory = new MvvmViewFactory(_eventAggregator, temperatureSensor, barometricPressureSensor);
             var mainWindow = viewFactory.CreateMainWindow();
             
-            StartThreads(barPressureSensor, temperatureSensor);
+            StartThreads(barometricPressureSensor, temperatureSensor);
             mainWindow.Show();
         }
 
