@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherStation.Views"
         mc:Ignorable="d"
-        Title="HistoryWindow" Height="300" Width="300">
+        Title="HistoryWindow" Height="500" Width="300">
     <Grid>
         <ListView x:Name="dataview" Margin="5,5,5,5" Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Measurements}">
             <ListView.View>
                 <GridView x:Name="grdNames">
-                    <GridViewColumn Header="Value"  DisplayMemberBinding="{Binding Value}"/>
-                    <GridViewColumn Header="TimeStamp"  DisplayMemberBinding="{Binding TimeStamp}"/>
+                    <GridViewColumn Header="Date" Width="80" DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Header="Time" Width="80"  DisplayMemberBinding="{Binding Time}"/>
+                    <GridViewColumn Header="Value" Width="80"  DisplayMemberBinding="{Binding RoundedValue}"/>
                 </GridView>
             </ListView.View>
         </ListView>
