@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.Messages;
 using WeatherStation.Model;
 
@@ -14,6 +16,8 @@ namespace WeatherStation.ViewModels
         private string _date;
         private string _temperature;
         private string _time;
+        private string _averageTemperature;
+        private List<IHandler> _handler;
 
         public MainWindowViewModel(
             IEventAggregator eventAggregator,
@@ -27,9 +31,7 @@ namespace WeatherStation.ViewModels
             ReadTemperatureCommand = readTemperatureCommand;
             CloseApplicationCommand = closeApplicationCommand;
             OpenHistoryWindowCommand = openHistoryWindowCommand;
-            _eventAggregator.GetEvent<NewTemperature>().Subscribe(NewTemperatureMeasurement);
-            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewBarPressureMeasurement);
-            _eventAggregator.GetEvent<NewDateTime>().Subscribe(DateTimeUpdate);
+            SubscribeForEvents();
         }
 
         public string Time
@@ -72,13 +74,45 @@ namespace WeatherStation.ViewModels
             }
         }
 
+        public string AverageTemperature
+        {
+            get { return _averageTemperature; }
+            set
+            {
+                _averageTemperature = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void RegisterHandler(IHandler handler)
+        {
+            if (_handler == null)
+            {
+                _handler = new List<IHandler>();
+            }
+            _handler.Add(handler);
+        }
+
         public ICommand OpenHistoryWindowCommand { get; }
         public ICommand CloseApplicationCommand { get; }
         public ICommand ReadTemperatureCommand { get; }
-        public ICommand ReadBarometricPressureCommand{ get; }
+        public ICommand ReadBarometricPressureCommand { get; }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void SubscribeForEvents()
+        {
+            _eventAggregator.GetEvent<NewTemperature>().Subscribe(NewTemperatureMeasurement);
+            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewBarPressureMeasurement);
+            _eventAggregator.GetEvent<NewAverageTemperature>().Subscribe(NewAverageTemperatureUpdate);
+            _eventAggregator.GetEvent<NewDateTime>().Subscribe(DateTimeUpdate);
+        }
+
+        private void NewAverageTemperatureUpdate(AverageTemperature averageTemperature)
+        {
+            AverageTemperature = averageTemperature.Value.ToString("F");
+        }
 
         private void DateTimeUpdate(CurrentDateTime newTime)
         {

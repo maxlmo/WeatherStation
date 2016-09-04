@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.Sensor;
 using WeatherStation.ViewModels;
 using WeatherStation.ViewModels.Commands;
@@ -28,12 +29,14 @@ namespace WeatherStation.MVVM
 
         public Window CreateMainWindow()
         {
+            var averageTemperatureCalculator = new AverageTemperatureCalculator(_eventAggregator);
             var mainWindowViewModel = new MainWindowViewModel(
                 _eventAggregator,
                 new OpenHistoryWindowCommand(this),
                 new CloseApplicationCommand(), 
                 new ReadTemperatureCommand(_temperatureSensor),
                 new ReadBarPressureCommand(_barometricPressureSensor));
+            mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             return new MainWindow {DataContext = mainWindowViewModel};
         }
     }
