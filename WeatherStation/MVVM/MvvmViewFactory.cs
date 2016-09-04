@@ -23,7 +23,8 @@ namespace WeatherStation.MVVM
 
         public Window CreateHistory()
         {
-            var historyWindow = new HistoryWindow();
+            var historyWindowViewModel = new HistoryWindowViewModel(_eventAggregator);
+            var historyWindow = new HistoryWindow{DataContext = historyWindowViewModel};
             return historyWindow;
         }
 

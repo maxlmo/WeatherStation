@@ -72,7 +72,9 @@
     <Compile Include="Messages\NewBarPressure.cs" />
     <Compile Include="Messages\NewTemperature.cs" />
     <Compile Include="Messages\NewAverageTemperature.cs" />
+    <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
+    <Compile Include="ViewModels\HistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\Commands\ReadBarPressureCommand.cs" />
     <Compile Include="Sensor\BarPressureSensor.cs" />
     <Compile Include="Sensor\ISensor.cs" />

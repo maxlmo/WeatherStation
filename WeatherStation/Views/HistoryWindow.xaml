@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="HistoryWindow" Height="300" Width="300">
     <Grid>
-        
+        <ListView x:Name="dataview" Margin="5,5,5,5" Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Measurements}">
+            <ListView.View>
+                <GridView x:Name="grdNames">
+                    <GridViewColumn Header="Value"  DisplayMemberBinding="{Binding Value}"/>
+                    <GridViewColumn Header="TimeStamp"  DisplayMemberBinding="{Binding TimeStamp}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>
