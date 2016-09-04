@@ -18,7 +18,12 @@ namespace WeatherStation.Sensor
         public void ReadMeasurement()
         {
             var randomNumber = Random.NextDouble() * 70 + 980;
-            _eventAggregator.GetEvent<NewBarPressure>().Publish(new BarPressureMeasurement { Value = randomNumber });
+            var newMeasurement = new BarPressureMeasurement
+            {
+                Value = randomNumber,
+                TimeStamp = DateTime.Now
+            };
+            _eventAggregator.GetEvent<NewBarPressure>().Publish(newMeasurement);
         }
     }
 }

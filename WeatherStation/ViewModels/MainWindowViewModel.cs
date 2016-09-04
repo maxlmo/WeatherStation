@@ -12,12 +12,13 @@ namespace WeatherStation.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IEventAggregator _eventAggregator;
+        private string _averageTemperature;
+        private BarometricPressureTrend _barometricPressureTrend;
         private string _barPressure;
         private string _date;
+        private List<IHandler> _handler;
         private string _temperature;
         private string _time;
-        private string _averageTemperature;
-        private List<IHandler> _handler;
 
         public MainWindowViewModel(
             IEventAggregator eventAggregator,
@@ -64,6 +65,16 @@ namespace WeatherStation.ViewModels
             }
         }
 
+        public BarometricPressureTrend BarometricPressureTrend
+        {
+            get { return _barometricPressureTrend; }
+            set
+            {
+                _barometricPressureTrend = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Date
         {
             get { return _date; }
@@ -84,6 +95,14 @@ namespace WeatherStation.ViewModels
             }
         }
 
+        public ICommand OpenHistoryWindowCommand { get; }
+        public ICommand CloseApplicationCommand { get; }
+        public ICommand ReadTemperatureCommand { get; }
+        public ICommand ReadBarometricPressureCommand { get; }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public void RegisterHandler(IHandler handler)
         {
             if (_handler == null)
@@ -93,20 +112,18 @@ namespace WeatherStation.ViewModels
             _handler.Add(handler);
         }
 
-        public ICommand OpenHistoryWindowCommand { get; }
-        public ICommand CloseApplicationCommand { get; }
-        public ICommand ReadTemperatureCommand { get; }
-        public ICommand ReadBarometricPressureCommand { get; }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private void SubscribeForEvents()
         {
             _eventAggregator.GetEvent<NewTemperature>().Subscribe(NewTemperatureMeasurement);
             _eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewBarPressureMeasurement);
             _eventAggregator.GetEvent<NewAverageTemperature>().Subscribe(NewAverageTemperatureUpdate);
+            _eventAggregator.GetEvent<NewBarometricPressureTrend>().Subscribe(BarometricPressureTrendUpdate);
             _eventAggregator.GetEvent<NewDateTime>().Subscribe(DateTimeUpdate);
+        }
+
+        private void BarometricPressureTrendUpdate(BarometricPressureTrend barometricPressureTrend)
+        {
+            BarometricPressureTrend = barometricPressureTrend;
         }
 
         private void NewAverageTemperatureUpdate(AverageTemperature averageTemperature)

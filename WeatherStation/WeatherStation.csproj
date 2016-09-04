@@ -60,9 +60,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrap.cs" />
+    <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
     <Compile Include="Handler\IHandler.cs" />
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
+    <Compile Include="Messages\NewBarometricPressureTrend.cs" />
     <Compile Include="Model\AverageTemperature.cs" />
+    <Compile Include="Model\BarometricPressureTrend.cs" />
     <Compile Include="Model\CurrentDateTime.cs" />
     <Compile Include="Messages\NewDateTime.cs" />
     <Compile Include="Model\BarPressureMeasurement.cs" />

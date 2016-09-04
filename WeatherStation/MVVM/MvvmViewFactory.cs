@@ -30,13 +30,18 @@ namespace WeatherStation.MVVM
         public Window CreateMainWindow()
         {
             var averageTemperatureCalculator = new AverageTemperatureCalculator(_eventAggregator);
+            var barometricPressureTrendHandler = new BarometricPressureTrendHandler(_eventAggregator);
+
             var mainWindowViewModel = new MainWindowViewModel(
                 _eventAggregator,
                 new OpenHistoryWindowCommand(this),
                 new CloseApplicationCommand(), 
                 new ReadTemperatureCommand(_temperatureSensor),
                 new ReadBarPressureCommand(_barometricPressureSensor));
+
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
+            mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
+
             return new MainWindow {DataContext = mainWindowViewModel};
         }
     }
