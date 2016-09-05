@@ -74,27 +74,27 @@
     <Compile Include="Messages\NewAverageTemperature.cs" />
     <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
-    <Compile Include="ViewModels\Converter\EnumToImageConverter.cs" />
+    <Compile Include="ViewModels\Main\Converter\EnumToImageConverter.cs" />
     <Compile Include="ViewModels\History\Converter\DoubleToStringConverter.cs" />
     <Compile Include="ViewModels\History\Converter\TimeStampToDateStringConverter.cs" />
     <Compile Include="ViewModels\History\Converter\TimeStampToTimeStringConverter.cs" />
     <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
-    <Compile Include="ViewModels\Commands\ReadBarPressureCommand.cs" />
+    <Compile Include="ViewModels\Main\Commands\ReadBarPressureCommand.cs" />
     <Compile Include="Sensor\BarPressureSensor.cs" />
     <Compile Include="Sensor\ISensor.cs" />
     <Compile Include="Sensor\TemperatureSensor.cs" />
     <Compile Include="Threads\IThread.cs" />
     <Compile Include="Threads\MeasurementThread.cs" />
     <Compile Include="Threads\TimeThread.cs" />
-    <Compile Include="ViewModels\Commands\CloseApplicationCommand.cs" />
-    <Compile Include="ViewModels\Commands\ReadTemperatureCommand.cs" />
-    <Compile Include="ViewModels\Commands\OpenHistoryWindowCommand.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Main\Commands\CloseApplicationCommand.cs" />
+    <Compile Include="ViewModels\Main\Commands\ReadTemperatureCommand.cs" />
+    <Compile Include="ViewModels\Main\Commands\OpenHistoryWindowCommand.cs" />
+    <Compile Include="ViewModels\Main\MainWindowViewModel.cs" />
     <Page Include="Views\History\HistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\Main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -105,7 +105,7 @@
     <Compile Include="Views\History\HistoryWindow.xaml.cs">
       <DependentUpon>HistoryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="Views\Main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -141,9 +141,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Images\falling.png" />
-    <Resource Include="Views\Images\rising.png" />
-    <Resource Include="Views\Images\stable.png" />
+    <Resource Include="Views\Main\Images\falling.png" />
+    <Resource Include="Views\Main\Images\rising.png" />
+    <Resource Include="Views\Main\Images\stable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

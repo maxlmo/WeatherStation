@@ -3,10 +3,12 @@ using Prism.Events;
 using WeatherStation.Handler;
 using WeatherStation.Sensor;
 using WeatherStation.ViewModels;
-using WeatherStation.ViewModels.Commands;
 using WeatherStation.ViewModels.History;
+using WeatherStation.ViewModels.Main;
+using WeatherStation.ViewModels.Main.Commands;
 using WeatherStation.Views;
 using HistoryWindow = WeatherStation.Views.History.HistoryWindow;
+using MainWindow = WeatherStation.Views.Main.MainWindow;
 
 namespace WeatherStation.MVVM
 {

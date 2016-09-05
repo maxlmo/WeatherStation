@@ -2,13 +2,13 @@
 using System.Windows.Input;
 using WeatherStation.Sensor;
 
-namespace WeatherStation.ViewModels.Commands
+namespace WeatherStation.ViewModels.Main.Commands
 {
-    public class ReadBarPressureCommand : ICommand
+    public class ReadTemperatureCommand : ICommand
     {
         private readonly ISensor _sensor;
 
-        public ReadBarPressureCommand(ISensor sensor)
+        public ReadTemperatureCommand(ISensor sensor)
         {
             _sensor = sensor;
         }

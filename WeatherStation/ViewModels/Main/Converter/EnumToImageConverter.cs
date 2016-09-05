@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 using WeatherStation.Model;
 
-namespace WeatherStation.ViewModels.Converter
+namespace WeatherStation.ViewModels.Main.Converter
 {
     public class EnumToImageConverter : IValueConverter
     {
