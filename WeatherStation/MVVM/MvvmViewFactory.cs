@@ -6,6 +6,7 @@ using WeatherStation.ViewModels;
 using WeatherStation.ViewModels.Commands;
 using WeatherStation.ViewModels.History;
 using WeatherStation.Views;
+using HistoryWindow = WeatherStation.Views.History.HistoryWindow;
 
 namespace WeatherStation.MVVM
 {

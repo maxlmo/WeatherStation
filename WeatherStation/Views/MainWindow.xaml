@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherStation"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="560" MinWidth="640">
+        Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="560" MinWidth="640"
+        xmlns:converter="clr-namespace:WeatherStation.ViewModels.Converter">
+    <Window.Resources>
+        <converter:EnumToImageConverter x:Key="EnumToImageConverter"></converter:EnumToImageConverter>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -67,8 +71,7 @@
                      VerticalAlignment="Top" Width="120" TextAlignment="Right">
                 <TextBox.TextWrapping>Wrap</TextBox.TextWrapping>
             </TextBox>
-            <TextBox Grid.Column="2" Grid.Row="10" HorizontalAlignment="Left" Height="25" Width="120"
-                     TextAlignment="Right" VerticalAlignment="Top" Text="{Binding BarometricPressureTrend}"></TextBox>
+            <Image Source="{Binding BarometricPressureTrend, Converter={StaticResource EnumToImageConverter}}" Grid.Row="10" Grid.Column="2"></Image>
             
 
             <Label Grid.Column="1" Grid.Row="2" Content="Time:" FontSize="14" HorizontalAlignment="Left"

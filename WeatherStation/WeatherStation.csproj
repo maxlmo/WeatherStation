@@ -74,6 +74,7 @@
     <Compile Include="Messages\NewAverageTemperature.cs" />
     <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
+    <Compile Include="ViewModels\Converter\EnumToImageConverter.cs" />
     <Compile Include="ViewModels\History\Converter\DoubleToStringConverter.cs" />
     <Compile Include="ViewModels\History\Converter\TimeStampToDateStringConverter.cs" />
     <Compile Include="ViewModels\History\Converter\TimeStampToTimeStringConverter.cs" />
@@ -89,7 +90,7 @@
     <Compile Include="ViewModels\Commands\ReadTemperatureCommand.cs" />
     <Compile Include="ViewModels\Commands\OpenHistoryWindowCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Page Include="Views\HistoryWindow.xaml">
+    <Page Include="Views\History\HistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,7 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\HistoryWindow.xaml.cs">
+    <Compile Include="Views\History\HistoryWindow.xaml.cs">
       <DependentUpon>HistoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -139,7 +140,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Views\Images\falling.png" />
+    <Resource Include="Views\Images\rising.png" />
+    <Resource Include="Views\Images\stable.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
