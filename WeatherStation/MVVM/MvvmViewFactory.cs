@@ -4,6 +4,7 @@ using WeatherStation.Handler;
 using WeatherStation.Sensor;
 using WeatherStation.ViewModels;
 using WeatherStation.ViewModels.Commands;
+using WeatherStation.ViewModels.History;
 using WeatherStation.Views;
 
 namespace WeatherStation.MVVM
