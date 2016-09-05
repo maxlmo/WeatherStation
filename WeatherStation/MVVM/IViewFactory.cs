@@ -4,7 +4,8 @@ namespace WeatherStation.MVVM
 {
     public interface IViewFactory
     {
-        Window CreateHistory();
         Window CreateMainWindow();
+        Window CreateTemperatureHistory();
+        Window CreateBarPressureHistory();
     }
 }

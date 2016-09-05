@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Management.Instrumentation;
+using System.Windows;
 using System.Windows.Input;
 using WeatherStation.MVVM;
 
@@ -20,7 +22,19 @@ namespace WeatherStation.ViewModels.Main.Commands
 
         public void Execute(object parameter)
         {
-            var view = _viewFactory.CreateHistory();
+            Window view;
+            switch (parameter.ToString())
+            {
+                case "Temperature":
+                    view = _viewFactory.CreateTemperatureHistory();
+                    break;
+                case "BarometricPressure":
+                    view = _viewFactory.CreateBarPressureHistory();
+                    break;
+                default:
+                    throw new InstanceNotFoundException("Window not found: " + parameter);
+            }
+            
             view.Show();
         }
 

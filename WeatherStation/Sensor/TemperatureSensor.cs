@@ -18,7 +18,7 @@ namespace WeatherStation.Sensor
         public void ReadMeasurement()
         {
             var randomNumber = Random.NextDouble()*60 - 20;
-            _eventAggregator.GetEvent<NewTemperature>().Publish(new TemperatureMeasurement {Value = randomNumber});
+            _eventAggregator.GetEvent<NewTemperature>().Publish(new TemperatureMeasurement {Value = randomNumber, TimeStamp = DateTime.Now});
         }
     }
 }

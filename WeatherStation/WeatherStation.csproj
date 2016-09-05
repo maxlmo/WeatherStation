@@ -74,11 +74,12 @@
     <Compile Include="Messages\NewAverageTemperature.cs" />
     <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
+    <Compile Include="ViewModels\History\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\Main\Converter\EnumToImageConverter.cs" />
     <Compile Include="ViewModels\History\Converter\DoubleToStringConverter.cs" />
     <Compile Include="ViewModels\History\Converter\TimeStampToDateStringConverter.cs" />
     <Compile Include="ViewModels\History\Converter\TimeStampToTimeStringConverter.cs" />
-    <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
+    <Compile Include="ViewModels\History\TemperatureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\Main\Commands\ReadBarPressureCommand.cs" />
     <Compile Include="Sensor\BarPressureSensor.cs" />
     <Compile Include="Sensor\ISensor.cs" />
