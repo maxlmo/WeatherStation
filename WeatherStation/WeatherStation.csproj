@@ -75,6 +75,7 @@
     <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
     <Compile Include="ViewModels\History\BarPressureHistoryWindowViewModel.cs" />
+    <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\Main\Converter\EnumToImageConverter.cs" />
     <Compile Include="ViewModels\History\Converter\DoubleToStringConverter.cs" />
     <Compile Include="ViewModels\History\Converter\TimeStampToDateStringConverter.cs" />

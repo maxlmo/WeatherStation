@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WeatherStation.Views"
         xmlns:converter="clr-namespace:WeatherStation.ViewModels.History.Converter"
         mc:Ignorable="d"
-        Title="HistoryWindow" Height="500" Width="300"
+        Title="{Binding HistoryWindowName}" Height="500" Width="300"
     >
     <Window.Resources>
         <converter:DoubleToStringConverter x:Key="DoubleToStringConverter"></converter:DoubleToStringConverter>
