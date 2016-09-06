@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -12,18 +13,18 @@ using WeatherStation.Storage.Repository;
 
 namespace WeatherStation.Storage
 {
-    public class TemperatureRepository : IRepository, IHandler
+    public class BarometricPressureRepository : IRepository, IHandler
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataBaseConnector _dataBaseConnector;
 
-        public TemperatureRepository(IEventAggregator eventAggregator, IDataBaseConnector dataBaseConnector)
+        public BarometricPressureRepository(IEventAggregator eventAggregator, IDataBaseConnector dataBaseConnector)
         {
             _eventAggregator = eventAggregator;
             _dataBaseConnector = dataBaseConnector;
             Measurements = new ObservableCollection<IMeasurement>();
-            dataBaseConnector.GetTemperatureMeasurements().ForEach(m => Measurements.Add(m));
-            _eventAggregator.GetEvent<NewTemperature>().Subscribe(UpdateMeasurements);
+            dataBaseConnector.GetBarPressureMeasurements().ForEach(m => Measurements.Add(m));
+            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(UpdateMeasurements);
         }
 
         private void UpdateMeasurements(IMeasurement newMeasurement)

@@ -17,10 +17,7 @@ namespace WeatherStation.Storage
 
         public static ISession OpenSession()
         {
-            return Fluently.Configure().Database(SQLiteConfiguration.Standard.ConnectionString(c => c.Is("Data Source=WeatherStation.db")))
-                .Mappings(x => x.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                .BuildSessionFactory()
-                .OpenSession();
+            return CreateConfiguration().BuildSessionFactory().OpenSession();
         }
 
         public static FluentConfiguration CreateConfiguration()

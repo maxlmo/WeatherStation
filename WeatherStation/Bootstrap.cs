@@ -1,9 +1,11 @@
 ﻿using System;
 using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.Model;
 using WeatherStation.MVVM;
 using WeatherStation.Sensor;
 using WeatherStation.Storage;
+using WeatherStation.Storage.Repository;
 using WeatherStation.Threads;
 
 namespace WeatherStation
@@ -13,20 +15,35 @@ namespace WeatherStation
         private MeasurementThread _temperatureThread;
         private MeasurementThread _barPressureThread;
         private TimeThread _timeThread;
+        private IDataBaseConnector _dataBaseConnector;
         private IEventAggregator _eventAggregator;
+        private IRepository _temperatureRepository;
+        private IRepository _barometricPressureRepository;
 
         public void StartApplication()
         {
             _eventAggregator = new EventAggregator();
+            InitializeDataBaseConnection();
             var temperatureSensor = new TemperatureSensor(_eventAggregator);
             var barometricPressureSensor = new BarPressureSensor(_eventAggregator);
-            var viewFactory = new MvvmViewFactory(_eventAggregator, temperatureSensor, barometricPressureSensor);
+            var viewFactory = new MvvmViewFactory(
+                _eventAggregator, 
+                temperatureSensor, 
+                barometricPressureSensor, 
+                _temperatureRepository, 
+                _barometricPressureRepository);
             var mainWindow = viewFactory.CreateMainWindow();
-
-            FluentNHibernateHelper.CreateDatabase();
             
             StartThreads(barometricPressureSensor, temperatureSensor);
             mainWindow.Show();
+        }
+
+        private void InitializeDataBaseConnection()
+        {
+            FluentNHibernateHelper.CreateDatabase();
+            _dataBaseConnector = new DataBaseConnector();
+            _barometricPressureRepository = new BarometricPressureRepository(_eventAggregator,_dataBaseConnector);
+            _temperatureRepository = new TemperatureRepository(_eventAggregator, _dataBaseConnector);
         }
 
         private void StartThreads(ISensor barPressureSensor, ISensor temperatureSensor)

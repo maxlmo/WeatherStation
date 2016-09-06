@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using WeatherStation.Model;
 
-namespace WeatherStation.Storage
+namespace WeatherStation.Storage.Repository
 {
-    public interface INHibernateRepository
+    public interface IDataBaseConnector
     {
         List<TemperatureMeasurement> GetTemperatureMeasurements();
         List<BarPressureMeasurement> GetBarPressureMeasurements();
-        void WriteTemperature(IMeasurement measurement);
-        void WriteBarometricPressure(IMeasurement measurement);
+        void WriteMeasurementIntoDataBase(IMeasurement measurement);
     }
 }

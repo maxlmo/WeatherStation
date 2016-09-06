@@ -16,7 +16,7 @@ namespace WeatherStation.ViewModels.Main
         private BarometricPressureTrend _barometricPressureTrend;
         private string _barPressure;
         private string _date;
-        private List<IHandler> _handler;
+        private List<object> _handler;
         private string _temperature;
         private string _time;
 
@@ -103,11 +103,11 @@ namespace WeatherStation.ViewModels.Main
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void RegisterHandler(IHandler handler)
+        public void RegisterHandler(object handler)
         {
             if (_handler == null)
             {
-                _handler = new List<IHandler>();
+                _handler = new List<object>();
             }
             _handler.Add(handler);
         }

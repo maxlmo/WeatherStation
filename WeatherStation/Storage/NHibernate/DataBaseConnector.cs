@@ -3,9 +3,9 @@ using System.Linq;
 using NHibernate.Linq;
 using WeatherStation.Model;
 
-namespace WeatherStation.Storage
+namespace WeatherStation.Storage.Repository
 {
-    public class NHibernateTemperatureRepository : INHibernateRepository
+    public class DataBaseConnector : IDataBaseConnector
     {
         public List<TemperatureMeasurement> GetTemperatureMeasurements()
         {
@@ -23,32 +23,12 @@ namespace WeatherStation.Storage
             }
         }
 
-        public void WriteTemperature(IMeasurement measurement)
+        public void WriteMeasurementIntoDataBase(IMeasurement measurement)
         {
             using (var session = FluentNHibernateHelper.OpenSession())
             using (var transaction = session.BeginTransaction())
             {
                 session.Save(measurement);
-                transaction.Commit();
-            }
-        }
-
-        public void WriteBarometricPressure(IMeasurement measurement)
-        {
-            using (var session = FluentNHibernateHelper.OpenSession())
-            using (var transaction = session.BeginTransaction())
-            {
-                session.Save(measurement);
-                transaction.Commit();
-            }
-        }
-
-        public void Save(TemperatureMeasurement temperatureMeasurement)
-        {
-            using (var session = FluentNHibernateHelper.OpenSession())
-            using (var transaction = session.BeginTransaction())
-            {
-                session.Save(temperatureMeasurement);
                 transaction.Commit();
             }
         }

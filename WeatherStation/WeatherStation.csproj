@@ -111,9 +111,11 @@
     <Compile Include="Messages\NewAverageTemperature.cs" />
     <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
-    <Compile Include="Storage\FluentNHibernateHelper.cs" />
-    <Compile Include="Storage\INHibernateRepository.cs" />
-    <Compile Include="Storage\NHibernateTemperatureRepository.cs" />
+    <Compile Include="Storage\BarometricPressureRepository.cs" />
+    <Compile Include="Storage\IRepository.cs" />
+    <Compile Include="Storage\NHibernate\FluentNHibernateHelper.cs" />
+    <Compile Include="Storage\NHibernate\IDataBaseConnector.cs" />
+    <Compile Include="Storage\NHibernate\DataBaseConnector.cs" />
     <Compile Include="Storage\TemperatureRepository.cs" />
     <Compile Include="ViewModels\History\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
