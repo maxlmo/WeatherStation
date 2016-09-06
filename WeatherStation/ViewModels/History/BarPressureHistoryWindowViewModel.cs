@@ -1,34 +1,21 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 using Prism.Events;
 using WeatherStation.Messages;
 using WeatherStation.Model;
 using WeatherStation.Properties;
+using WeatherStation.Storage;
 
 namespace WeatherStation.ViewModels.History
 {
     public class BarPressureHistoryWindowViewModel : HistoryWindowViewModel
     {
-        private readonly IEventAggregator _eventAggregator;
-
         public string HistoryWindowName
         {
             get { return Resources.BarometricPressureHistoryWindowName; }
         }
 
-        public BarPressureHistoryWindowViewModel(IEventAggregator eventAggregator)
+        public BarPressureHistoryWindowViewModel(IRepository repository) : base(repository)
         {
-            _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewMeasurement);
-            Measurements = new ObservableCollection<IMeasurement>();
-        }
-        
-        private void NewMeasurement(BarPressureMeasurement newMeasurement)
-        {
-            Application.Current.Dispatcher.Invoke(delegate
-            {
-                Measurements.Add(newMeasurement);
-            });
         }
     }
 }

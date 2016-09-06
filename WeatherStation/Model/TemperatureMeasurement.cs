@@ -4,7 +4,8 @@ namespace WeatherStation.Model
 {
     public class TemperatureMeasurement : IMeasurement
     {
-        public double Value { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual double Value { get; set; }
+        public virtual DateTime TimeStamp { get; set; }
     }
 }

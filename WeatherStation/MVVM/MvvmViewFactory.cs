@@ -2,6 +2,7 @@
 using Prism.Events;
 using WeatherStation.Handler;
 using WeatherStation.Sensor;
+using WeatherStation.Storage;
 using WeatherStation.ViewModels.History;
 using WeatherStation.ViewModels.Main;
 using WeatherStation.ViewModels.Main.Commands;
@@ -15,6 +16,7 @@ namespace WeatherStation.MVVM
         private readonly ISensor _barometricPressureSensor;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISensor _temperatureSensor;
+        private TemperatureRepository _repository;
 
         public MvvmViewFactory(IEventAggregator eventAggregator, ISensor temperatureSensor,
             ISensor barometricPressureSensor)
@@ -38,20 +40,22 @@ namespace WeatherStation.MVVM
 
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
+            _repository = new TemperatureRepository(_eventAggregator, new NHibernateTemperatureRepository());
+            mainWindowViewModel.RegisterHandler(_repository);
 
             return new MainWindow { DataContext = mainWindowViewModel };
         }
 
         public Window CreateTemperatureHistory()
         {
-            var temperatureViewModel = new TemperatureHistoryWindowViewModel(_eventAggregator);
+            var temperatureViewModel = new TemperatureHistoryWindowViewModel( _repository);
             var historyWindow = new HistoryWindow {DataContext = temperatureViewModel};
             return historyWindow;
         }
 
         public Window CreateBarPressureHistory()
         {
-            var barPressureViewModel = new BarPressureHistoryWindowViewModel(_eventAggregator);
+            var barPressureViewModel = new BarPressureHistoryWindowViewModel( _repository);
             var historyWindow = new HistoryWindow {DataContext = barPressureViewModel};
             return historyWindow;
         }

@@ -1,6 +1,9 @@
-﻿using Prism.Events;
+﻿using System;
+using Prism.Events;
+using WeatherStation.Model;
 using WeatherStation.MVVM;
 using WeatherStation.Sensor;
+using WeatherStation.Storage;
 using WeatherStation.Threads;
 
 namespace WeatherStation
@@ -19,6 +22,8 @@ namespace WeatherStation
             var barometricPressureSensor = new BarPressureSensor(_eventAggregator);
             var viewFactory = new MvvmViewFactory(_eventAggregator, temperatureSensor, barometricPressureSensor);
             var mainWindow = viewFactory.CreateMainWindow();
+
+            FluentNHibernateHelper.CreateDatabase();
             
             StartThreads(barometricPressureSensor, temperatureSensor);
             mainWindow.Show();
