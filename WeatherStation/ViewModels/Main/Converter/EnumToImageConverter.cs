@@ -13,11 +13,11 @@ namespace WeatherStation.ViewModels.Main.Converter
             switch (trend)
             {
                 case BarometricPressureTrend.Stable:
-                    return "Images/stable.png";
+                    return "Images/stable.jpg";
                 case BarometricPressureTrend.Falling:
-                    return "Images/falling.png";
+                    return "Images/falling.jpg";
                 case BarometricPressureTrend.Rising:
-                    return "Images/rising.png";
+                    return "Images/rising.jpg";
             }
             return null;
         }

@@ -143,9 +143,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Main\Images\falling.png" />
-    <Resource Include="Views\Main\Images\rising.png" />
-    <Resource Include="Views\Main\Images\stable.png" />
+    <Resource Include="Views\Main\Images\falling.jpg" />
+    <Resource Include="Views\Main\Images\rising.jpg" />
+    <Resource Include="Views\Main\Images\stable.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -71,7 +71,7 @@
                      VerticalAlignment="Top" Width="120" TextAlignment="Right">
                 <TextBox.TextWrapping>Wrap</TextBox.TextWrapping>
             </TextBox>
-            <Image Source="{Binding BarometricPressureTrend, Converter={StaticResource EnumToImageConverter}}" Grid.Row="10" Grid.Column="2"></Image>
+            <Image Source="{Binding BarometricPressureTrend, Converter={StaticResource EnumToImageConverter}}" Grid.Row="10" Grid.Column="2" Height="50"></Image>
             
 
             <Label Grid.Column="1" Grid.Row="2" Content="Time:" FontSize="14" HorizontalAlignment="Left"
