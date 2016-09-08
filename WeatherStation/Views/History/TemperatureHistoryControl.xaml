@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <converter:DoubleToStringConverter x:Key="DoubleToStringConverter"></converter:DoubleToStringConverter>
+        <converter:TemperatureMeasurementUnitConverter x:Key="DoubleToStringConverter"></converter:TemperatureMeasurementUnitConverter>
         <converter:TimeStampToTimeStringConverter x:Key="TimeStampToTimeStringConverter"></converter:TimeStampToTimeStringConverter>
         <converter:TimeStampToDateStringConverter x:Key="TimeStampToDateStringConverter"></converter:TimeStampToDateStringConverter>
     </UserControl.Resources>

@@ -95,6 +95,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrap.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
     <Compile Include="Handler\IHandler.cs" />
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
@@ -123,8 +124,9 @@
     <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\UnitSettings\Commands\ApplySettingsCommand.cs" />
     <Compile Include="ViewModels\UnitSettings\UnitSettingsWindowViewModel.cs" />
+    <Compile Include="Views\History\Converter\BarometricPressureMeasurementUnitConverter.cs" />
     <Compile Include="Views\Main\Converter\EnumToImageConverter.cs" />
-    <Compile Include="Views\History\Converter\DoubleToStringConverter.cs" />
+    <Compile Include="Views\History\Converter\TemperatureMeasurementUnitConverter.cs" />
     <Compile Include="Views\History\Converter\TimeStampToDateStringConverter.cs" />
     <Compile Include="Views\History\Converter\TimeStampToTimeStringConverter.cs" />
     <Compile Include="ViewModels\History\TemperatureHistoryWindowViewModel.cs" />

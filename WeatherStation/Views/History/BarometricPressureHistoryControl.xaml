@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <converter:DoubleToStringConverter x:Key="DoubleToStringConverter"></converter:DoubleToStringConverter>
+        <converter:BarometricPressureMeasurementUnitConverter x:Key="BarometricPressureMeasurementUnitConverter"></converter:BarometricPressureMeasurementUnitConverter>
         <converter:TimeStampToTimeStringConverter x:Key="TimeStampToTimeStringConverter"></converter:TimeStampToTimeStringConverter>
         <converter:TimeStampToDateStringConverter x:Key="TimeStampToDateStringConverter"></converter:TimeStampToDateStringConverter>
     </UserControl.Resources>
@@ -18,7 +18,7 @@
                 <GridView x:Name="grdNames">
                     <GridViewColumn Header="Date" Width="80" DisplayMemberBinding="{Binding TimeStamp, Converter={StaticResource TimeStampToDateStringConverter}}"/>
                     <GridViewColumn Header="Time" Width="80"  DisplayMemberBinding="{Binding TimeStamp, Converter={StaticResource TimeStampToTimeStringConverter}}"/>
-                    <GridViewColumn Header="Value" Width="80"  DisplayMemberBinding="{Binding Value, Converter={StaticResource DoubleToStringConverter}}"/>
+                    <GridViewColumn Header="Value" Width="80"  DisplayMemberBinding="{Binding Value, Converter={StaticResource BarometricPressureMeasurementUnitConverter}}"/>
                 </GridView>
             </ListView.View>
         </ListView>
