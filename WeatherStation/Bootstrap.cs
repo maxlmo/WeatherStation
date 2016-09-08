@@ -1,11 +1,8 @@
-﻿using System;
-using Prism.Events;
-using WeatherStation.Handler;
-using WeatherStation.Model;
+﻿using Prism.Events;
+using WeatherStation.Messages;
 using WeatherStation.MVVM;
 using WeatherStation.Sensor;
 using WeatherStation.Storage;
-using WeatherStation.Storage.Repository;
 using WeatherStation.Threads;
 
 namespace WeatherStation
@@ -17,8 +14,8 @@ namespace WeatherStation
         private TimeThread _timeThread;
         private IDataBaseConnector _dataBaseConnector;
         private IEventAggregator _eventAggregator;
-        private IRepository _temperatureRepository;
-        private IRepository _barometricPressureRepository;
+        private IDataBaseConnector _temperatureDataBaseConnector;
+        private IDataBaseConnector _barometricPressureDataBaseConnector;
 
         public void StartApplication()
         {
@@ -30,8 +27,8 @@ namespace WeatherStation
                 _eventAggregator, 
                 temperatureSensor, 
                 barometricPressureSensor, 
-                _temperatureRepository, 
-                _barometricPressureRepository);
+                _temperatureDataBaseConnector, 
+                _barometricPressureDataBaseConnector);
             var mainWindow = viewFactory.CreateMainWindow();
             
             StartThreads(barometricPressureSensor, temperatureSensor);
@@ -41,9 +38,12 @@ namespace WeatherStation
         private void InitializeDataBaseConnection()
         {
             FluentNHibernateHelper.InitializeDatabase();
-            _dataBaseConnector = new DataBaseConnector();
-            _barometricPressureRepository = new BarometricPressureRepository(_eventAggregator,_dataBaseConnector);
-            _temperatureRepository = new TemperatureRepository(_eventAggregator, _dataBaseConnector);
+
+            _barometricPressureDataBaseConnector = new BarometricPressureDataBaseConnector(_eventAggregator);
+            _temperatureDataBaseConnector = new TemperatureDataBaseConnector(_eventAggregator);
+
+            _eventAggregator.GetEvent<NewTemperature>().Subscribe(_temperatureDataBaseConnector.SaveMeasurement);
+            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(_barometricPressureDataBaseConnector.SaveMeasurement);
         }
 
         private void StartThreads(ISensor barPressureSensor, ISensor temperatureSensor)

@@ -98,6 +98,7 @@
     <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
     <Compile Include="Handler\IHandler.cs" />
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
+    <Compile Include="Messages\BarometricPressureSaved.cs" />
     <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />
     <Compile Include="Storage\Mapping\TemperatureMap.cs" />
     <Compile Include="Messages\NewBarometricPressureTrend.cs" />
@@ -111,12 +112,11 @@
     <Compile Include="Messages\NewAverageTemperature.cs" />
     <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
-    <Compile Include="Storage\BarometricPressureRepository.cs" />
-    <Compile Include="Storage\IRepository.cs" />
-    <Compile Include="Storage\NHibernate\FluentNHibernateHelper.cs" />
-    <Compile Include="Storage\NHibernate\IDataBaseConnector.cs" />
-    <Compile Include="Storage\NHibernate\DataBaseConnector.cs" />
-    <Compile Include="Storage\TemperatureRepository.cs" />
+    <Compile Include="Storage\BarometricPressureDataBaseConnector.cs" />
+    <Compile Include="Storage\IDataBaseConnector.cs" />
+    <Compile Include="Storage\FluentNHibernateHelper.cs" />
+    <Compile Include="Storage\TemperatureDataBaseConnector.cs" />
+    <Compile Include="Messages\TemperatureSaved.cs" />
     <Compile Include="ViewModels\History\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\Main\Converter\EnumToImageConverter.cs" />
@@ -135,6 +135,12 @@
     <Compile Include="ViewModels\Main\Commands\ReadTemperatureCommand.cs" />
     <Compile Include="ViewModels\Main\Commands\OpenHistoryWindowCommand.cs" />
     <Compile Include="ViewModels\Main\MainWindowViewModel.cs" />
+    <Compile Include="Views\History\BarometricPressureHistoryControl.xaml.cs">
+      <DependentUpon>BarometricPressureHistoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\History\TemperatureHistoryControl.xaml.cs">
+      <DependentUpon>TemperatureHistoryControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\History\HistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +160,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\History\BarometricPressureHistoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\History\TemperatureHistoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\IViewFactory.cs" />

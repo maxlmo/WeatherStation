@@ -12,21 +12,18 @@ namespace WeatherStation.ViewModels.History
 {
     public abstract class HistoryWindowViewModel
     {
-        private readonly IRepository _repository;
-        
-        public HistoryWindowViewModel(IRepository repository)
+        private readonly IDataBaseConnector _dataBaseConnector;
+        private readonly IEventAggregator _eventAggregator;
+
+        public HistoryWindowViewModel(IDataBaseConnector dataBaseConnector, IEventAggregator eventAggregator)
         {
-            _repository = repository;
+            _dataBaseConnector = dataBaseConnector;
+            _eventAggregator = eventAggregator;
         }
 
         public string HistoryWindowName
         {
             get { return "DefaultHistoryWindowName"; }
-        }
-
-        public ObservableCollection<IMeasurement> Measurements
-        {
-            get { return _repository.Measurements; }
         }
     }
 }

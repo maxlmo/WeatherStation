@@ -3,7 +3,6 @@ using Prism.Events;
 using WeatherStation.Handler;
 using WeatherStation.Sensor;
 using WeatherStation.Storage;
-using WeatherStation.Storage.Repository;
 using WeatherStation.ViewModels.History;
 using WeatherStation.ViewModels.Main;
 using WeatherStation.ViewModels.Main.Commands;
@@ -15,8 +14,8 @@ namespace WeatherStation.MVVM
     public class MvvmViewFactory : IViewFactory
     {
         private readonly ISensor _barometricPressureSensor;
-        private readonly IRepository _temperatuRepository;
-        private readonly IRepository _barometricPressureRepository;
+        private readonly IDataBaseConnector _temperatuDataBaseConnector;
+        private readonly IDataBaseConnector _barometricPressureDataBaseConnector;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISensor _temperatureSensor;
 
@@ -24,14 +23,14 @@ namespace WeatherStation.MVVM
             IEventAggregator eventAggregator, 
             ISensor temperatureSensor,
             ISensor barometricPressureSensor, 
-            IRepository temperatuRepository, 
-            IRepository barometricPressureRepository)
+            IDataBaseConnector temperatuDataBaseConnector, 
+            IDataBaseConnector barometricPressureDataBaseConnector)
         {
             _eventAggregator = eventAggregator;
             _temperatureSensor = temperatureSensor;
             _barometricPressureSensor = barometricPressureSensor;
-            _temperatuRepository = temperatuRepository;
-            _barometricPressureRepository = barometricPressureRepository;
+            _temperatuDataBaseConnector = temperatuDataBaseConnector;
+            _barometricPressureDataBaseConnector = barometricPressureDataBaseConnector;
         }
 
         public Window CreateMainWindow()
@@ -54,14 +53,14 @@ namespace WeatherStation.MVVM
 
         public Window CreateTemperatureHistory()
         {
-            var temperatureViewModel = new TemperatureHistoryWindowViewModel( _temperatuRepository);
+            var temperatureViewModel = new TemperatureHistoryWindowViewModel( _temperatuDataBaseConnector, _eventAggregator);
             var historyWindow = new HistoryWindow {DataContext = temperatureViewModel};
             return historyWindow;
         }
 
         public Window CreateBarPressureHistory()
         {
-            var barPressureViewModel = new BarPressureHistoryWindowViewModel( _barometricPressureRepository);
+            var barPressureViewModel = new BarPressureHistoryWindowViewModel( _barometricPressureDataBaseConnector, _eventAggregator);
             var historyWindow = new HistoryWindow {DataContext = barPressureViewModel};
             return historyWindow;
         }

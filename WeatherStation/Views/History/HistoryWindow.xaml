@@ -3,27 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeatherStation.Views"
-        xmlns:converter="clr-namespace:WeatherStation.ViewModels.History.Converter"
+        xmlns:history="clr-namespace:WeatherStation.ViewModels.History"
+        xmlns:views="clr-namespace:WeatherStation.Views.History"
         mc:Ignorable="d"
-        Title="{Binding HistoryWindowName}" Height="500" Width="300"
-    >
+        Title="{Binding HistoryWindowName}" Height="500" Width="300">
     <Window.Resources>
-        <converter:DoubleToStringConverter x:Key="DoubleToStringConverter"></converter:DoubleToStringConverter>
-        <converter:TimeStampToTimeStringConverter x:Key="TimeStampToTimeStringConverter"></converter:TimeStampToTimeStringConverter>
-        <converter:TimeStampToDateStringConverter x:Key="TimeStampToDateStringConverter"></converter:TimeStampToDateStringConverter>
+        <DataTemplate DataType="{x:Type history:BarPressureHistoryWindowViewModel}">
+            <views:BarometricPressureHistoryControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type history:TemperatureHistoryWindowViewModel}">
+            <views:TemperatureHistoryControl/>
+        </DataTemplate>
     </Window.Resources>
-    
-    <Grid >
-        <ListView x:Name="dataview" Margin="5,5,5,5" Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Measurements}">
-            <ListView.View>
-                <GridView x:Name="grdNames">
-                    <GridViewColumn Header="Date" Width="80" DisplayMemberBinding="{Binding TimeStamp, Converter={StaticResource TimeStampToDateStringConverter}}"/>
-                    <GridViewColumn Header="Time" Width="80"  DisplayMemberBinding="{Binding TimeStamp, Converter={StaticResource TimeStampToTimeStringConverter}}"/>
-                    <GridViewColumn Header="Value" Width="80"  DisplayMemberBinding="{Binding Value, Converter={StaticResource DoubleToStringConverter}}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
+    <Grid>
+        <ContentControl Content="{Binding}">
+        </ContentControl>
     </Grid>
 </Window>
