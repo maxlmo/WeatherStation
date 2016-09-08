@@ -40,7 +40,7 @@ namespace WeatherStation
 
         private void InitializeDataBaseConnection()
         {
-            FluentNHibernateHelper.CreateDatabase();
+            FluentNHibernateHelper.InitializeDatabase();
             _dataBaseConnector = new DataBaseConnector();
             _barometricPressureRepository = new BarometricPressureRepository(_eventAggregator,_dataBaseConnector);
             _temperatureRepository = new TemperatureRepository(_eventAggregator, _dataBaseConnector);

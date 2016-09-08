@@ -98,8 +98,8 @@
     <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
     <Compile Include="Handler\IHandler.cs" />
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
-    <Compile Include="Mapping\BarometricPressureMap.cs" />
-    <Compile Include="Mapping\TemperatureMap.cs" />
+    <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />
+    <Compile Include="Storage\Mapping\TemperatureMap.cs" />
     <Compile Include="Messages\NewBarometricPressureTrend.cs" />
     <Compile Include="Model\AverageTemperature.cs" />
     <Compile Include="Model\BarometricPressureTrend.cs" />

@@ -19,7 +19,6 @@ namespace WeatherStation.MVVM
         private readonly IRepository _barometricPressureRepository;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISensor _temperatureSensor;
-        private TemperatureRepository _repository;
 
         public MvvmViewFactory(
             IEventAggregator eventAggregator, 
@@ -49,8 +48,6 @@ namespace WeatherStation.MVVM
 
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
-            mainWindowViewModel.RegisterHandler(_temperatuRepository);
-            mainWindowViewModel.RegisterHandler(_barometricPressureRepository);
 
             return new MainWindow { DataContext = mainWindowViewModel };
         }

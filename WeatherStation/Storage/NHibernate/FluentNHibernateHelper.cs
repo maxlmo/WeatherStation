@@ -9,10 +9,10 @@ namespace WeatherStation.Storage
     public static class FluentNHibernateHelper
 
     {
-        public static void CreateDatabase()
+        public static void InitializeDatabase()
         {
             var configuration = CreateConfiguration();
-            configuration.ExposeConfiguration(c => new SchemaExport(c).Execute(true, true, false)).BuildConfiguration();
+            configuration.ExposeConfiguration(c => new SchemaUpdate(c).Execute(true, true)).BuildConfiguration();
         }
 
         public static ISession OpenSession()
@@ -20,7 +20,7 @@ namespace WeatherStation.Storage
             return CreateConfiguration().BuildSessionFactory().OpenSession();
         }
 
-        public static FluentConfiguration CreateConfiguration()
+        private static FluentConfiguration CreateConfiguration()
         {
             return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.ConnectionString(c => c.Is("Data Source=WeatherStation.db")))
