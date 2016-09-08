@@ -34,5 +34,17 @@ namespace WeatherStation.Properties {
                 this["TemperatureUnit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int BarometricPressureUnit {
+            get {
+                return ((int)(this["BarometricPressureUnit"]));
+            }
+            set {
+                this["BarometricPressureUnit"] = value;
+            }
+        }
     }
 }

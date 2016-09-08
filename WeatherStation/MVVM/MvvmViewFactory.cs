@@ -7,6 +7,7 @@ using WeatherStation.ViewModels.History;
 using WeatherStation.ViewModels.Main;
 using WeatherStation.ViewModels.Main.Commands;
 using WeatherStation.ViewModels.UnitSettings;
+using WeatherStation.ViewModels.UnitSettings.Commands;
 using WeatherStation.Views.History;
 using WeatherStation.Views.Main;
 using WeatherStation.Views.UnitSettings;
@@ -70,8 +71,11 @@ namespace WeatherStation.MVVM
 
         public Window CreateUnitSettingsWindow()
         {
-            var viewModel = new UnitSettingsWindowViewModel();
-            var unitSettingsWindow = new UnitSettingsWindow { DataContext = viewModel };
+            var unitSettingsWindow = new UnitSettingsWindow();
+            var viewModel = new UnitSettingsWindowViewModel(_eventAggregator, unitSettingsWindow);
+            viewModel.ApplySettingsCommand = new ApplySettingsCommand(viewModel, _eventAggregator);
+
+            unitSettingsWindow.DataContext = viewModel;
             return unitSettingsWindow;
         }
     }
