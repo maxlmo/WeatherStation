@@ -119,10 +119,10 @@
     <Compile Include="Messages\TemperatureSaved.cs" />
     <Compile Include="ViewModels\History\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
-    <Compile Include="ViewModels\Main\Converter\EnumToImageConverter.cs" />
-    <Compile Include="ViewModels\History\Converter\DoubleToStringConverter.cs" />
-    <Compile Include="ViewModels\History\Converter\TimeStampToDateStringConverter.cs" />
-    <Compile Include="ViewModels\History\Converter\TimeStampToTimeStringConverter.cs" />
+    <Compile Include="Views\Main\Converter\EnumToImageConverter.cs" />
+    <Compile Include="Views\History\Converter\DoubleToStringConverter.cs" />
+    <Compile Include="Views\History\Converter\TimeStampToDateStringConverter.cs" />
+    <Compile Include="Views\History\Converter\TimeStampToTimeStringConverter.cs" />
     <Compile Include="ViewModels\History\TemperatureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\Main\Commands\ReadBarPressureCommand.cs" />
     <Compile Include="Sensor\BarPressureSensor.cs" />

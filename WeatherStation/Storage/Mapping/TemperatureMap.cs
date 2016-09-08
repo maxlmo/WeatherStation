@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using WeatherStation.Model;
 
-namespace WeatherStation.Mapping
+namespace WeatherStation.Storage.Mapping
 {
     public class TemperatureMap : ClassMap<TemperatureMeasurement>
     {

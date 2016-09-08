@@ -2,14 +2,14 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace WeatherStation.ViewModels.History.Converter
+namespace WeatherStation.Views.History.Converter
 {
-    public class DoubleToStringConverter : IValueConverter
+    public class TimeStampToDateStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var returnObject = (double) value;
-            return returnObject.ToString("F");
+            var returnObject = (DateTime) value;
+            return returnObject.ToString("d");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
