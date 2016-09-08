@@ -3,8 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converter="clr-namespace:WeatherStation.Views.UnitSettings.Converter"
         mc:Ignorable="d"
         Title="UnitSettingsWindow" Height="180" Width="320">
+    <Window.Resources>
+        <converter:TemperatureUnitToBoolConverter x:Key="TemperatureUnitToBoolConverter" />
+        <converter:BarometricPressureToBoolConverter x:Key="BarometricPressureToBoolConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -31,12 +36,12 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="1" Grid.Column="1" Content="Temperature Unit:"></Label>
-            <RadioButton Grid.Row="1" Grid.Column="3" x:Name="CelsiusRadioButton" Content="°F" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <RadioButton Grid.Row="1" Grid.Column="5" x:Name="FahrenheitRadioButton" Content="°C" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <RadioButton IsChecked="{Binding CurrentTemperatureUnit, Converter={StaticResource TemperatureUnitToBoolConverter}, ConverterParameter=Fahrenheit }" Grid.Row="1" Grid.Column="3" Content="°F" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <RadioButton IsChecked="{Binding CurrentTemperatureUnit, Converter={StaticResource TemperatureUnitToBoolConverter}, ConverterParameter=Celsius }" Grid.Row="1" Grid.Column="5" x:Name="FahrenheitRadioButton" Content="°C" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
             <Label Grid.Row="3" Grid.Column="1" Content="Barometric Pressure Unit:"></Label>
-            <RadioButton Grid.Row="3" Grid.Column="3" x:Name="MbarRadioButton" Content="mbar" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
-            <RadioButton Grid.Row="3" Grid.Column="5" x:Name="InHgRadioButton" Content="inHg" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
+            <RadioButton Grid.Row="3" Grid.Column="3" IsChecked="{Binding CurrentBarometricPressureUnit, Converter={StaticResource BarometricPressureToBoolConverter}, ConverterParameter=MBar }" Content="mbar" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
+            <RadioButton Grid.Row="3" Grid.Column="5" IsChecked="{Binding CurrentBarometricPressureUnit, Converter={StaticResource BarometricPressureToBoolConverter}, ConverterParameter=InHg }" x:Name="InHgRadioButton" Content="inHg" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
         </Grid>
         
         <Grid Row="1">

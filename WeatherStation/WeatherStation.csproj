@@ -120,6 +120,7 @@
     <Compile Include="Messages\TemperatureSaved.cs" />
     <Compile Include="ViewModels\History\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
+    <Compile Include="ViewModels\UnitSettings\UnitSettingsWindowViewModel.cs" />
     <Compile Include="Views\Main\Converter\EnumToImageConverter.cs" />
     <Compile Include="Views\History\Converter\DoubleToStringConverter.cs" />
     <Compile Include="Views\History\Converter\TimeStampToDateStringConverter.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="Views\History\TemperatureHistoryControl.xaml.cs">
       <DependentUpon>TemperatureHistoryControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UnitSettings\Converter\BarometricPressureUnitToBoolConverter.cs" />
+    <Compile Include="Views\UnitSettings\Converter\TemperatureUnitToBoolConverter.cs" />
     <Compile Include="Views\UnitSettings\UnitSettingsWindow.xaml.cs">
       <DependentUpon>UnitSettingsWindow.xaml</DependentUpon>
     </Compile>
