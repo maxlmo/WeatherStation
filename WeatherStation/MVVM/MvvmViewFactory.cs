@@ -8,6 +8,7 @@ using WeatherStation.ViewModels.Main;
 using WeatherStation.ViewModels.Main.Commands;
 using WeatherStation.Views.History;
 using WeatherStation.Views.Main;
+using WeatherStation.Views.UnitSettings;
 
 namespace WeatherStation.MVVM
 {
@@ -43,7 +44,8 @@ namespace WeatherStation.MVVM
                 new OpenHistoryWindowCommand(this),
                 new CloseApplicationCommand(),
                 new ReadTemperatureCommand(_temperatureSensor),
-                new ReadBarPressureCommand(_barometricPressureSensor));
+                new ReadBarPressureCommand(_barometricPressureSensor),
+                new OpenUnitSettingsCommand(this));
 
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
@@ -63,6 +65,12 @@ namespace WeatherStation.MVVM
             var barPressureViewModel = new BarPressureHistoryWindowViewModel( _barometricPressureDataBaseConnector, _eventAggregator);
             var historyWindow = new HistoryWindow {DataContext = barPressureViewModel};
             return historyWindow;
+        }
+
+        public Window CreateUnitSettingsWindow()
+        {
+            var unitSettingsWindow = new UnitSettingsWindow();
+            return unitSettingsWindow;
         }
     }
 }

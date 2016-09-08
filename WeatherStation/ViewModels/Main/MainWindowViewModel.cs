@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Prism.Events;
-using WeatherStation.Handler;
 using WeatherStation.Messages;
 using WeatherStation.Model;
 
@@ -12,6 +11,7 @@ namespace WeatherStation.ViewModels.Main
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly ICommand _openUnitSettingsCommand;
         private string _averageTemperature;
         private BarometricPressureTrend _barometricPressureTrend;
         private string _barPressure;
@@ -25,13 +25,16 @@ namespace WeatherStation.ViewModels.Main
             ICommand openHistoryWindowCommand,
             ICommand closeApplicationCommand,
             ICommand readTemperatureCommand,
-            ICommand readBarometricPressureCommand)
+            ICommand readBarometricPressureCommand,
+            ICommand openUnitSettingsCommand)
         {
             _eventAggregator = eventAggregator;
+            _openUnitSettingsCommand = openUnitSettingsCommand;
             ReadBarometricPressureCommand = readBarometricPressureCommand;
             ReadTemperatureCommand = readTemperatureCommand;
             CloseApplicationCommand = closeApplicationCommand;
             OpenHistoryWindowCommand = openHistoryWindowCommand;
+            OpenUnitSettingsCommand = openUnitSettingsCommand;
             SubscribeForEvents();
         }
 
@@ -99,6 +102,7 @@ namespace WeatherStation.ViewModels.Main
         public ICommand CloseApplicationCommand { get; }
         public ICommand ReadTemperatureCommand { get; }
         public ICommand ReadBarometricPressureCommand { get; }
+        public ICommand OpenUnitSettingsCommand { get; set; }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

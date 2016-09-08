@@ -23,7 +23,7 @@
                     <MenuItem x:Name="Quit" Header="Exit"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Settings" Height="25">
-                    <MenuItem Header="Units..."></MenuItem>
+                    <MenuItem Header="Units..." Command="{Binding OpenUnitSettingsCommand}"></MenuItem>
                     <MenuItem Header="Date and Time..."></MenuItem>
                     <MenuItem Header="Measurement Intervals..."></MenuItem>
                 </MenuItem>

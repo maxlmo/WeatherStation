@@ -99,6 +99,7 @@
     <Compile Include="Handler\IHandler.cs" />
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
     <Compile Include="Messages\BarometricPressureSaved.cs" />
+    <Compile Include="ViewModels\Main\Commands\OpenUnitSettingsCommand.cs" />
     <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />
     <Compile Include="Storage\Mapping\TemperatureMap.cs" />
     <Compile Include="Messages\NewBarometricPressureTrend.cs" />
@@ -141,6 +142,9 @@
     <Compile Include="Views\History\TemperatureHistoryControl.xaml.cs">
       <DependentUpon>TemperatureHistoryControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UnitSettings\UnitSettingsWindow.xaml.cs">
+      <DependentUpon>UnitSettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\History\HistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\History\TemperatureHistoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UnitSettings\UnitSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

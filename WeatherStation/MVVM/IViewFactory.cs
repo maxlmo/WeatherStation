@@ -7,5 +7,6 @@ namespace WeatherStation.MVVM
         Window CreateMainWindow();
         Window CreateTemperatureHistory();
         Window CreateBarPressureHistory();
+        Window CreateUnitSettingsWindow();
     }
 }
