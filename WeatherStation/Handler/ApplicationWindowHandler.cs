@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using Prism.Events;
 using WeatherStation.MVVM;
-using WeatherStation.Views.History;
+using WeatherStation.Views;
 
 namespace WeatherStation.Handler
 {
@@ -28,7 +26,7 @@ namespace WeatherStation.Handler
         {
             var window = _viewFactory.CreateMainWindow(this);
             _windows.Add(window);
-            
+
             window.Show();
         }
 
@@ -45,7 +43,7 @@ namespace WeatherStation.Handler
 
             windowToClose.Close();
         }
-        
+
         private void OpenNewWindow(ViewType type)
         {
             if (_windows.Any(w => Equals(w.Tag, type)))
@@ -61,16 +59,16 @@ namespace WeatherStation.Handler
             }
         }
 
-        private Window GetWindowByType(ViewType type)
+        private IWindow GetWindowByType(ViewType type)
         {
             switch (type)
             {
-                    case ViewType.BarometricPressureHistory:
-                        return _viewFactory.CreateBarPressureHistory();
-                    case ViewType.TemperatureHistory:
-                        return _viewFactory.CreateTemperatureHistory();
-                    case ViewType.UnitSettings:
-                        return _viewFactory.CreateUnitSettingsWindow();
+                case ViewType.BarometricPressureHistory:
+                    return _viewFactory.CreateBarPressureHistory();
+                case ViewType.TemperatureHistory:
+                    return _viewFactory.CreateTemperatureHistory();
+                case ViewType.UnitSettings:
+                    return _viewFactory.CreateUnitSettingsWindow();
             }
             throw new NotSupportedException();
         }

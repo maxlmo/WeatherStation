@@ -8,6 +8,7 @@ using WeatherStation.ViewModels.Main;
 using WeatherStation.ViewModels.Main.Commands;
 using WeatherStation.ViewModels.UnitSettings;
 using WeatherStation.ViewModels.UnitSettings.Commands;
+using WeatherStation.Views;
 using WeatherStation.Views.History;
 using WeatherStation.Views.Main;
 using WeatherStation.Views.UnitSettings;
@@ -36,7 +37,7 @@ namespace WeatherStation.MVVM
             _barometricPressureDataBaseConnector = barometricPressureDataBaseConnector;
         }
 
-        public Window CreateMainWindow(ApplicationWindowHandler windowHandler)
+        public IWindow CreateMainWindow(ApplicationWindowHandler windowHandler)
         { 
             var averageTemperatureCalculator = new AverageTemperatureCalculator(_eventAggregator);
             var barometricPressureTrendHandler = new BarometricPressureTrendHandler(_eventAggregator);
@@ -56,21 +57,21 @@ namespace WeatherStation.MVVM
             return new MainWindow { DataContext = mainWindowViewModel, Tag = ViewType.MainWindow };
         }
 
-        public Window CreateTemperatureHistory()
+        public IWindow CreateTemperatureHistory()
         {
             var temperatureViewModel = new TemperatureHistoryWindowViewModel( _temperatuDataBaseConnector, _eventAggregator);
             var historyWindow = new HistoryWindow {DataContext = temperatureViewModel, Tag = ViewType.TemperatureHistory};
             return historyWindow;
         }
 
-        public Window CreateBarPressureHistory()
+        public IWindow CreateBarPressureHistory()
         {
             var barPressureViewModel = new BarPressureHistoryWindowViewModel( _barometricPressureDataBaseConnector, _eventAggregator);
             var historyWindow = new HistoryWindow {DataContext = barPressureViewModel, Tag = ViewType.BarometricPressureHistory};
             return historyWindow;
         }
 
-        public Window CreateUnitSettingsWindow()
+        public IWindow CreateUnitSettingsWindow()
         {
             var unitSettingsWindow = new UnitSettingsWindow();
             var viewModel = new UnitSettingsWindowViewModel();

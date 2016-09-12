@@ -5,7 +5,7 @@ namespace WeatherStation.Views.UnitSettings
     /// <summary>
     /// Interaction logic for UnitSettingsWindow.xaml
     /// </summary>
-    public partial class UnitSettingsWindow : Window
+    public partial class UnitSettingsWindow : Window, IWindow
     {
         public UnitSettingsWindow()
         {

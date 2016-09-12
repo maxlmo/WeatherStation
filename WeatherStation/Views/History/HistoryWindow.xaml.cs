@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WeatherStation.ViewModels.Main.Commands;
 
 namespace WeatherStation.Views.History
 {
@@ -11,11 +12,5 @@ namespace WeatherStation.Views.History
         {
             InitializeComponent();
         }
-    }
-
-    public interface IWindow
-    {
-        void Show();
-        void Close();
     }
 }

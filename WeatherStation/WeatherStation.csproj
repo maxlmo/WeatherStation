@@ -102,7 +102,7 @@
     <Compile Include="Messages\BarometricPressureSaved.cs" />
     <Compile Include="Messages\SettingsSaved.cs" />
     <Compile Include="Handler\ApplicationWindowHandler.cs" />
-    <Compile Include="MVVM\Views.cs" />
+    <Compile Include="MVVM\ViewType.cs" />
     <Compile Include="ViewModels\Main\Commands\OpenUnitSettingsCommand.cs" />
     <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />
     <Compile Include="Storage\Mapping\TemperatureMap.cs" />
@@ -127,6 +127,7 @@
     <Compile Include="ViewModels\UnitSettings\Commands\ApplySettingsCommand.cs" />
     <Compile Include="ViewModels\UnitSettings\UnitSettingsWindowViewModel.cs" />
     <Compile Include="Views\History\Converter\BarometricPressureMeasurementUnitConverter.cs" />
+    <Compile Include="Views\IWindow.cs" />
     <Compile Include="Views\Main\Converter\EnumToImageConverter.cs" />
     <Compile Include="Views\History\Converter\TemperatureMeasurementUnitConverter.cs" />
     <Compile Include="Views\History\Converter\TimeStampToDateStringConverter.cs" />
