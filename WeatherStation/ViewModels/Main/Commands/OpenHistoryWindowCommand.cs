@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Management.Instrumentation;
-using System.Windows;
 using System.Windows.Input;
+using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.MVVM;
 
 namespace WeatherStation.ViewModels.Main.Commands
 {
     public class OpenHistoryWindowCommand : ICommand
     {
-        private readonly IViewFactory _viewFactory;
+        private readonly IEventAggregator _eventAggregator;
 
-        public OpenHistoryWindowCommand(IViewFactory viewFactory)
+        public OpenHistoryWindowCommand(IEventAggregator eventAggregator)
         {
-            _viewFactory = viewFactory;
+            _eventAggregator = eventAggregator;
         }
 
         public bool CanExecute(object parameter)
@@ -22,20 +22,8 @@ namespace WeatherStation.ViewModels.Main.Commands
 
         public void Execute(object parameter)
         {
-            Window view;
-            switch (parameter.ToString())
-            {
-                case "Temperature":
-                    view = _viewFactory.CreateTemperatureHistory();
-                    break;
-                case "BarometricPressure":
-                    view = _viewFactory.CreateBarPressureHistory();
-                    break;
-                default:
-                    throw new InstanceNotFoundException("Window not found: " + parameter);
-            }
-            
-            view.Show();
+            var type = (ViewType) Enum.Parse(typeof(ViewType), parameter.ToString());
+            _eventAggregator.GetEvent<OpenNewWindow>().Publish(type);
         }
 
         public event EventHandler CanExecuteChanged;

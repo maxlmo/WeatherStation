@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Windows.Input;
+using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.MVVM;
 
 namespace WeatherStation.ViewModels.Main.Commands
 {
     public class OpenUnitSettingsCommand : ICommand
     {
-        private readonly IViewFactory _viewFactory;
+        private readonly IEventAggregator _eventAggregator;
 
-        public OpenUnitSettingsCommand(IViewFactory viewFactory)
+        public OpenUnitSettingsCommand(IEventAggregator eventAggregator)
         {
-            _viewFactory = viewFactory;
+            _eventAggregator = eventAggregator;
         }
 
         public bool CanExecute(object parameter)
@@ -20,8 +22,7 @@ namespace WeatherStation.ViewModels.Main.Commands
 
         public void Execute(object parameter)
         {
-            var window = _viewFactory.CreateUnitSettingsWindow();
-            window.Show();
+            _eventAggregator.GetEvent<OpenNewWindow>().Publish(ViewType.UnitSettings);
         }
 
         public event EventHandler CanExecuteChanged;

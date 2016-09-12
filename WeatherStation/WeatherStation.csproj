@@ -101,6 +101,8 @@
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
     <Compile Include="Messages\BarometricPressureSaved.cs" />
     <Compile Include="Messages\SettingsSaved.cs" />
+    <Compile Include="Handler\ApplicationWindowHandler.cs" />
+    <Compile Include="MVVM\Views.cs" />
     <Compile Include="ViewModels\Main\Commands\OpenUnitSettingsCommand.cs" />
     <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />
     <Compile Include="Storage\Mapping\TemperatureMap.cs" />

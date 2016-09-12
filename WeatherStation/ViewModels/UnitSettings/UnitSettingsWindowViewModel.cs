@@ -14,22 +14,15 @@ namespace WeatherStation.ViewModels.UnitSettings
 {
     public class UnitSettingsWindowViewModel : INotifyPropertyChanged
     {
-        private readonly Window _currentWindow;
         private TemperatureUnit _temperatureUnit;
         private BarometricPressureUnit _barometricPressureUnit;
 
-        public UnitSettingsWindowViewModel(IEventAggregator eventAggregator, Window currentWindow)
+        public UnitSettingsWindowViewModel()
         {
-            _currentWindow = currentWindow;
-            eventAggregator.GetEvent<SettingsSaved>().Subscribe(SettingsSaved);
             _temperatureUnit = (TemperatureUnit) Settings.Default.TemperatureUnit;
             _barometricPressureUnit = (BarometricPressureUnit) Settings.Default.BarometricPressureUnit;
         }
-
-        private void SettingsSaved(object obj)
-        {
-            _currentWindow.Close();
-        }
+        
 
         public ICommand ApplySettingsCommand { get; set; }
 

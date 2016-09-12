@@ -1,4 +1,5 @@
 ﻿using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.Messages;
 using WeatherStation.MVVM;
 using WeatherStation.Sensor;
@@ -12,7 +13,6 @@ namespace WeatherStation
         private MeasurementThread _temperatureThread;
         private MeasurementThread _barPressureThread;
         private TimeThread _timeThread;
-        private IDataBaseConnector _dataBaseConnector;
         private IEventAggregator _eventAggregator;
         private IDataBaseConnector _temperatureDataBaseConnector;
         private IDataBaseConnector _barometricPressureDataBaseConnector;
@@ -29,10 +29,10 @@ namespace WeatherStation
                 barometricPressureSensor, 
                 _temperatureDataBaseConnector, 
                 _barometricPressureDataBaseConnector);
-            var mainWindow = viewFactory.CreateMainWindow();
-            
             StartThreads(barometricPressureSensor, temperatureSensor);
-            mainWindow.Show();
+            var applicationWindowHandler = new ApplicationWindowHandler(_eventAggregator, viewFactory);
+
+            applicationWindowHandler.OpenMainWindow();
         }
 
         private void InitializeDataBaseConnection()

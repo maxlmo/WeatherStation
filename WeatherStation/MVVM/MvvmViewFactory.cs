@@ -36,46 +36,48 @@ namespace WeatherStation.MVVM
             _barometricPressureDataBaseConnector = barometricPressureDataBaseConnector;
         }
 
-        public Window CreateMainWindow()
-        {
+        public Window CreateMainWindow(ApplicationWindowHandler windowHandler)
+        { 
             var averageTemperatureCalculator = new AverageTemperatureCalculator(_eventAggregator);
             var barometricPressureTrendHandler = new BarometricPressureTrendHandler(_eventAggregator);
 
             var mainWindowViewModel = new MainWindowViewModel(
                 _eventAggregator,
-                new OpenHistoryWindowCommand(this),
-                new CloseApplicationCommand(),
+                new OpenHistoryWindowCommand(_eventAggregator),
+                new CloseApplicationCommand(_eventAggregator),
                 new ReadTemperatureCommand(_temperatureSensor),
                 new ReadBarPressureCommand(_barometricPressureSensor),
-                new OpenUnitSettingsCommand(this));
+                new OpenUnitSettingsCommand(_eventAggregator));
 
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
+            mainWindowViewModel.RegisterHandler(windowHandler);
 
-            return new MainWindow { DataContext = mainWindowViewModel };
+            return new MainWindow { DataContext = mainWindowViewModel, Tag = ViewType.MainWindow };
         }
 
         public Window CreateTemperatureHistory()
         {
             var temperatureViewModel = new TemperatureHistoryWindowViewModel( _temperatuDataBaseConnector, _eventAggregator);
-            var historyWindow = new HistoryWindow {DataContext = temperatureViewModel};
+            var historyWindow = new HistoryWindow {DataContext = temperatureViewModel, Tag = ViewType.TemperatureHistory};
             return historyWindow;
         }
 
         public Window CreateBarPressureHistory()
         {
             var barPressureViewModel = new BarPressureHistoryWindowViewModel( _barometricPressureDataBaseConnector, _eventAggregator);
-            var historyWindow = new HistoryWindow {DataContext = barPressureViewModel};
+            var historyWindow = new HistoryWindow {DataContext = barPressureViewModel, Tag = ViewType.BarometricPressureHistory};
             return historyWindow;
         }
 
         public Window CreateUnitSettingsWindow()
         {
             var unitSettingsWindow = new UnitSettingsWindow();
-            var viewModel = new UnitSettingsWindowViewModel(_eventAggregator, unitSettingsWindow);
+            var viewModel = new UnitSettingsWindowViewModel();
             viewModel.ApplySettingsCommand = new ApplySettingsCommand(viewModel, _eventAggregator);
 
             unitSettingsWindow.DataContext = viewModel;
+            unitSettingsWindow.Tag = ViewType.UnitSettings;
             return unitSettingsWindow;
         }
     }

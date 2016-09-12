@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.Messages;
+using WeatherStation.MVVM;
 using WeatherStation.Properties;
 
 namespace WeatherStation.ViewModels.UnitSettings.Commands
@@ -31,7 +33,7 @@ namespace WeatherStation.ViewModels.UnitSettings.Commands
         {
             Settings.Default.BarometricPressureUnit = (int)_viewModel.CurrentBarometricPressureUnit;
             Settings.Default.TemperatureUnit = (int) _viewModel.CurrentTemperatureUnit;
-            _eventAggregator.GetEvent<SettingsSaved>().Publish(null);
+            _eventAggregator.GetEvent<CloseWindow>().Publish(ViewType.UnitSettings);
         }
 
         public event EventHandler CanExecuteChanged;
