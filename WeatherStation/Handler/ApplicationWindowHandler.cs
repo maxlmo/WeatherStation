@@ -17,26 +17,15 @@ namespace WeatherStation.Handler
         {
             _eventAggregator = eventAggregator;
             _viewFactory = viewFactory;
-            eventAggregator.GetEvent<OpenNewWindow>().Subscribe(OpenNewWindow);
-            eventAggregator.GetEvent<CloseWindow>().Subscribe(CloseWindow);
-            eventAggregator.GetEvent<WindowClosed>().Subscribe(WindowClosed);
         }
 
-        public void OpenMainWindow()
-        {
-            var window = _viewFactory.CreateMainWindow(this);
-            _windows.Add(window);
-
-            window.Show();
-        }
-
-        private void WindowClosed(ViewType type)
+        public void WindowClosed(ViewType type)
         {
             var closedWindow = _windows.Find(w => Equals(w.Tag, type));
             _windows.Remove(closedWindow);
         }
 
-        private void CloseWindow(ViewType type)
+        public void CloseWindow(ViewType type)
         {
             var windowToClose = _windows.Find(w => Equals(w.Tag, type));
             _windows.Remove(windowToClose);
@@ -44,7 +33,7 @@ namespace WeatherStation.Handler
             windowToClose.Close();
         }
 
-        private void OpenNewWindow(ViewType type)
+        public void OpenNewWindow(ViewType type)
         {
             if (_windows.Any(w => Equals(w.Tag, type)))
             {
@@ -69,6 +58,8 @@ namespace WeatherStation.Handler
                     return _viewFactory.CreateTemperatureHistory();
                 case ViewType.UnitSettings:
                     return _viewFactory.CreateUnitSettingsWindow();
+                case ViewType.MainWindow:
+                    return _viewFactory.CreateMainWindow();
             }
             throw new NotSupportedException();
         }

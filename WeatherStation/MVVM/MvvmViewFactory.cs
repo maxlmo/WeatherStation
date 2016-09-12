@@ -37,7 +37,7 @@ namespace WeatherStation.MVVM
             _barometricPressureDataBaseConnector = barometricPressureDataBaseConnector;
         }
 
-        public IWindow CreateMainWindow(ApplicationWindowHandler windowHandler)
+        public IWindow CreateMainWindow()
         { 
             var averageTemperatureCalculator = new AverageTemperatureCalculator(_eventAggregator);
             var barometricPressureTrendHandler = new BarometricPressureTrendHandler(_eventAggregator);
@@ -52,7 +52,6 @@ namespace WeatherStation.MVVM
 
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
-            mainWindowViewModel.RegisterHandler(windowHandler);
 
             return new MainWindow { DataContext = mainWindowViewModel, Tag = ViewType.MainWindow };
         }

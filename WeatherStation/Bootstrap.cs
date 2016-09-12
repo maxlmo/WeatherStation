@@ -10,12 +10,13 @@ namespace WeatherStation
 {
     public class Bootstrap
     {
-        private MeasurementThread _temperatureThread;
+        private IDataBaseConnector _barometricPressureDataBaseConnector;
         private MeasurementThread _barPressureThread;
-        private TimeThread _timeThread;
         private IEventAggregator _eventAggregator;
         private IDataBaseConnector _temperatureDataBaseConnector;
-        private IDataBaseConnector _barometricPressureDataBaseConnector;
+        private MeasurementThread _temperatureThread;
+        private TimeThread _timeThread;
+        private IViewFactory _viewFactory;
 
         public void StartApplication()
         {
@@ -23,16 +24,17 @@ namespace WeatherStation
             InitializeDataBaseConnection();
             var temperatureSensor = new TemperatureSensor(_eventAggregator);
             var barometricPressureSensor = new BarPressureSensor(_eventAggregator);
-            var viewFactory = new MvvmViewFactory(
-                _eventAggregator, 
-                temperatureSensor, 
-                barometricPressureSensor, 
-                _temperatureDataBaseConnector, 
+            _viewFactory = new MvvmViewFactory(
+                _eventAggregator,
+                temperatureSensor,
+                barometricPressureSensor,
+                _temperatureDataBaseConnector,
                 _barometricPressureDataBaseConnector);
             StartThreads(barometricPressureSensor, temperatureSensor);
-            var applicationWindowHandler = new ApplicationWindowHandler(_eventAggregator, viewFactory);
 
-            applicationWindowHandler.OpenMainWindow();
+            var applicationWindowHandler = CreateApplicationWindowHandler();
+
+            applicationWindowHandler.OpenNewWindow(ViewType.MainWindow);
         }
 
         private void InitializeDataBaseConnection()
@@ -61,6 +63,15 @@ namespace WeatherStation
             _temperatureThread.CloseThread();
             _barPressureThread.CloseThread();
             _timeThread.CloseThread();
+        }
+
+        private ApplicationWindowHandler CreateApplicationWindowHandler()
+        {
+            var applicationWindowHandler = new ApplicationWindowHandler(_eventAggregator, _viewFactory);
+            _eventAggregator.GetEvent<OpenNewWindow>().Subscribe(applicationWindowHandler.OpenNewWindow);
+            _eventAggregator.GetEvent<CloseWindow>().Subscribe(applicationWindowHandler.CloseWindow);
+            _eventAggregator.GetEvent<WindowClosed>().Subscribe(applicationWindowHandler.WindowClosed);
+            return applicationWindowHandler;
         }
     }
 }

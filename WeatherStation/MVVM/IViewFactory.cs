@@ -6,7 +6,7 @@ namespace WeatherStation.MVVM
 {
     public interface IViewFactory
     {
-        IWindow CreateMainWindow(ApplicationWindowHandler windowHandler);
+        IWindow CreateMainWindow();
         IWindow CreateTemperatureHistory();
         IWindow CreateBarPressureHistory();
         IWindow CreateUnitSettingsWindow();
