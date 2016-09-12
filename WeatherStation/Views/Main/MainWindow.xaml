@@ -89,11 +89,11 @@
             <Label Grid.Column="1" Grid.Row="10" Content="Barometric Pressure Trend:" HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="3" Grid.Row="4" Content="°C" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Label Grid.Column="3" Grid.Row="4" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="3" Grid.Row="6" Content="°C" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Label Grid.Column="3" Grid.Row="6" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="3" Grid.Row="8" Content="mBar" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Label Grid.Column="3" Grid.Row="8" Content="{Binding BarometricPressureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
 
             <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="4">

@@ -19,7 +19,8 @@ namespace WeatherStation.Views.Converter
                     return temperatureValue.ToString("F") + " °C";
 
                 case TemperatureUnit.Fahrenheit:
-                    return IntoFahrenheit(temperatureValue).ToString("F") + " °F";
+                    return UnitConverter.
+                        IntoFahrenheit(temperatureValue).ToString("F") + " °F";
             }
 
             throw new NotSupportedException();
@@ -28,11 +29,6 @@ namespace WeatherStation.Views.Converter
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
-        }
-
-        private double IntoFahrenheit(double value)
-        {
-            return value*1.8 + 32;
         }
     }
 }

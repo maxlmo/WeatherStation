@@ -1,6 +1,6 @@
-﻿using System.Windows;
-using Prism.Events;
+﻿using Prism.Events;
 using WeatherStation.Handler;
+using WeatherStation.Properties;
 using WeatherStation.Sensor;
 using WeatherStation.Storage;
 using WeatherStation.ViewModels.History;
@@ -17,17 +17,17 @@ namespace WeatherStation.MVVM
 {
     public class MvvmViewFactory : IViewFactory
     {
-        private readonly ISensor _barometricPressureSensor;
-        private readonly IDataBaseConnector _temperatuDataBaseConnector;
         private readonly IDataBaseConnector _barometricPressureDataBaseConnector;
+        private readonly ISensor _barometricPressureSensor;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IDataBaseConnector _temperatuDataBaseConnector;
         private readonly ISensor _temperatureSensor;
 
         public MvvmViewFactory(
-            IEventAggregator eventAggregator, 
+            IEventAggregator eventAggregator,
             ISensor temperatureSensor,
-            ISensor barometricPressureSensor, 
-            IDataBaseConnector temperatuDataBaseConnector, 
+            ISensor barometricPressureSensor,
+            IDataBaseConnector temperatuDataBaseConnector,
             IDataBaseConnector barometricPressureDataBaseConnector)
         {
             _eventAggregator = eventAggregator;
@@ -38,35 +38,39 @@ namespace WeatherStation.MVVM
         }
 
         public IWindow CreateMainWindow()
-        { 
+        {
             var averageTemperatureCalculator = new AverageTemperatureCalculator(_eventAggregator);
             var barometricPressureTrendHandler = new BarometricPressureTrendHandler(_eventAggregator);
 
-            var mainWindowViewModel = new MainWindowViewModel(
-                _eventAggregator,
-                new OpenHistoryWindowCommand(_eventAggregator),
-                new CloseApplicationCommand(_eventAggregator),
-                new ReadTemperatureCommand(_temperatureSensor),
-                new ReadBarPressureCommand(_barometricPressureSensor),
-                new OpenUnitSettingsCommand(_eventAggregator));
+            var mainWindowViewModel = BuildMainWindowViewModel();
 
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
 
-            return new MainWindow { DataContext = mainWindowViewModel, Tag = ViewType.MainWindow };
+            return new MainWindow {DataContext = mainWindowViewModel, Tag = ViewType.MainWindow};
         }
 
         public IWindow CreateTemperatureHistory()
         {
-            var temperatureViewModel = new TemperatureHistoryWindowViewModel( _temperatuDataBaseConnector, _eventAggregator);
-            var historyWindow = new HistoryWindow {DataContext = temperatureViewModel, Tag = ViewType.TemperatureHistory};
+            var temperatureViewModel = new TemperatureHistoryWindowViewModel(_temperatuDataBaseConnector,
+                _eventAggregator);
+            var historyWindow = new HistoryWindow
+            {
+                DataContext = temperatureViewModel,
+                Tag = ViewType.TemperatureHistory
+            };
             return historyWindow;
         }
 
         public IWindow CreateBarPressureHistory()
         {
-            var barPressureViewModel = new BarPressureHistoryWindowViewModel( _barometricPressureDataBaseConnector, _eventAggregator);
-            var historyWindow = new HistoryWindow {DataContext = barPressureViewModel, Tag = ViewType.BarometricPressureHistory};
+            var barPressureViewModel = new BarPressureHistoryWindowViewModel(_barometricPressureDataBaseConnector,
+                _eventAggregator);
+            var historyWindow = new HistoryWindow
+            {
+                DataContext = barPressureViewModel,
+                Tag = ViewType.BarometricPressureHistory
+            };
             return historyWindow;
         }
 
@@ -79,6 +83,25 @@ namespace WeatherStation.MVVM
             unitSettingsWindow.DataContext = viewModel;
             unitSettingsWindow.Tag = ViewType.UnitSettings;
             return unitSettingsWindow;
+        }
+
+        private MainWindowViewModel BuildMainWindowViewModel()
+        {
+            var viewModel = new MainWindowViewModel(
+                _eventAggregator,
+                new OpenHistoryWindowCommand(_eventAggregator),
+                new CloseApplicationCommand(_eventAggregator),
+                new ReadTemperatureCommand(_temperatureSensor),
+                new ReadBarPressureCommand(_barometricPressureSensor),
+                new OpenUnitSettingsCommand(_eventAggregator));
+
+            var initialMeasurementUnit = new CurrentMeasurementUnit
+            {
+                BarometricPressure = (BarometricPressureUnit) Settings.Default.BarometricPressureUnit,
+                Temperature = (TemperatureUnit)Settings.Default.TemperatureUnit
+            };
+            viewModel.MeasurementUnitChanged(initialMeasurementUnit);
+            return viewModel;
         }
     }
 }

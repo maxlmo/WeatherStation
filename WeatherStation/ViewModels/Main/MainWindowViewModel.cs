@@ -5,19 +5,24 @@ using System.Windows.Input;
 using Prism.Events;
 using WeatherStation.Messages;
 using WeatherStation.Model;
+using WeatherStation.ViewModels.UnitSettings;
+using WeatherStation.Views.Converter;
 
 namespace WeatherStation.ViewModels.Main
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly ICommand _openUnitSettingsCommand;
         private string _averageTemperature;
+        private string _barometricPressureLabel;
         private BarometricPressureTrend _barometricPressureTrend;
         private string _barPressure;
+        private BarometricPressureUnit _currentBarometricPressureUnit;
+        private TemperatureUnit _currenTemperatureUnit;
         private string _date;
         private List<object> _handler;
         private string _temperature;
+        private string _temperatureLabel;
         private string _time;
 
         public MainWindowViewModel(
@@ -29,7 +34,7 @@ namespace WeatherStation.ViewModels.Main
             ICommand openUnitSettingsCommand)
         {
             _eventAggregator = eventAggregator;
-            _openUnitSettingsCommand = openUnitSettingsCommand;
+            OpenUnitSettingsCommand = openUnitSettingsCommand;
             ReadBarometricPressureCommand = readBarometricPressureCommand;
             ReadTemperatureCommand = readTemperatureCommand;
             CloseApplicationCommand = closeApplicationCommand;
@@ -44,6 +49,26 @@ namespace WeatherStation.ViewModels.Main
             set
             {
                 _time = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string TemperatureLabel
+        {
+            get { return _temperatureLabel; }
+            set
+            {
+                _temperatureLabel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string BarometricPressureLabel
+        {
+            get { return _barometricPressureLabel; }
+            set
+            {
+                _barometricPressureLabel = value;
                 OnPropertyChanged();
             }
         }
@@ -116,6 +141,14 @@ namespace WeatherStation.ViewModels.Main
             _handler.Add(handler);
         }
 
+        public void MeasurementUnitChanged(CurrentMeasurementUnit newMeasurementUnit)
+        {
+            _currenTemperatureUnit = newMeasurementUnit.Temperature;
+            _currentBarometricPressureUnit = newMeasurementUnit.BarometricPressure;
+            TemperatureLabel = _currenTemperatureUnit == TemperatureUnit.Celsius ? "°C" : "°F";
+            BarometricPressureLabel = _currentBarometricPressureUnit == BarometricPressureUnit.MBar ? "mBar" : "inHg";
+        }
+
         private void SubscribeForEvents()
         {
             _eventAggregator.GetEvent<NewTemperature>().Subscribe(NewTemperatureMeasurement);
@@ -123,6 +156,7 @@ namespace WeatherStation.ViewModels.Main
             _eventAggregator.GetEvent<NewAverageTemperature>().Subscribe(NewAverageTemperatureUpdate);
             _eventAggregator.GetEvent<NewBarometricPressureTrend>().Subscribe(BarometricPressureTrendUpdate);
             _eventAggregator.GetEvent<NewDateTime>().Subscribe(DateTimeUpdate);
+            _eventAggregator.GetEvent<MeasurementUnitChanged>().Subscribe(MeasurementUnitChanged);
         }
 
         private void BarometricPressureTrendUpdate(BarometricPressureTrend barometricPressureTrend)
@@ -132,7 +166,12 @@ namespace WeatherStation.ViewModels.Main
 
         private void NewAverageTemperatureUpdate(AverageTemperature averageTemperature)
         {
-            AverageTemperature = averageTemperature.Value.ToString("F");
+            var newValue = averageTemperature.Value;
+            if (_currenTemperatureUnit == TemperatureUnit.Fahrenheit)
+            {
+                newValue = UnitConverter.IntoFahrenheit(newValue);
+            }
+            AverageTemperature = newValue.ToString("F");
         }
 
         private void DateTimeUpdate(CurrentDateTime newTime)
@@ -143,12 +182,22 @@ namespace WeatherStation.ViewModels.Main
 
         private void NewTemperatureMeasurement(TemperatureMeasurement newMeasurement)
         {
-            Temperature = newMeasurement.Value.ToString("F");
+            var newValue = newMeasurement.Value;
+            if (_currenTemperatureUnit == TemperatureUnit.Fahrenheit)
+            {
+                newValue = UnitConverter.IntoFahrenheit(newValue);
+            }
+            Temperature = newValue.ToString("F");
         }
 
         private void NewBarPressureMeasurement(BarPressureMeasurement newMeasurement)
         {
-            BarometricPressure = newMeasurement.Value.ToString("F");
+            var newValue = newMeasurement.Value;
+            if (_currentBarometricPressureUnit == BarometricPressureUnit.InHg)
+            {
+                newValue = UnitConverter.IntoInHg(newValue);
+            }
+            BarometricPressure = newValue.ToString("F");
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
