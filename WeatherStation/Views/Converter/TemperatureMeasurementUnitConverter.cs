@@ -4,7 +4,7 @@ using System.Windows.Data;
 using WeatherStation.Properties;
 using WeatherStation.ViewModels.UnitSettings;
 
-namespace WeatherStation.Views.History.Converter
+namespace WeatherStation.Views.Converter
 {
     public class TemperatureMeasurementUnitConverter : IValueConverter
     {
