@@ -34,6 +34,7 @@ namespace WeatherStation.ViewModels.UnitSettings.Commands
         {
             Settings.Default.BarometricPressureUnit = (int)_viewModel.CurrentBarometricPressureUnit;
             Settings.Default.TemperatureUnit = (int) _viewModel.CurrentTemperatureUnit;
+            Settings.Default.Save();
             _eventAggregator.GetEvent<MeasurementUnitChanged>().Publish(new CurrentMeasurementUnit
             {
                 Temperature = _viewModel.CurrentTemperatureUnit,

@@ -79,6 +79,7 @@ namespace WeatherStation.MVVM
             var unitSettingsWindow = new UnitSettingsWindow();
             var viewModel = new UnitSettingsWindowViewModel();
             viewModel.ApplySettingsCommand = new ApplySettingsCommand(viewModel, _eventAggregator);
+            viewModel.CancelCommand = new CancelCommand(_eventAggregator);
 
             unitSettingsWindow.DataContext = viewModel;
             unitSettingsWindow.Tag = ViewType.UnitSettings;

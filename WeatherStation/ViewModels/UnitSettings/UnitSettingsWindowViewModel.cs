@@ -26,6 +26,8 @@ namespace WeatherStation.ViewModels.UnitSettings
 
         public ICommand ApplySettingsCommand { get; set; }
 
+        public ICommand CancelCommand { get; set; }
+
         public string CurrentUnitSettings = "hello";
 
         public TemperatureUnit CurrentTemperatureUnit
