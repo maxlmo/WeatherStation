@@ -6,11 +6,11 @@ using WeatherStation.MVVM;
 
 namespace WeatherStation.ViewModels.Main.Commands
 {
-    public class OpenHistoryWindowCommand : ICommand
+    public class OpenWindowCommand : ICommand
     {
         private readonly IEventAggregator _eventAggregator;
 
-        public OpenHistoryWindowCommand(IEventAggregator eventAggregator)
+        public OpenWindowCommand(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
         }

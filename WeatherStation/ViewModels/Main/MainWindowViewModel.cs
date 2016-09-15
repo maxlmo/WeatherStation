@@ -27,19 +27,16 @@ namespace WeatherStation.ViewModels.Main
 
         public MainWindowViewModel(
             IEventAggregator eventAggregator,
-            ICommand openHistoryWindowCommand,
+            ICommand openWindowCommand,
             ICommand closeApplicationCommand,
             ICommand readTemperatureCommand,
-            ICommand readBarometricPressureCommand,
-            ICommand openUnitSettingsCommand)
+            ICommand readBarometricPressureCommand)
         {
             _eventAggregator = eventAggregator;
-            OpenUnitSettingsCommand = openUnitSettingsCommand;
             ReadBarometricPressureCommand = readBarometricPressureCommand;
             ReadTemperatureCommand = readTemperatureCommand;
             CloseApplicationCommand = closeApplicationCommand;
-            OpenHistoryWindowCommand = openHistoryWindowCommand;
-            OpenUnitSettingsCommand = openUnitSettingsCommand;
+            OpenWindowCommand = openWindowCommand;
             SubscribeForEvents();
         }
 
@@ -123,13 +120,11 @@ namespace WeatherStation.ViewModels.Main
             }
         }
 
-        public ICommand OpenHistoryWindowCommand { get; }
+        public ICommand OpenWindowCommand { get; }
         public ICommand CloseApplicationCommand { get; }
         public ICommand ReadTemperatureCommand { get; }
         public ICommand ReadBarometricPressureCommand { get; }
-        public ICommand OpenUnitSettingsCommand { get; set; }
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void RegisterHandler(object handler)

@@ -1,0 +1,59 @@
+﻿<Window x:Class="WeatherStation.Views.DateAndTime.DateAndTimeSettingsWindow"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converter="clr-namespace:WeatherStation.Views.Converter"
+        mc:Ignorable="d"
+        Title="Date and Time Settings" Height="180" Width="320">
+    <Window.Resources>
+        <converter:TemperatureUnitToBoolConverter x:Key="TemperatureUnitToBoolConverter" />
+        <converter:BarometricPressureToBoolConverter x:Key="BarometricPressureToBoolConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="1" Content="Date:"></Label>
+            <TextBox Grid.Row="1" Grid.Column="3" Width="100"></TextBox>
+            
+            <Label Grid.Row="3" Grid.Column="1" Content="Time:"></Label>
+            <TextBox Grid.Row="3" Grid.Column="3" Width="100"></TextBox>
+            
+        </Grid>
+
+        <Grid Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding ApplySettingsCommand}" CommandParameter="{Binding NewDateAndTime}" Grid.Column="1" Content="Apply"></Button>
+            <Button Command="{Binding CancelCommand}" Grid.Column="3" Content="Cancel"></Button>
+        </Grid>
+    </Grid>
+</Window>

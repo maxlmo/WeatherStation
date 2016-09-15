@@ -3,12 +3,14 @@ using WeatherStation.Handler;
 using WeatherStation.Properties;
 using WeatherStation.Sensor;
 using WeatherStation.Storage;
+using WeatherStation.ViewModels.DateAndTime;
 using WeatherStation.ViewModels.History;
 using WeatherStation.ViewModels.Main;
 using WeatherStation.ViewModels.Main.Commands;
 using WeatherStation.ViewModels.UnitSettings;
 using WeatherStation.ViewModels.UnitSettings.Commands;
 using WeatherStation.Views;
+using WeatherStation.Views.DateAndTime;
 using WeatherStation.Views.History;
 using WeatherStation.Views.Main;
 using WeatherStation.Views.UnitSettings;
@@ -76,25 +78,36 @@ namespace WeatherStation.MVVM
 
         public IWindow CreateUnitSettingsWindow()
         {
-            var unitSettingsWindow = new UnitSettingsWindow();
             var viewModel = new UnitSettingsWindowViewModel();
             viewModel.ApplySettingsCommand = new ApplySettingsCommand(viewModel, _eventAggregator);
             viewModel.CancelCommand = new CancelCommand(_eventAggregator);
-
-            unitSettingsWindow.DataContext = viewModel;
-            unitSettingsWindow.Tag = ViewType.UnitSettings;
+            var unitSettingsWindow = new UnitSettingsWindow
+            {
+                DataContext = viewModel,
+                Tag = ViewType.UnitSettings
+            };
             return unitSettingsWindow;
+        }
+
+        public IWindow CreateDateAndTimeSettingsWindow()
+        {
+            var viewModel = new DateAndTimeSettingsWindowViewModel();
+            var dateAndTimeSettingsWindow = new DateAndTimeSettingsWindow
+            {
+                DataContext = viewModel,
+                Tag = ViewType.DateAndTimeSettings
+            };
+            return dateAndTimeSettingsWindow;
         }
 
         private MainWindowViewModel BuildMainWindowViewModel()
         {
             var viewModel = new MainWindowViewModel(
                 _eventAggregator,
-                new OpenHistoryWindowCommand(_eventAggregator),
+                new OpenWindowCommand(_eventAggregator),
                 new CloseApplicationCommand(_eventAggregator),
                 new ReadTemperatureCommand(_temperatureSensor),
-                new ReadBarPressureCommand(_barometricPressureSensor),
-                new OpenUnitSettingsCommand(_eventAggregator));
+                new ReadBarPressureCommand(_barometricPressureSensor));
 
             var initialMeasurementUnit = new CurrentMeasurementUnit
             {

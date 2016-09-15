@@ -5,6 +5,7 @@
         MainWindow,
         TemperatureHistory,
         BarometricPressureHistory,
-        UnitSettings
+        UnitSettings,
+        DateAndTimeSettings
     }
 }

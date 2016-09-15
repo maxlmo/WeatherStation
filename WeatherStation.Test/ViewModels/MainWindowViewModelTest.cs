@@ -20,7 +20,6 @@ namespace WeatherStation.Test.ViewModels
                 Mock.Of<ICommand>(),
                 Mock.Of<ICommand>(),
                 Mock.Of<ICommand>(),
-                Mock.Of<ICommand>(),
                 Mock.Of<ICommand>());
         }
 

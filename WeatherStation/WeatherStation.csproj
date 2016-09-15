@@ -103,7 +103,7 @@
     <Compile Include="Messages\SettingsSaved.cs" />
     <Compile Include="Handler\ApplicationWindowHandler.cs" />
     <Compile Include="MVVM\ViewType.cs" />
-    <Compile Include="ViewModels\Main\Commands\OpenUnitSettingsCommand.cs" />
+    <Compile Include="ViewModels\DateAndTime\DateAndTimeSettingsWindowViewModel.cs" />
     <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />
     <Compile Include="Storage\Mapping\TemperatureMap.cs" />
     <Compile Include="Messages\NewBarometricPressureTrend.cs" />
@@ -130,6 +130,9 @@
     <Compile Include="ViewModels\UnitSettings\UnitSettingsWindowViewModel.cs" />
     <Compile Include="Views\Converter\BarometricPressureMeasurementUnitConverter.cs" />
     <Compile Include="Views\Converter\UnitConverter.cs" />
+    <Compile Include="Views\DateAndTime\DateAndTimeSettingsWindow.xaml.cs">
+      <DependentUpon>DateAndTimeSettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IWindow.cs" />
     <Compile Include="Views\Converter\EnumToImageConverter.cs" />
     <Compile Include="Views\Converter\TemperatureMeasurementUnitConverter.cs" />
@@ -145,7 +148,7 @@
     <Compile Include="Threads\TimeThread.cs" />
     <Compile Include="ViewModels\Main\Commands\CloseApplicationCommand.cs" />
     <Compile Include="ViewModels\Main\Commands\ReadTemperatureCommand.cs" />
-    <Compile Include="ViewModels\Main\Commands\OpenHistoryWindowCommand.cs" />
+    <Compile Include="ViewModels\Main\Commands\OpenWindowCommand.cs" />
     <Compile Include="ViewModels\Main\MainWindowViewModel.cs" />
     <Compile Include="Views\History\BarometricPressureHistoryControl.xaml.cs">
       <DependentUpon>BarometricPressureHistoryControl.xaml</DependentUpon>
@@ -158,6 +161,10 @@
     <Compile Include="Views\UnitSettings\UnitSettingsWindow.xaml.cs">
       <DependentUpon>UnitSettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DateAndTime\DateAndTimeSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\History\HistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

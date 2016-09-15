@@ -60,6 +60,8 @@ namespace WeatherStation.Handler
                     return _viewFactory.CreateUnitSettingsWindow();
                 case ViewType.MainWindow:
                     return _viewFactory.CreateMainWindow();
+                case ViewType.DateAndTimeSettings:
+                    return _viewFactory.CreateDateAndTimeSettingsWindow();
             }
             throw new NotSupportedException();
         }
