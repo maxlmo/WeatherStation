@@ -110,7 +110,7 @@ namespace WeatherStation.MVVM
         public IWindow CreateMeasurementIntervalsSettingsWindow()
         {
             var viewModel = new MeasurementIntervalsSettingsWindowViewModel(_settingsService);
-            viewModel.ApplySettingsCommand = new ApplyMeasurementIntervalSettingsCommand(_settingsService, viewModel);
+            viewModel.ApplySettingsCommand = new ApplyMeasurementIntervalSettingsCommand(_eventAggregator, _settingsService, viewModel);
             viewModel.CloseWindowCommand = new CloseWindowCommand(_eventAggregator, WindowType.MeasurementIntervalsSettings);
             var measurementIntervalsSettingsWindow = new MeasurementIntervalsSettingsWindow
             {

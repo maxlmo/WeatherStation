@@ -104,6 +104,7 @@
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
     <Compile Include="Messages\BarometricPressureSaved.cs" />
     <Compile Include="Messages\DateTimeOffsetChanged.cs" />
+    <Compile Include="Messages\MeasurementIntervalChanged.cs" />
     <Compile Include="Messages\SettingsSaved.cs" />
     <Compile Include="Handler\ApplicationWindowHandler.cs" />
     <Compile Include="MVVM\WindowType.cs" />
