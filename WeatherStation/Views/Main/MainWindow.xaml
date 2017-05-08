@@ -51,7 +51,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="Auto" MinWidth="200"/>
-                <ColumnDefinition Width="Auto" MinWidth="50" />
+                <ColumnDefinition Width="Auto" MinWidth="70" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" MinWidth="60" />
                 <ColumnDefinition Width="Auto" />
@@ -98,6 +98,7 @@
             <Label Grid.Column="4" Grid.Row="8" Content="{Binding BarometricPressureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
             <Label Grid.Column="2" Grid.Row="4" Content="{Binding TemperatureWaitTime}"></Label>
+            <Label Grid.Column="2" Grid.Row="8" Content="{Binding BarometricPressureWaitTime}" ></Label>
 
             <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="4">
                 <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"

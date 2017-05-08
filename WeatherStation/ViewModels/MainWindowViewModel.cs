@@ -16,7 +16,7 @@ namespace WeatherStation.ViewModels
         private string _averageTemperature;
         private string _barometricPressureLabel;
         private BarometricPressureTrend _barometricPressureTrend;
-        private int _barometricPressureWaitTime;
+        private string _barometricPressureWaitTime;
         private string _barPressure;
         private BarometricPressureUnit _currentBarometricPressureUnit;
         private DateTime _currentDateTime;
@@ -24,7 +24,7 @@ namespace WeatherStation.ViewModels
         private List<object> _handler;
         private string _temperature;
         private string _temperatureLabel;
-        private int _temperatureWaitTime;
+        private string _temperatureWaitTime;
 
         public MainWindowViewModel(
             IEventAggregator eventAggregator,
@@ -51,7 +51,7 @@ namespace WeatherStation.ViewModels
             }
         }
 
-        public int TemperatureWaitTime
+        public string TemperatureWaitTime
         {
             get { return _temperatureWaitTime; }
             set
@@ -61,7 +61,7 @@ namespace WeatherStation.ViewModels
             }
         }
 
-        public int BarometricPressureWaitTime
+        public string BarometricPressureWaitTime
         {
             get { return _barometricPressureWaitTime; }
             set
@@ -167,12 +167,12 @@ namespace WeatherStation.ViewModels
 
         private void TemperatureWaitTimeChanged(int timeToWait)
         {
-            TemperatureWaitTime = timeToWait;
+            TemperatureWaitTime = $"(in {timeToWait} sec.)";
         }
 
         private void BarometricPressureWaitTimeChanged(int timeToWait)
         {
-            BarometricPressureWaitTime = timeToWait;
+            BarometricPressureWaitTime = $"(in {timeToWait} sec.)";
         }
 
         private void BarometricPressureTrendUpdate(BarometricPressureTrend barometricPressureTrend)
