@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:converter="clr-namespace:WeatherStation.Converter"
         xmlns:validation="clr-namespace:WeatherStation.Validation"
         mc:Ignorable="d"
         Title="Date and Time Settings" Height="180" Width="320"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-       <validation:StringToDateValidationRule x:Key="StringToTimeValidationRule"></validation:StringToDateValidationRule>
+       <validation:StringToDateValidationRule x:Key="StringToDateValidationRule"></validation:StringToDateValidationRule>
+       <validation:StringToTimeValidationRule x:Key="StringToTimeValidationRule"></validation:StringToTimeValidationRule>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -49,7 +49,18 @@
             </TextBox>
             
             <Label Grid.Row="3" Grid.Column="1" Content="Time:"></Label>
-            <TextBox Grid.Row="3" Grid.Column="3" Width="100" Text="{Binding CurrentTime}" TextAlignment="Right"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="3" Width="100" TextAlignment="Right" Name="TimeTextBox">
+                <TextBox.Text>
+                    <Binding Path="CurrentTime" 
+                             ValidatesOnNotifyDataErrors="True"
+                             ValidatesOnDataErrors="True"
+                             NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <validation:StringToTimeValidationRule ValidatesOnTargetUpdated="True"></validation:StringToTimeValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             
         </Grid>
 
@@ -72,6 +83,7 @@
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding Path=(Validation.HasError), ElementName=DateTextBox}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TimeTextBox}" Value="True"/>
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="IsEnabled" Value="False"/>
                             </MultiDataTrigger>

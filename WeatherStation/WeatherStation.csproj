@@ -108,6 +108,7 @@
     <Compile Include="MVVM\WindowType.cs" />
     <Compile Include="Services\ApplicationSettingsService.cs" />
     <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Validation\StringToTimeValidationRule.cs" />
     <Compile Include="Validation\StringToDateValidationRule.cs" />
     <Compile Include="ViewModels\DateAndTimeSettingsWindowViewModel.cs" />
     <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />

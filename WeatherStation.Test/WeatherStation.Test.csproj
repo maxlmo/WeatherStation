@@ -94,6 +94,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Sensor\RandomizedSensorTest.cs" />
+    <Compile Include="Validation\StringToTimeValidationRuleTest.cs" />
     <Compile Include="Validation\StringToDateValidationRuleTest.cs" />
     <Compile Include="ViewModels\MainWindowViewModelTest.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

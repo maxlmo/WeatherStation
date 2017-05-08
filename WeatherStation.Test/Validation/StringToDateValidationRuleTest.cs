@@ -10,10 +10,10 @@ namespace WeatherStation.Test.Validation
         [Test]
         public void Validate_ReturnsTrueOnValidDateString()
         {
-            const string validTime = "12.05.2008";
+            const string validDate = "12.05.2008";
             var cut = new StringToDateValidationRule();
 
-            var result = cut.Validate(validTime, null);
+            var result = cut.Validate(validDate, null);
 
             result.IsValid.Should().BeTrue();
         }
@@ -21,10 +21,10 @@ namespace WeatherStation.Test.Validation
         [Test]
         public void Validate_ReturnsFalseOnInvalidDateString()
         {
-            const string invalidTime = "#äö+üp";
+            const string invalidDate = "#äö+üp";
             var cut = new StringToDateValidationRule();
 
-            var result = cut.Validate(invalidTime, null);
+            var result = cut.Validate(invalidDate, null);
 
             result.IsValid.Should().BeFalse();
         }
