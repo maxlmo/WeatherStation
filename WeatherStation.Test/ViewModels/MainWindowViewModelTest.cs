@@ -27,7 +27,7 @@ namespace WeatherStation.Test.ViewModels
         public void MainWindowViewModel_UpdatesTemperature_OnTemperatureRead()
         {
             const double newTemperature = 123.34;
-            const string expectedResult = "123.34";
+            const string expectedResult = "123,34";
             _eventAggregator = new EventAggregator();
             var classUnderTest = NewTestContext();
 
