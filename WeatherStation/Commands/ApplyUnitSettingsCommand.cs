@@ -8,12 +8,12 @@ using WeatherStation.ViewModels;
 
 namespace WeatherStation.Commands
 {
-    class ApplySettingsCommand : ICommand
+    public class ApplyUnitSettingsCommand : ICommand
     {
         private readonly UnitSettingsWindowViewModel _viewModel;
         private readonly IEventAggregator _eventAggregator;
 
-        public ApplySettingsCommand(UnitSettingsWindowViewModel viewModel, IEventAggregator eventAggregator)
+        public ApplyUnitSettingsCommand(UnitSettingsWindowViewModel viewModel, IEventAggregator eventAggregator)
         {
             _viewModel = viewModel;
             _eventAggregator = eventAggregator;

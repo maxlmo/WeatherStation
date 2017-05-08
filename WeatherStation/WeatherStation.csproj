@@ -125,7 +125,7 @@
     <Compile Include="ViewModels\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\HistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\MeasurementUnitChanged.cs" />
-    <Compile Include="Commands\ApplySettingsCommand.cs" />
+    <Compile Include="Commands\ApplyUnitSettingsCommand.cs" />
     <Compile Include="Commands\CancelCommand.cs" />
     <Compile Include="ViewModels\UnitSettingsWindowViewModel.cs" />
     <Compile Include="Views\Converter\BarometricPressureMeasurementUnitConverter.cs" />

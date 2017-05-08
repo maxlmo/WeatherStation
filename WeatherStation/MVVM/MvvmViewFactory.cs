@@ -75,7 +75,7 @@ namespace WeatherStation.MVVM
         public IWindow CreateUnitSettingsWindow()
         {
             var viewModel = new UnitSettingsWindowViewModel();
-            viewModel.ApplySettingsCommand = new ApplySettingsCommand(viewModel, _eventAggregator);
+            viewModel.ApplySettingsCommand = new ApplyUnitSettingsCommand(viewModel, _eventAggregator);
             viewModel.CancelCommand = new CancelCommand(_eventAggregator);
             var unitSettingsWindow = new UnitSettingsWindow
             {
