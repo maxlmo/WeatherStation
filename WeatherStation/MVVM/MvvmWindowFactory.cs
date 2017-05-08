@@ -87,7 +87,11 @@ namespace WeatherStation.MVVM
 
         public IWindow CreateDateAndTimeSettingsWindow()
         {
-            var viewModel = new DateAndTimeSettingsWindowViewModel();
+            var viewModel = new DateAndTimeSettingsWindowViewModel
+            {
+                CloseWindowWithoutSavingCommand =
+                    new CloseWindowCommand(_eventAggregator, WindowType.DateAndTimeSettings),
+            };
             var dateAndTimeSettingsWindow = new DateAndTimeSettingsWindow
             {
                 DataContext = viewModel,

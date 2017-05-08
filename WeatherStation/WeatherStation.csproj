@@ -128,16 +128,16 @@
     <Compile Include="Commands\ApplyUnitSettingsCommand.cs" />
     <Compile Include="Commands\CloseWindowCommand.cs" />
     <Compile Include="ViewModels\UnitSettingsWindowViewModel.cs" />
-    <Compile Include="Views\Converter\BarometricPressureMeasurementUnitConverter.cs" />
-    <Compile Include="Views\Converter\UnitConverter.cs" />
+    <Compile Include="Converter\BarometricPressureMeasurementUnitConverter.cs" />
+    <Compile Include="Converter\UnitConverter.cs" />
     <Compile Include="Views\DateAndTime\DateAndTimeSettingsWindow.xaml.cs">
       <DependentUpon>DateAndTimeSettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IWindow.cs" />
-    <Compile Include="Views\Converter\EnumToImageConverter.cs" />
-    <Compile Include="Views\Converter\TemperatureMeasurementUnitConverter.cs" />
-    <Compile Include="Views\Converter\TimeStampToDateStringConverter.cs" />
-    <Compile Include="Views\Converter\TimeStampToTimeStringConverter.cs" />
+    <Compile Include="Converter\EnumToImageConverter.cs" />
+    <Compile Include="Converter\TemperatureMeasurementUnitConverter.cs" />
+    <Compile Include="Converter\TimeStampToDateStringConverter.cs" />
+    <Compile Include="Converter\TimeStampToTimeStringConverter.cs" />
     <Compile Include="ViewModels\TemperatureHistoryWindowViewModel.cs" />
     <Compile Include="Commands\ReadBarPressureCommand.cs" />
     <Compile Include="Sensor\BarPressureSensor.cs" />
@@ -155,8 +155,8 @@
     <Compile Include="Views\History\TemperatureHistoryControl.xaml.cs">
       <DependentUpon>TemperatureHistoryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Converter\BarometricPressureUnitToBoolConverter.cs" />
-    <Compile Include="Views\Converter\TemperatureUnitToBoolConverter.cs" />
+    <Compile Include="Converter\BarometricPressureUnitToBoolConverter.cs" />
+    <Compile Include="Converter\TemperatureUnitToBoolConverter.cs" />
     <Compile Include="Views\UnitSettings\UnitSettingsWindow.xaml.cs">
       <DependentUpon>UnitSettingsWindow.xaml</DependentUpon>
     </Compile>

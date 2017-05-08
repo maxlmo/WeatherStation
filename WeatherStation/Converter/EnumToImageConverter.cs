@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using WeatherStation.Model;
 
-namespace WeatherStation.Views.Converter
+namespace WeatherStation.Converter
 {
     public class EnumToImageConverter : IValueConverter
     {

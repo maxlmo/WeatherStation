@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Prism.Events;
+using WeatherStation.Converter;
 using WeatherStation.Messages;
 using WeatherStation.Model;
-using WeatherStation.Views.Converter;
 
 namespace WeatherStation.ViewModels
 {
