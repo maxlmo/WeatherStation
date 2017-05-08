@@ -114,8 +114,7 @@
     <Compile Include="Messages\NewBarometricPressureTrend.cs" />
     <Compile Include="Model\AverageTemperature.cs" />
     <Compile Include="Model\BarometricPressureTrend.cs" />
-    <Compile Include="Model\CurrentDateTime.cs" />
-    <Compile Include="Messages\NewDateTime.cs" />
+    <Compile Include="Messages\DateTimeChanged.cs" />
     <Compile Include="Model\BarPressureMeasurement.cs" />
     <Compile Include="Messages\NewBarPressure.cs" />
     <Compile Include="Messages\NewTemperature.cs" />

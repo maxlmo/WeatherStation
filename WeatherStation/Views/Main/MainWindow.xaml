@@ -58,9 +58,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
-                     Text="{Binding Date}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
+                     Text="{Binding CurrentDateTime, Converter={StaticResource TimeSpanOffsetConverter}, StringFormat='{}{0:dd.MM.yyyy}'}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
             <TextBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
-                     Text="{Binding Time}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
+                     Text="{Binding CurrentDateTime, Converter={StaticResource TimeSpanOffsetConverter}, StringFormat='{}{0:HH:mm:ss}'}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
             <TextBox Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding Temperature}" TextAlignment="Right" VerticalAlignment="Top" Width="120"
                      FontSize="14" />

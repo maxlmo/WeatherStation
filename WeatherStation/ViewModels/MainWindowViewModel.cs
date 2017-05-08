@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -18,11 +19,10 @@ namespace WeatherStation.ViewModels
         private string _barPressure;
         private BarometricPressureUnit _currentBarometricPressureUnit;
         private TemperatureUnit _currenTemperatureUnit;
-        private string _date;
         private List<object> _handler;
         private string _temperature;
         private string _temperatureLabel;
-        private string _time;
+        private DateTime _currentDateTime;
 
         public MainWindowViewModel(
             IEventAggregator eventAggregator,
@@ -39,12 +39,12 @@ namespace WeatherStation.ViewModels
             SubscribeForEvents();
         }
 
-        public string Time
+        public DateTime CurrentDateTime
         {
-            get { return _time; }
+            get { return _currentDateTime; }
             set
             {
-                _time = value;
+                _currentDateTime = value;
                 OnPropertyChanged();
             }
         }
@@ -99,16 +99,6 @@ namespace WeatherStation.ViewModels
             }
         }
 
-        public string Date
-        {
-            get { return _date; }
-            set
-            {
-                _date = value;
-                OnPropertyChanged();
-            }
-        }
-
         public string AverageTemperature
         {
             get { return _averageTemperature; }
@@ -149,7 +139,7 @@ namespace WeatherStation.ViewModels
             _eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewBarPressureMeasurement);
             _eventAggregator.GetEvent<NewAverageTemperature>().Subscribe(NewAverageTemperatureUpdate);
             _eventAggregator.GetEvent<NewBarometricPressureTrend>().Subscribe(BarometricPressureTrendUpdate);
-            _eventAggregator.GetEvent<NewDateTime>().Subscribe(DateTimeUpdate);
+            _eventAggregator.GetEvent<DateTimeChanged>().Subscribe(DateTimeUpdate);
             _eventAggregator.GetEvent<MeasurementUnitChanged>().Subscribe(MeasurementUnitChanged);
         }
 
@@ -168,10 +158,9 @@ namespace WeatherStation.ViewModels
             AverageTemperature = newValue.ToString("F");
         }
 
-        private void DateTimeUpdate(CurrentDateTime newTime)
+        private void DateTimeUpdate(DateTime newTime)
         {
-            Date = newTime.Current.ToString("d");
-            Time = newTime.Current.ToString("T");
+            CurrentDateTime = newTime;
         }
 
         private void NewTemperatureMeasurement(TemperatureMeasurement newMeasurement)
