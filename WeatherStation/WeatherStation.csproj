@@ -96,6 +96,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrap.cs" />
     <Compile Include="Commands\ApplyDateAndTimeSettingsCommand.cs" />
+    <Compile Include="Commands\ApplyMeasurementIntervalSettingsCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Converter\TimeSpanOffsetConverter.cs" />
     <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
@@ -103,11 +104,15 @@
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
     <Compile Include="Messages\BarometricPressureSaved.cs" />
     <Compile Include="Messages\DateTimeOffsetChanged.cs" />
+    <Compile Include="Messages\MeasurementIntervalChanged.cs" />
     <Compile Include="Messages\SettingsSaved.cs" />
     <Compile Include="Handler\ApplicationWindowHandler.cs" />
     <Compile Include="MVVM\WindowType.cs" />
     <Compile Include="Services\ApplicationSettingsService.cs" />
     <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Services\MeasurementIntervalsSettings.cs" />
+    <Compile Include="Threads\BarometricPressureThread.cs" />
+    <Compile Include="Threads\TemperatureThread.cs" />
     <Compile Include="Validation\StringToTimeValidationRule.cs" />
     <Compile Include="Validation\StringToDateValidationRule.cs" />
     <Compile Include="ViewModels\DateAndTimeSettingsWindowViewModel.cs" />
@@ -130,6 +135,7 @@
     <Compile Include="Messages\TemperatureSaved.cs" />
     <Compile Include="ViewModels\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\HistoryWindowViewModel.cs" />
+    <Compile Include="ViewModels\MeasurementIntervalsSettingsWindowViewModel.cs" />
     <Compile Include="ViewModels\MeasurementUnitChanged.cs" />
     <Compile Include="Commands\ApplyUnitSettingsCommand.cs" />
     <Compile Include="Commands\CloseWindowCommand.cs" />
@@ -161,6 +167,9 @@
     </Compile>
     <Compile Include="Converter\BarometricPressureUnitToBoolConverter.cs" />
     <Compile Include="Converter\TemperatureUnitToBoolConverter.cs" />
+    <Compile Include="Views\MeasurementIntervals\MeasurementIntervalsSettingsWindow.xaml.cs">
+      <DependentUpon>MeasurementIntervalsSettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UnitSettings\UnitSettingsWindow.xaml.cs">
       <DependentUpon>UnitSettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -194,6 +203,10 @@
     <Page Include="Views\History\TemperatureHistoryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MeasurementIntervals\MeasurementIntervalsSettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UnitSettings\UnitSettingsWindow.xaml">
       <SubType>Designer</SubType>

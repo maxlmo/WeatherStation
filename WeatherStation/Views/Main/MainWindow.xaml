@@ -26,7 +26,7 @@
                 <MenuItem Header="Settings" Height="25">
                     <MenuItem Header="Units..." Command="{Binding OpenWindowCommand}" CommandParameter="UnitSettings"></MenuItem>
                     <MenuItem Header="Date and Time..." Command="{Binding OpenWindowCommand}" CommandParameter="DateAndTimeSettings"></MenuItem>
-                    <MenuItem Header="Measurement Intervals..."></MenuItem>
+                    <MenuItem Header="Measurement Intervals..." Command="{Binding OpenWindowCommand}" CommandParameter="MeasurementIntervalsSettings"></MenuItem>
                 </MenuItem>
             </Menu>
         </StackPanel>

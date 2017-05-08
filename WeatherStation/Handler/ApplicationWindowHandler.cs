@@ -62,6 +62,8 @@ namespace WeatherStation.Handler
                     return _windowFactory.CreateMainWindow();
                 case WindowType.DateAndTimeSettings:
                     return _windowFactory.CreateDateAndTimeSettingsWindow();
+                case WindowType.MeasurementIntervalsSettings:
+                    return _windowFactory.CreateMeasurementIntervalsSettingsWindow();
             }
             throw new NotSupportedException();
         }

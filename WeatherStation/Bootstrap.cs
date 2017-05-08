@@ -18,10 +18,12 @@ namespace WeatherStation
         private MeasurementThread _temperatureThread;
         private TimeThread _timeThread;
         private IWindowFactory _windowFactory;
+        private ISettingsService _settingsService;
 
         public void StartApplication()
         {
             _eventAggregator = new EventAggregator();
+            _settingsService = new ApplicationSettingsService();
             InitializeDataBaseConnection();
             var temperatureSensor = new TemperatureSensor(_eventAggregator);
             var barometricPressureSensor = new BarPressureSensor(_eventAggregator);
@@ -31,7 +33,7 @@ namespace WeatherStation
                 barometricPressureSensor,
                 _temperatureDataBaseConnector,
                 _barometricPressureDataBaseConnector, 
-                new ApplicationSettingsService());
+                _settingsService);
             StartThreads(barometricPressureSensor, temperatureSensor);
 
             var applicationWindowHandler = CreateApplicationWindowHandler();
@@ -52,8 +54,8 @@ namespace WeatherStation
 
         private void StartThreads(ISensor barPressureSensor, ISensor temperatureSensor)
         {
-            _temperatureThread = new MeasurementThread(temperatureSensor);
-            _barPressureThread = new MeasurementThread(barPressureSensor);
+            _temperatureThread = new TemperatureThread(temperatureSensor,_eventAggregator, _settingsService);
+            _barPressureThread = new BarometricPressureThread(barPressureSensor, _eventAggregator, _settingsService);
             _timeThread = new TimeThread(_eventAggregator);
             _timeThread.StartThread();
             _temperatureThread.StartThread();

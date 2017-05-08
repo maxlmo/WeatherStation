@@ -10,6 +10,7 @@ using WeatherStation.Views;
 using WeatherStation.Views.DateAndTime;
 using WeatherStation.Views.History;
 using WeatherStation.Views.Main;
+using WeatherStation.Views.MeasurementIntervals;
 using WeatherStation.Views.UnitSettings;
 
 namespace WeatherStation.MVVM
@@ -104,6 +105,19 @@ namespace WeatherStation.MVVM
                 Tag = WindowType.DateAndTimeSettings
             };
             return dateAndTimeSettingsWindow;
+        }
+
+        public IWindow CreateMeasurementIntervalsSettingsWindow()
+        {
+            var viewModel = new MeasurementIntervalsSettingsWindowViewModel(_settingsService);
+            viewModel.ApplySettingsCommand = new ApplyMeasurementIntervalSettingsCommand(_eventAggregator, _settingsService, viewModel);
+            viewModel.CloseWindowCommand = new CloseWindowCommand(_eventAggregator, WindowType.MeasurementIntervalsSettings);
+            var measurementIntervalsSettingsWindow = new MeasurementIntervalsSettingsWindow
+            {
+                DataContext = viewModel,
+                Tag = WindowType.MeasurementIntervalsSettings
+            };
+            return measurementIntervalsSettingsWindow;
         }
 
         private MainWindowViewModel BuildMainWindowViewModel()
