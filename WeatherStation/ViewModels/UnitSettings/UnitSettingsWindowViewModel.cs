@@ -23,7 +23,6 @@ namespace WeatherStation.ViewModels.UnitSettings
             _barometricPressureUnit = (BarometricPressureUnit) Settings.Default.BarometricPressureUnit;
         }
         
-
         public ICommand ApplySettingsCommand { get; set; }
 
         public ICommand CancelCommand { get; set; }

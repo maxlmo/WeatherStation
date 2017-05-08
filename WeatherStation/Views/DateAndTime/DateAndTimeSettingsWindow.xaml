@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converter="clr-namespace:WeatherStation.Views.Converter"
         mc:Ignorable="d"
-        Title="Date and Time Settings" Height="180" Width="320">
+        Title="Date and Time Settings" Height="180" Width="320"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <converter:TemperatureUnitToBoolConverter x:Key="TemperatureUnitToBoolConverter" />
         <converter:BarometricPressureToBoolConverter x:Key="BarometricPressureToBoolConverter" />
@@ -34,10 +35,10 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="1" Grid.Column="1" Content="Date:"></Label>
-            <TextBox Grid.Row="1" Grid.Column="3" Width="100"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="3" Width="100" Text="{Binding CurrentDate}" TextAlignment="Right"></TextBox>
             
             <Label Grid.Row="3" Grid.Column="1" Content="Time:"></Label>
-            <TextBox Grid.Row="3" Grid.Column="3" Width="100"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="3" Width="100" Text="{Binding CurrentTime}" TextAlignment="Right"></TextBox>
             
         </Grid>
 
