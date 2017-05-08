@@ -58,5 +58,29 @@ namespace WeatherStation.Properties {
                 this["TimeSpanOffset"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int TemperatureMeasurementInterval {
+            get {
+                return ((int)(this["TemperatureMeasurementInterval"]));
+            }
+            set {
+                this["TemperatureMeasurementInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int BarometricPressureMeasurementInterval {
+            get {
+                return ((int)(this["BarometricPressureMeasurementInterval"]));
+            }
+            set {
+                this["BarometricPressureMeasurementInterval"] = value;
+            }
+        }
     }
 }

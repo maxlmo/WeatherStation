@@ -33,11 +33,11 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="1" Grid.Column="1" Content="Temperature:"></Label>
-            <TextBox Grid.Row="1" Grid.Column="3" Width="100" TextAlignment="Right" Name="DateTextBox"></TextBox>
+            <TextBox Text="{Binding TemperatureMeasurementInterval}" Grid.Row="1" Grid.Column="3" Width="100" TextAlignment="Right" Name="DateTextBox"></TextBox>
             <Label Grid.Row="1" Grid.Column="4" Content="sec."></Label>
             
             <Label Grid.Row="3" Grid.Column="1" Content="Barometric Pressure:"></Label>
-            <TextBox Grid.Row="3" Grid.Column="3" Width="100" TextAlignment="Right" Name="TimeTextBox"></TextBox>
+            <TextBox Text="{Binding BarometricPressureMeasurementInterval}" Grid.Row="3" Grid.Column="3" Width="100" TextAlignment="Right" Name="TimeTextBox"></TextBox>
             <Label Grid.Row="3" Grid.Column="4" Content="sec."></Label>
             
         </Grid>

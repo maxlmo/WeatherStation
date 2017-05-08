@@ -77,9 +77,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ApplyMeasurementIntervalSettingsCommandTest.cs" />
     <Compile Include="Commands\ApplyDateAndTimeSettingsCommandTest.cs" />
     <Compile Include="Handler\ApplicationWindowHandlerTest.cs" />
     <Compile Include="MockExtensions\EventAggregatorMockExtensions.cs" />
+    <Compile Include="MockExtensions\SettingsServiceMockExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

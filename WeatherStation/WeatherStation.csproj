@@ -96,6 +96,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrap.cs" />
     <Compile Include="Commands\ApplyDateAndTimeSettingsCommand.cs" />
+    <Compile Include="Commands\ApplyMeasurementIntervalSettingsCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Converter\TimeSpanOffsetConverter.cs" />
     <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="MVVM\WindowType.cs" />
     <Compile Include="Services\ApplicationSettingsService.cs" />
     <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Services\MeasurementIntervalsSettings.cs" />
     <Compile Include="Validation\StringToTimeValidationRule.cs" />
     <Compile Include="Validation\StringToDateValidationRule.cs" />
     <Compile Include="ViewModels\DateAndTimeSettingsWindowViewModel.cs" />
