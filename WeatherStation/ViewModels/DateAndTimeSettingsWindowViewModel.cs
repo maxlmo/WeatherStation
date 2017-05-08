@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using WeatherStation.Properties;
 
 namespace WeatherStation.ViewModels
@@ -16,6 +17,9 @@ namespace WeatherStation.ViewModels
             _currentDate = dateTimeOffset.ToString("d");
             _currentTime = dateTimeOffset.ToString("t");
         }
+
+        public ICommand SaveDateAndTimeSettingsCommand { get; set; }
+        public ICommand CloseWindowWithoutSavingCommand { get; set; }
 
         public string CurrentDate
         {

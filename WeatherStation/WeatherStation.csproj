@@ -95,6 +95,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrap.cs" />
+    <Compile Include="Commands\ApplyDateAndTimeSettingsCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
     <Compile Include="Handler\IHandler.cs" />

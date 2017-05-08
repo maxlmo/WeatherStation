@@ -9,12 +9,12 @@ namespace WeatherStation.Commands
     public class CloseWindowCommand : ICommand
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly WindowType _windowType;
+        private readonly WindowType _windowToClose;
 
-        public CloseWindowCommand(IEventAggregator eventAggregator, WindowType windowType)
+        public CloseWindowCommand(IEventAggregator eventAggregator, WindowType windowToClose)
         {
             _eventAggregator = eventAggregator;
-            _windowType = windowType;
+            _windowToClose = windowToClose;
         }
 
         public bool CanExecute(object parameter)
@@ -24,7 +24,7 @@ namespace WeatherStation.Commands
 
         public void Execute(object parameter)
         {
-            _eventAggregator.GetEvent<CloseWindow>().Publish(_windowType);
+            _eventAggregator.GetEvent<CloseWindow>().Publish(_windowToClose);
         }
 
         public event EventHandler CanExecuteChanged;
