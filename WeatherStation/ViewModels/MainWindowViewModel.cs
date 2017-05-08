@@ -16,13 +16,15 @@ namespace WeatherStation.ViewModels
         private string _averageTemperature;
         private string _barometricPressureLabel;
         private BarometricPressureTrend _barometricPressureTrend;
+        private string _barometricPressureWaitTime;
         private string _barPressure;
         private BarometricPressureUnit _currentBarometricPressureUnit;
+        private DateTime _currentDateTime;
         private TemperatureUnit _currenTemperatureUnit;
         private List<object> _handler;
         private string _temperature;
         private string _temperatureLabel;
-        private DateTime _currentDateTime;
+        private string _temperatureWaitTime;
 
         public MainWindowViewModel(
             IEventAggregator eventAggregator,
@@ -45,6 +47,26 @@ namespace WeatherStation.ViewModels
             set
             {
                 _currentDateTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string TemperatureWaitTime
+        {
+            get { return _temperatureWaitTime; }
+            set
+            {
+                _temperatureWaitTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string BarometricPressureWaitTime
+        {
+            get { return _barometricPressureWaitTime; }
+            set
+            {
+                _barometricPressureWaitTime = value;
                 OnPropertyChanged();
             }
         }
@@ -113,15 +135,13 @@ namespace WeatherStation.ViewModels
         public ICommand CloseApplicationCommand { get; }
         public ICommand ReadTemperatureCommand { get; }
         public ICommand ReadBarometricPressureCommand { get; }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void RegisterHandler(object handler)
         {
             if (_handler == null)
-            {
                 _handler = new List<object>();
-            }
             _handler.Add(handler);
         }
 
@@ -141,6 +161,18 @@ namespace WeatherStation.ViewModels
             _eventAggregator.GetEvent<NewBarometricPressureTrend>().Subscribe(BarometricPressureTrendUpdate);
             _eventAggregator.GetEvent<DateTimeChanged>().Subscribe(DateTimeUpdate);
             _eventAggregator.GetEvent<MeasurementUnitChanged>().Subscribe(MeasurementUnitChanged);
+            _eventAggregator.GetEvent<TemperatureWaitTimeChanged>().Subscribe(TemperatureWaitTimeChanged);
+            _eventAggregator.GetEvent<BarometricPressureWaitTimeChanged>().Subscribe(BarometricPressureWaitTimeChanged);
+        }
+
+        private void TemperatureWaitTimeChanged(int timeToWait)
+        {
+            TemperatureWaitTime = $"(in {timeToWait} sec.)";
+        }
+
+        private void BarometricPressureWaitTimeChanged(int timeToWait)
+        {
+            BarometricPressureWaitTime = $"(in {timeToWait} sec.)";
         }
 
         private void BarometricPressureTrendUpdate(BarometricPressureTrend barometricPressureTrend)
@@ -152,9 +184,7 @@ namespace WeatherStation.ViewModels
         {
             var newValue = averageTemperature.Value;
             if (_currenTemperatureUnit == TemperatureUnit.Fahrenheit)
-            {
                 newValue = UnitConverter.IntoFahrenheit(newValue);
-            }
             AverageTemperature = newValue.ToString("F");
         }
 
@@ -167,9 +197,7 @@ namespace WeatherStation.ViewModels
         {
             var newValue = newMeasurement.Value;
             if (_currenTemperatureUnit == TemperatureUnit.Fahrenheit)
-            {
                 newValue = UnitConverter.IntoFahrenheit(newValue);
-            }
             Temperature = newValue.ToString("F");
         }
 
@@ -177,9 +205,7 @@ namespace WeatherStation.ViewModels
         {
             var newValue = newMeasurement.Value;
             if (_currentBarometricPressureUnit == BarometricPressureUnit.InHg)
-            {
                 newValue = UnitConverter.IntoInHg(newValue);
-            }
             BarometricPressure = newValue.ToString("F");
         }
 
