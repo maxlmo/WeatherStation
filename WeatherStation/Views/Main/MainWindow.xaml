@@ -9,6 +9,7 @@
         Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="560" MinWidth="640">
     <Window.Resources>
         <converter:EnumToImageConverter x:Key="EnumToImageConverter"></converter:EnumToImageConverter>
+        <converter:TimeSpanOffsetConverter x:Key="TimeSpanOffsetConverter"></converter:TimeSpanOffsetConverter>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

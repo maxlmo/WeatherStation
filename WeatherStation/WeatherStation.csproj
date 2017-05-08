@@ -97,6 +97,7 @@
     <Compile Include="Bootstrap.cs" />
     <Compile Include="Commands\ApplyDateAndTimeSettingsCommand.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Converter\TimeSpanOffsetConverter.cs" />
     <Compile Include="Handler\BarometricPressureTrendHandler.cs" />
     <Compile Include="Handler\IHandler.cs" />
     <Compile Include="Handler\AverageTemperatureCalculator.cs" />
@@ -140,8 +141,6 @@
     <Compile Include="Views\IWindow.cs" />
     <Compile Include="Converter\EnumToImageConverter.cs" />
     <Compile Include="Converter\TemperatureMeasurementUnitConverter.cs" />
-    <Compile Include="Converter\TimeStampToDateStringConverter.cs" />
-    <Compile Include="Converter\TimeStampToTimeStringConverter.cs" />
     <Compile Include="ViewModels\TemperatureHistoryWindowViewModel.cs" />
     <Compile Include="Commands\ReadBarPressureCommand.cs" />
     <Compile Include="Sensor\BarPressureSensor.cs" />

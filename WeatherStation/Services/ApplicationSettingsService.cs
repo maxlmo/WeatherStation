@@ -10,5 +10,7 @@ namespace WeatherStation.Services
             Settings.Default.TimeSpanOffset = offset;
             Settings.Default.Save();
         }
+
+
     }
 }
