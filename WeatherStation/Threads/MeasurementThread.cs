@@ -35,7 +35,7 @@ namespace WeatherStation.Threads
             {
                 var waitCounter = 0;
                 _sensor.ReadMeasurement();
-                while (waitCounter != GetMeasurementInterval() && _threadRunning)
+                while (waitCounter < GetMeasurementInterval() && _threadRunning)
                 {
                     Thread.Sleep(1000);
                     waitCounter++;
