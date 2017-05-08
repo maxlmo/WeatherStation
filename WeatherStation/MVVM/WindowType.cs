@@ -6,6 +6,7 @@
         TemperatureHistory,
         BarometricPressureHistory,
         UnitSettings,
-        DateAndTimeSettings
+        DateAndTimeSettings,
+        MeasurementIntervalsSettings
     }
 }

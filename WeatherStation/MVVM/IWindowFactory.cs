@@ -9,5 +9,6 @@ namespace WeatherStation.MVVM
         IWindow CreateBarPressureHistory();
         IWindow CreateUnitSettingsWindow();
         IWindow CreateDateAndTimeSettingsWindow();
+        IWindow CreateMeasurementIntervalsSettingsWindow();
     }
 }
