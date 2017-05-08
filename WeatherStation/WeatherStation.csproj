@@ -111,6 +111,8 @@
     <Compile Include="Services\ApplicationSettingsService.cs" />
     <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\MeasurementIntervalsSettings.cs" />
+    <Compile Include="Threads\BarometricPressureThread.cs" />
+    <Compile Include="Threads\TemperatureThread.cs" />
     <Compile Include="Validation\StringToTimeValidationRule.cs" />
     <Compile Include="Validation\StringToDateValidationRule.cs" />
     <Compile Include="ViewModels\DateAndTimeSettingsWindowViewModel.cs" />
