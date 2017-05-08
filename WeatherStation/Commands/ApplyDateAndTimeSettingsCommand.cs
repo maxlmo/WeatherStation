@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Prism.Events;
+using WeatherStation.Messages;
 using WeatherStation.Services;
 using WeatherStation.ViewModels;
 
@@ -31,6 +32,7 @@ namespace WeatherStation.Commands
                 System.Globalization.CultureInfo.InvariantCulture);
             var timeSpan = DateTime.Now - newDateTime;
             _settingsService.SaveDateTimeOffset(timeSpan);
+            _eventAggregator.GetEvent<DateTimeOffsetChanged>().Publish(timeSpan);
         }
 
         public event EventHandler CanExecuteChanged;
