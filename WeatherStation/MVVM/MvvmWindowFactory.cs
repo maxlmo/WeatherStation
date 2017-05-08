@@ -13,7 +13,7 @@ using WeatherStation.Views.UnitSettings;
 
 namespace WeatherStation.MVVM
 {
-    public class MvvmViewFactory : IViewFactory
+    public class MvvmWindowFactory : IWindowFactory
     {
         private readonly IDataBaseConnector _barometricPressureDataBaseConnector;
         private readonly ISensor _barometricPressureSensor;
@@ -21,7 +21,7 @@ namespace WeatherStation.MVVM
         private readonly IDataBaseConnector _temperatuDataBaseConnector;
         private readonly ISensor _temperatureSensor;
 
-        public MvvmViewFactory(
+        public MvvmWindowFactory(
             IEventAggregator eventAggregator,
             ISensor temperatureSensor,
             ISensor barometricPressureSensor,
@@ -76,7 +76,7 @@ namespace WeatherStation.MVVM
         {
             var viewModel = new UnitSettingsWindowViewModel();
             viewModel.ApplySettingsCommand = new ApplyUnitSettingsCommand(viewModel, _eventAggregator);
-            viewModel.CancelCommand = new CancelCommand(_eventAggregator, WindowType.UnitSettings);
+            viewModel.CancelCommand = new CloseWindowCommand(_eventAggregator, WindowType.UnitSettings);
             var unitSettingsWindow = new UnitSettingsWindow
             {
                 DataContext = viewModel,
@@ -101,7 +101,7 @@ namespace WeatherStation.MVVM
             var viewModel = new MainWindowViewModel(
                 _eventAggregator,
                 new OpenWindowCommand(_eventAggregator),
-                new CloseApplicationCommand(_eventAggregator),
+                new CloseWindowCommand(_eventAggregator, WindowType.MainWindow),
                 new ReadTemperatureCommand(_temperatureSensor),
                 new ReadBarPressureCommand(_barometricPressureSensor));
 

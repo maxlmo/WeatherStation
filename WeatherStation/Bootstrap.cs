@@ -16,7 +16,7 @@ namespace WeatherStation
         private IDataBaseConnector _temperatureDataBaseConnector;
         private MeasurementThread _temperatureThread;
         private TimeThread _timeThread;
-        private IViewFactory _viewFactory;
+        private IWindowFactory _windowFactory;
 
         public void StartApplication()
         {
@@ -24,7 +24,7 @@ namespace WeatherStation
             InitializeDataBaseConnection();
             var temperatureSensor = new TemperatureSensor(_eventAggregator);
             var barometricPressureSensor = new BarPressureSensor(_eventAggregator);
-            _viewFactory = new MvvmViewFactory(
+            _windowFactory = new MvvmWindowFactory(
                 _eventAggregator,
                 temperatureSensor,
                 barometricPressureSensor,
@@ -67,7 +67,7 @@ namespace WeatherStation
 
         private ApplicationWindowHandler CreateApplicationWindowHandler()
         {
-            var applicationWindowHandler = new ApplicationWindowHandler(_eventAggregator, _viewFactory);
+            var applicationWindowHandler = new ApplicationWindowHandler(_eventAggregator, _windowFactory);
             _eventAggregator.GetEvent<OpenNewWindow>().Subscribe(applicationWindowHandler.OpenNewWindow);
             _eventAggregator.GetEvent<CloseWindow>().Subscribe(applicationWindowHandler.CloseWindow);
             _eventAggregator.GetEvent<WindowClosed>().Subscribe(applicationWindowHandler.WindowClosed);

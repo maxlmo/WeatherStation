@@ -10,13 +10,13 @@ namespace WeatherStation.Handler
     public class ApplicationWindowHandler
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IViewFactory _viewFactory;
+        private readonly IWindowFactory _windowFactory;
         private readonly List<IWindow> _windows = new List<IWindow>();
 
-        public ApplicationWindowHandler(IEventAggregator eventAggregator, IViewFactory viewFactory)
+        public ApplicationWindowHandler(IEventAggregator eventAggregator, IWindowFactory windowFactory)
         {
             _eventAggregator = eventAggregator;
-            _viewFactory = viewFactory;
+            _windowFactory = windowFactory;
         }
 
         public void WindowClosed(WindowType type)
@@ -53,15 +53,15 @@ namespace WeatherStation.Handler
             switch (type)
             {
                 case WindowType.BarometricPressureHistory:
-                    return _viewFactory.CreateBarPressureHistory();
+                    return _windowFactory.CreateBarPressureHistory();
                 case WindowType.TemperatureHistory:
-                    return _viewFactory.CreateTemperatureHistory();
+                    return _windowFactory.CreateTemperatureHistory();
                 case WindowType.UnitSettings:
-                    return _viewFactory.CreateUnitSettingsWindow();
+                    return _windowFactory.CreateUnitSettingsWindow();
                 case WindowType.MainWindow:
-                    return _viewFactory.CreateMainWindow();
+                    return _windowFactory.CreateMainWindow();
                 case WindowType.DateAndTimeSettings:
-                    return _viewFactory.CreateDateAndTimeSettingsWindow();
+                    return _windowFactory.CreateDateAndTimeSettingsWindow();
             }
             throw new NotSupportedException();
         }

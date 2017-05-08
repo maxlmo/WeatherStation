@@ -126,7 +126,7 @@
     <Compile Include="ViewModels\HistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\MeasurementUnitChanged.cs" />
     <Compile Include="Commands\ApplyUnitSettingsCommand.cs" />
-    <Compile Include="Commands\CancelCommand.cs" />
+    <Compile Include="Commands\CloseWindowCommand.cs" />
     <Compile Include="ViewModels\UnitSettingsWindowViewModel.cs" />
     <Compile Include="Views\Converter\BarometricPressureMeasurementUnitConverter.cs" />
     <Compile Include="Views\Converter\UnitConverter.cs" />
@@ -146,7 +146,6 @@
     <Compile Include="Threads\IThread.cs" />
     <Compile Include="Threads\MeasurementThread.cs" />
     <Compile Include="Threads\TimeThread.cs" />
-    <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\ReadTemperatureCommand.cs" />
     <Compile Include="Commands\OpenWindowCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -198,8 +197,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MVVM\IViewFactory.cs" />
-    <Compile Include="MVVM\MvvmViewFactory.cs" />
+    <Compile Include="MVVM\IWindowFactory.cs" />
+    <Compile Include="MVVM\MvvmWindowFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

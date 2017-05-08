@@ -1,10 +1,8 @@
-﻿using WeatherStation.Handler;
-using WeatherStation.Views;
-using WeatherStation.Views.History;
+﻿using WeatherStation.Views;
 
 namespace WeatherStation.MVVM
 {
-    public interface IViewFactory
+    public interface IWindowFactory
     {
         IWindow CreateMainWindow();
         IWindow CreateTemperatureHistory();

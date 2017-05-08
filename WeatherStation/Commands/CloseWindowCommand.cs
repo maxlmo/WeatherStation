@@ -6,12 +6,12 @@ using WeatherStation.MVVM;
 
 namespace WeatherStation.Commands
 {
-    public class CancelCommand : ICommand
+    public class CloseWindowCommand : ICommand
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly WindowType _windowType;
 
-        public CancelCommand(IEventAggregator eventAggregator, WindowType windowType)
+        public CloseWindowCommand(IEventAggregator eventAggregator, WindowType windowType)
         {
             _eventAggregator = eventAggregator;
             _windowType = windowType;

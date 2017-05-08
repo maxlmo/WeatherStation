@@ -15,7 +15,7 @@ namespace WeatherStation.Test.Handler
         {
             
             var mainWindow = new Mock<IWindow>();
-            var viewFactory = new Mock<IViewFactory>();
+            var viewFactory = new Mock<IWindowFactory>();
             viewFactory.Setup(v => v.CreateMainWindow()).Returns(mainWindow.Object);
             var classUnderTest = new ApplicationWindowHandler(CreatEventAggregator(),viewFactory.Object);
 
