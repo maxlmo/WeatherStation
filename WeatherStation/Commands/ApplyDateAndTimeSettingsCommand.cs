@@ -30,7 +30,7 @@ namespace WeatherStation.Commands
         {
             var newDateTime = DateTime.ParseExact($"{_viewModel.CurrentDate} {_viewModel.CurrentTime}", "dd.MM.yyyy HH:mm",
                 System.Globalization.CultureInfo.InvariantCulture);
-            var timeSpan = DateTime.Now - newDateTime;
+            var timeSpan = newDateTime - DateTime.Now;
             _settingsService.SaveDateTimeOffset(timeSpan);
             _eventAggregator.GetEvent<DateTimeOffsetChanged>().Publish(timeSpan);
         }
