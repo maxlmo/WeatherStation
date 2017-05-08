@@ -30,7 +30,7 @@ namespace WeatherStation.Threads
             while (_threadRunning)
             {
                 var currentDateTime = DateTime.Now;
-                _eventAggregator.GetEvent<NewDateTime>().Publish(new CurrentDateTime {Current = currentDateTime});
+                _eventAggregator.GetEvent<DateTimeChanged>().Publish(currentDateTime);
                 Thread.Sleep(1000);
             }
         }
