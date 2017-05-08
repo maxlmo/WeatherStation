@@ -7,10 +7,12 @@ namespace WeatherStation.Threads
 {
     public class BarometricPressureThread : MeasurementThread
     {
+        private readonly IEventAggregator _eventAggregator;
         private int _measurementInterval;
 
         public BarometricPressureThread(ISensor sensor, IEventAggregator eventAggregator, ISettingsService settingsService) : base(sensor)
         {
+            _eventAggregator = eventAggregator;
             _measurementInterval = settingsService.LoadMeasurementIntervalsSettings().BarometricPressureInterval;
             eventAggregator.GetEvent<MeasurementIntervalChanged>().Subscribe(MeasurementIntervalChanged);
         }
@@ -20,9 +22,14 @@ namespace WeatherStation.Threads
             _measurementInterval = newSettings.BarometricPressureInterval;
         }
 
-        protected override int MeasurementInterval()
+        protected override int GetMeasurementInterval()
         {
             return _measurementInterval;
+        }
+
+        protected override void SendWaitUpdate(int timeToWait)
+        {
+            _eventAggregator.GetEvent<BarometricPressureWaitTimeChanged>().Publish(timeToWait);
         }
     }
 }

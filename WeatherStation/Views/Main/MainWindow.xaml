@@ -51,28 +51,29 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="Auto" MinWidth="200"/>
+                <ColumnDefinition Width="Auto" MinWidth="50" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" MinWidth="60" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+            <TextBox Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding CurrentDateTime, Converter={StaticResource TimeSpanOffsetConverter}, StringFormat='{}{0:dd.MM.yyyy}'}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
-            <TextBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+            <TextBox Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding CurrentDateTime, Converter={StaticResource TimeSpanOffsetConverter}, StringFormat='{}{0:HH:mm:ss}'}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
-            <TextBox Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+            <TextBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding Temperature}" TextAlignment="Right" VerticalAlignment="Top" Width="120"
                      FontSize="14" />
-            <TextBox Grid.Column="2" Grid.Row="8" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+            <TextBox Grid.Column="3" Grid.Row="8" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding BarometricPressure}" VerticalAlignment="Top" TextAlignment="Right" Width="120"
                      FontSize="14" />
-            <TextBox Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" Height="25"
+            <TextBox Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Height="25"
                      Text="{Binding AverageTemperature}"
                      VerticalAlignment="Top" Width="120" TextAlignment="Right">
                 <TextBox.TextWrapping>Wrap</TextBox.TextWrapping>
             </TextBox>
-            <Image Source="{Binding BarometricPressureTrend, Converter={StaticResource EnumToImageConverter}}" Grid.Row="10" Grid.Column="2" Height="50"></Image>
+            <Image Source="{Binding BarometricPressureTrend, Converter={StaticResource EnumToImageConverter}}" Grid.Row="10" Grid.Column="3" Height="50"></Image>
             
 
             <Label Grid.Column="1" Grid.Row="2" Content="Time:" FontSize="14" HorizontalAlignment="Left"
@@ -90,21 +91,22 @@
             <Label Grid.Column="1" Grid.Row="10" Content="Barometric Pressure Trend:" HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="3" Grid.Row="4" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Label Grid.Column="4" Grid.Row="4" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="3" Grid.Row="6" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Label Grid.Column="4" Grid.Row="6" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="3" Grid.Row="8" Content="{Binding BarometricPressureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Label Grid.Column="4" Grid.Row="8" Content="{Binding BarometricPressureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
+            <Label Grid.Column="2" Grid.Row="4" Content="{Binding TemperatureWaitTime}"></Label>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="4">
+            <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="4">
                 <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
                         Height="25" Command="{Binding ReadTemperatureCommand}" />
                 <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
                         Height="25" Command="{Binding OpenWindowCommand}" CommandParameter="TemperatureHistory"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="4" Grid.Row="8" Orientation="Horizontal">
+            <StackPanel Grid.Column="5" Grid.Row="8" Orientation="Horizontal">
                 <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
                         Height="25" Command="{Binding ReadBarometricPressureCommand}" />
 
@@ -112,7 +114,7 @@
                         Height="25" Command="{Binding OpenWindowCommand}" CommandParameter="BarometricPressureHistory" />
             </StackPanel>
 
-            <Button Grid.Column="2" Grid.Row="13"  Content="exit" Command="{Binding CloseApplicationCommand}" Width="60" Height="25"></Button>
+            <Button Grid.Column="3" Grid.Row="13"  Content="exit" Command="{Binding CloseApplicationCommand}" Width="60" Height="25"></Button>
 
         </Grid>
     </Grid>

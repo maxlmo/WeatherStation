@@ -26,15 +26,23 @@ namespace WeatherStation.Threads
             _threadRunning = false;
         }
 
+        protected abstract int GetMeasurementInterval();
+        protected abstract void SendWaitUpdate(int timeToWait);
+
         private void ThreadLoop()
         {
             while (_threadRunning)
             {
+                var waitCounter = 0;
                 _sensor.ReadMeasurement();
-                Thread.Sleep(MeasurementInterval() * 1000);
+                while (waitCounter != GetMeasurementInterval() && _threadRunning)
+                {
+                    Thread.Sleep(1000);
+                    waitCounter++;
+                    SendWaitUpdate(GetMeasurementInterval() - waitCounter);
+                }
             }
         }
 
-        protected abstract int MeasurementInterval();
     }
 }

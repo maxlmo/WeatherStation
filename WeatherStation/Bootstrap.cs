@@ -34,11 +34,11 @@ namespace WeatherStation
                 _temperatureDataBaseConnector,
                 _barometricPressureDataBaseConnector, 
                 _settingsService);
-            StartThreads(barometricPressureSensor, temperatureSensor);
-
+            
             var applicationWindowHandler = CreateApplicationWindowHandler();
 
             applicationWindowHandler.OpenNewWindow(WindowType.MainWindow);
+            StartThreads(barometricPressureSensor, temperatureSensor);
         }
 
         private void InitializeDataBaseConnection()

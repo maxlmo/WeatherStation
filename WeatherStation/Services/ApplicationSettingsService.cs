@@ -16,6 +16,7 @@ namespace WeatherStation.Services
             Settings.Default.BarometricPressureMeasurementInterval =
                 newMeasurementIntervalsSettings.BarometricPressureInterval;
             Settings.Default.TemperatureMeasurementInterval = newMeasurementIntervalsSettings.TemperatureInterval;
+            Settings.Default.Save();
         }
 
         public MeasurementIntervalsSettings LoadMeasurementIntervalsSettings()
