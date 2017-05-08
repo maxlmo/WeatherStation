@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Input;
 using Prism.Events;
 using WeatherStation.Handler;
@@ -30,8 +31,9 @@ namespace WeatherStation.Commands
 
         public void Execute(object parameter)
         {
-            var newDateTime = DateTime.ParseExact($"{_viewModel.CurrentDate} {_viewModel.CurrentTime}", "dd.MM.yyyy HH:mm",
-                System.Globalization.CultureInfo.InvariantCulture);
+            var formats = new[] {"dd.MM.yyyy H:mm", "dd.MM.yyyy HH:mm"};
+            var newDateTime = DateTime.ParseExact($"{_viewModel.CurrentDate} {_viewModel.CurrentTime}", formats,
+                CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
             var timeSpan = newDateTime - DateTime.Now;
             _settingsService.SaveDateTimeOffset(timeSpan);
             _eventAggregator.GetEvent<DateTimeOffsetChanged>().Publish(timeSpan);
