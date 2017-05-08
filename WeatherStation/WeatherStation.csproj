@@ -107,7 +107,7 @@
     <Compile Include="Messages\MeasurementIntervalChanged.cs" />
     <Compile Include="Messages\SettingsSaved.cs" />
     <Compile Include="Handler\ApplicationWindowHandler.cs" />
-    <Compile Include="Messages\TemperatureWaitTimeChanged.cs" />
+    <Compile Include="Messages\MeasurementWaitTimeChanged.cs" />
     <Compile Include="MVVM\WindowType.cs" />
     <Compile Include="Services\ApplicationSettingsService.cs" />
     <Compile Include="Services\ISettingsService.cs" />
