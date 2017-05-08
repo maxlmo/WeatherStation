@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 using Prism.Events;
+using WeatherStation.Handler;
 using WeatherStation.Messages;
+using WeatherStation.MVVM;
 using WeatherStation.Services;
 using WeatherStation.ViewModels;
 
@@ -32,6 +34,7 @@ namespace WeatherStation.Commands
                 _viewModel.BarometricPressureMeasurementInterval);
             _settingsService.SaveMeasurementIntervals(newSettings);
             _eventAggregator.GetEvent<MeasurementIntervalChanged>().Publish(newSettings);
+            _eventAggregator.GetEvent<CloseWindow>().Publish(WindowType.MeasurementIntervalsSettings);
         }
 
         public event EventHandler CanExecuteChanged;
