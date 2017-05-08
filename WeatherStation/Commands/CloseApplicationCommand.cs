@@ -22,7 +22,7 @@ namespace WeatherStation.Commands
 
         public void Execute(object parameter)
         {
-            _eventAggregator.GetEvent<CloseWindow>().Publish(ViewType.MainWindow);
+            _eventAggregator.GetEvent<CloseWindow>().Publish(WindowType.MainWindow);
         }
 
         public event EventHandler CanExecuteChanged;

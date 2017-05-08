@@ -45,7 +45,7 @@ namespace WeatherStation.MVVM
             mainWindowViewModel.RegisterHandler(averageTemperatureCalculator);
             mainWindowViewModel.RegisterHandler(barometricPressureTrendHandler);
 
-            return new MainWindow {DataContext = mainWindowViewModel, Tag = ViewType.MainWindow};
+            return new MainWindow {DataContext = mainWindowViewModel, Tag = WindowType.MainWindow};
         }
 
         public IWindow CreateTemperatureHistory()
@@ -55,7 +55,7 @@ namespace WeatherStation.MVVM
             var historyWindow = new HistoryWindow
             {
                 DataContext = temperatureViewModel,
-                Tag = ViewType.TemperatureHistory
+                Tag = WindowType.TemperatureHistory
             };
             return historyWindow;
         }
@@ -67,7 +67,7 @@ namespace WeatherStation.MVVM
             var historyWindow = new HistoryWindow
             {
                 DataContext = barPressureViewModel,
-                Tag = ViewType.BarometricPressureHistory
+                Tag = WindowType.BarometricPressureHistory
             };
             return historyWindow;
         }
@@ -76,11 +76,11 @@ namespace WeatherStation.MVVM
         {
             var viewModel = new UnitSettingsWindowViewModel();
             viewModel.ApplySettingsCommand = new ApplyUnitSettingsCommand(viewModel, _eventAggregator);
-            viewModel.CancelCommand = new CancelCommand(_eventAggregator);
+            viewModel.CancelCommand = new CancelCommand(_eventAggregator, WindowType.UnitSettings);
             var unitSettingsWindow = new UnitSettingsWindow
             {
                 DataContext = viewModel,
-                Tag = ViewType.UnitSettings
+                Tag = WindowType.UnitSettings
             };
             return unitSettingsWindow;
         }
@@ -91,7 +91,7 @@ namespace WeatherStation.MVVM
             var dateAndTimeSettingsWindow = new DateAndTimeSettingsWindow
             {
                 DataContext = viewModel,
-                Tag = ViewType.DateAndTimeSettings
+                Tag = WindowType.DateAndTimeSettings
             };
             return dateAndTimeSettingsWindow;
         }

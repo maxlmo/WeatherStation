@@ -34,7 +34,7 @@ namespace WeatherStation.Commands
                 Temperature = _viewModel.CurrentTemperatureUnit,
                 BarometricPressure = _viewModel.CurrentBarometricPressureUnit
             });
-            _eventAggregator.GetEvent<CloseWindow>().Publish(ViewType.UnitSettings);
+            _eventAggregator.GetEvent<CloseWindow>().Publish(WindowType.UnitSettings);
         }
 
         public event EventHandler CanExecuteChanged;

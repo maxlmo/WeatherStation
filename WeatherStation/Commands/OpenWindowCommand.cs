@@ -22,7 +22,7 @@ namespace WeatherStation.Commands
 
         public void Execute(object parameter)
         {
-            var type = (ViewType) Enum.Parse(typeof(ViewType), parameter.ToString());
+            var type = (WindowType) Enum.Parse(typeof(WindowType), parameter.ToString());
             _eventAggregator.GetEvent<OpenNewWindow>().Publish(type);
         }
 

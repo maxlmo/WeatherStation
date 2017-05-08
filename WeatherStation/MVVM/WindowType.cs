@@ -1,6 +1,6 @@
 ﻿namespace WeatherStation.MVVM
 {
-    public enum ViewType
+    public enum WindowType
     {
         MainWindow,
         TemperatureHistory,

@@ -34,7 +34,7 @@ namespace WeatherStation
 
             var applicationWindowHandler = CreateApplicationWindowHandler();
 
-            applicationWindowHandler.OpenNewWindow(ViewType.MainWindow);
+            applicationWindowHandler.OpenNewWindow(WindowType.MainWindow);
         }
 
         private void InitializeDataBaseConnection()

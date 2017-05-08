@@ -19,13 +19,13 @@ namespace WeatherStation.Handler
             _viewFactory = viewFactory;
         }
 
-        public void WindowClosed(ViewType type)
+        public void WindowClosed(WindowType type)
         {
             var closedWindow = _windows.Find(w => Equals(w.Tag, type));
             _windows.Remove(closedWindow);
         }
 
-        public void CloseWindow(ViewType type)
+        public void CloseWindow(WindowType type)
         {
             var windowToClose = _windows.Find(w => Equals(w.Tag, type));
             _windows.Remove(windowToClose);
@@ -33,7 +33,7 @@ namespace WeatherStation.Handler
             windowToClose.Close();
         }
 
-        public void OpenNewWindow(ViewType type)
+        public void OpenNewWindow(WindowType type)
         {
             if (_windows.Any(w => Equals(w.Tag, type)))
             {
@@ -48,34 +48,34 @@ namespace WeatherStation.Handler
             }
         }
 
-        private IWindow GetWindowByType(ViewType type)
+        private IWindow GetWindowByType(WindowType type)
         {
             switch (type)
             {
-                case ViewType.BarometricPressureHistory:
+                case WindowType.BarometricPressureHistory:
                     return _viewFactory.CreateBarPressureHistory();
-                case ViewType.TemperatureHistory:
+                case WindowType.TemperatureHistory:
                     return _viewFactory.CreateTemperatureHistory();
-                case ViewType.UnitSettings:
+                case WindowType.UnitSettings:
                     return _viewFactory.CreateUnitSettingsWindow();
-                case ViewType.MainWindow:
+                case WindowType.MainWindow:
                     return _viewFactory.CreateMainWindow();
-                case ViewType.DateAndTimeSettings:
+                case WindowType.DateAndTimeSettings:
                     return _viewFactory.CreateDateAndTimeSettingsWindow();
             }
             throw new NotSupportedException();
         }
     }
 
-    public class WindowClosed : PubSubEvent<ViewType>
+    public class WindowClosed : PubSubEvent<WindowType>
     {
     }
 
-    public class CloseWindow : PubSubEvent<ViewType>
+    public class CloseWindow : PubSubEvent<WindowType>
     {
     }
 
-    public class OpenNewWindow : PubSubEvent<ViewType>
+    public class OpenNewWindow : PubSubEvent<WindowType>
     {
     }
 }

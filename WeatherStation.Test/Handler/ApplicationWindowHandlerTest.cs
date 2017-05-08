@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Prism.Events;
 using WeatherStation.Handler;
@@ -24,7 +19,7 @@ namespace WeatherStation.Test.Handler
             viewFactory.Setup(v => v.CreateMainWindow()).Returns(mainWindow.Object);
             var classUnderTest = new ApplicationWindowHandler(CreatEventAggregator(),viewFactory.Object);
 
-            classUnderTest.OpenNewWindow(ViewType.MainWindow);
+            classUnderTest.OpenNewWindow(WindowType.MainWindow);
 
             mainWindow.Verify( w => w.Show());
         }
