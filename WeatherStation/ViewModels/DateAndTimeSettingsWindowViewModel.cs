@@ -18,8 +18,8 @@ namespace WeatherStation.ViewModels
             _currentTime = dateTimeOffset.ToString("t");
         }
 
-        public ICommand SaveDateAndTimeSettingsCommand { get; set; }
-        public ICommand CloseWindowWithoutSavingCommand { get; set; }
+        public ICommand ApplySettingsCommand { get; set; }
+        public ICommand CloseWindowCommand { get; set; }
 
         public string CurrentDate
         {

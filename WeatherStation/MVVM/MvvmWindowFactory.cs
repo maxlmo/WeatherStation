@@ -89,8 +89,9 @@ namespace WeatherStation.MVVM
         {
             var viewModel = new DateAndTimeSettingsWindowViewModel
             {
-                CloseWindowWithoutSavingCommand =
+                CloseWindowCommand =
                     new CloseWindowCommand(_eventAggregator, WindowType.DateAndTimeSettings),
+                ApplySettingsCommand = new ApplyDateAndTimeSettingsCommand(_eventAggregator)
             };
             var dateAndTimeSettingsWindow = new DateAndTimeSettingsWindow
             {

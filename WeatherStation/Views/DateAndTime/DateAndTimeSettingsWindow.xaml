@@ -53,8 +53,8 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding ApplySettingsCommand}" CommandParameter="{Binding NewDateAndTime}" Grid.Column="1" Content="Apply"></Button>
-            <Button Command="{Binding CancelCommand}" Grid.Column="3" Content="Cancel"></Button>
+            <Button Command="{Binding ApplySettingsCommand}" Grid.Column="1" Content="Apply"></Button>
+            <Button Command="{Binding CloseWindowCommand}" Grid.Column="3" Content="Cancel"></Button>
         </Grid>
     </Grid>
 </Window>
