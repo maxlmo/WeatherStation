@@ -3,6 +3,7 @@ using WeatherStation.Commands;
 using WeatherStation.Handler;
 using WeatherStation.Properties;
 using WeatherStation.Sensor;
+using WeatherStation.Services;
 using WeatherStation.Storage;
 using WeatherStation.ViewModels;
 using WeatherStation.Views;
@@ -18,6 +19,7 @@ namespace WeatherStation.MVVM
         private readonly IDataBaseConnector _barometricPressureDataBaseConnector;
         private readonly ISensor _barometricPressureSensor;
         private readonly IEventAggregator _eventAggregator;
+        private readonly ISettingsService _settingsService;
         private readonly IDataBaseConnector _temperatuDataBaseConnector;
         private readonly ISensor _temperatureSensor;
 
@@ -26,13 +28,15 @@ namespace WeatherStation.MVVM
             ISensor temperatureSensor,
             ISensor barometricPressureSensor,
             IDataBaseConnector temperatuDataBaseConnector,
-            IDataBaseConnector barometricPressureDataBaseConnector)
+            IDataBaseConnector barometricPressureDataBaseConnector,
+            ISettingsService settingsService)
         {
             _eventAggregator = eventAggregator;
             _temperatureSensor = temperatureSensor;
             _barometricPressureSensor = barometricPressureSensor;
             _temperatuDataBaseConnector = temperatuDataBaseConnector;
             _barometricPressureDataBaseConnector = barometricPressureDataBaseConnector;
+            _settingsService = settingsService;
         }
 
         public IWindow CreateMainWindow()
@@ -90,9 +94,10 @@ namespace WeatherStation.MVVM
             var viewModel = new DateAndTimeSettingsWindowViewModel
             {
                 CloseWindowCommand =
-                    new CloseWindowCommand(_eventAggregator, WindowType.DateAndTimeSettings),
-                ApplySettingsCommand = new ApplyDateAndTimeSettingsCommand(_eventAggregator)
+                    new CloseWindowCommand(_eventAggregator, WindowType.DateAndTimeSettings)
             };
+            viewModel.ApplySettingsCommand =
+                new ApplyDateAndTimeSettingsCommand(_eventAggregator, viewModel, _settingsService);
             var dateAndTimeSettingsWindow = new DateAndTimeSettingsWindow
             {
                 DataContext = viewModel,
@@ -113,7 +118,7 @@ namespace WeatherStation.MVVM
             var initialMeasurementUnit = new CurrentMeasurementUnit
             {
                 BarometricPressure = (BarometricPressureUnit) Settings.Default.BarometricPressureUnit,
-                Temperature = (TemperatureUnit)Settings.Default.TemperatureUnit
+                Temperature = (TemperatureUnit) Settings.Default.TemperatureUnit
             };
             viewModel.MeasurementUnitChanged(initialMeasurementUnit);
             return viewModel;

@@ -69,6 +69,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ApplyDateAndTimeSettingsCommandTest.cs" />
     <Compile Include="Handler\ApplicationWindowHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

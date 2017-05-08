@@ -3,6 +3,7 @@ using WeatherStation.Handler;
 using WeatherStation.Messages;
 using WeatherStation.MVVM;
 using WeatherStation.Sensor;
+using WeatherStation.Services;
 using WeatherStation.Storage;
 using WeatherStation.Threads;
 
@@ -29,7 +30,8 @@ namespace WeatherStation
                 temperatureSensor,
                 barometricPressureSensor,
                 _temperatureDataBaseConnector,
-                _barometricPressureDataBaseConnector);
+                _barometricPressureDataBaseConnector, 
+                new ApplicationSettingsService());
             StartThreads(barometricPressureSensor, temperatureSensor);
 
             var applicationWindowHandler = CreateApplicationWindowHandler();
