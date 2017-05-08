@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using WeatherStation.Properties;
 
-namespace WeatherStation.ViewModels.DateAndTime
+namespace WeatherStation.ViewModels
 {
     public class DateAndTimeSettingsWindowViewModel : INotifyPropertyChanged
     {

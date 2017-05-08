@@ -1,7 +1,6 @@
 using Prism.Events;
-using WeatherStation.ViewModels.UnitSettings;
 
-namespace WeatherStation.ViewModels.Main
+namespace WeatherStation.ViewModels
 {
     public class MeasurementUnitChanged : PubSubEvent<CurrentMeasurementUnit>
     {

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
-using WeatherStation.Model;
+﻿using Prism.Events;
 using WeatherStation.Storage;
 
-namespace WeatherStation.ViewModels.History
+namespace WeatherStation.ViewModels
 {
     public abstract class HistoryWindowViewModel
     {

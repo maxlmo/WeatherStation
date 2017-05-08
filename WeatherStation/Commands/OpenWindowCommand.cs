@@ -4,7 +4,7 @@ using Prism.Events;
 using WeatherStation.Handler;
 using WeatherStation.MVVM;
 
-namespace WeatherStation.ViewModels.Main.Commands
+namespace WeatherStation.Commands
 {
     public class OpenWindowCommand : ICommand
     {

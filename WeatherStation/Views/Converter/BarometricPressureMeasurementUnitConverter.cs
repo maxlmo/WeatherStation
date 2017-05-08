@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using WeatherStation.Properties;
-using WeatherStation.ViewModels.UnitSettings;
+using WeatherStation.ViewModels;
 
 namespace WeatherStation.Views.Converter
 {

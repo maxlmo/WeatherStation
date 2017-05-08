@@ -1,15 +1,13 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using NHibernate.Util;
 using Prism.Events;
-using WeatherStation.Handler;
 using WeatherStation.Messages;
 using WeatherStation.Model;
 using WeatherStation.Properties;
 using WeatherStation.Storage;
 
-namespace WeatherStation.ViewModels.History
+namespace WeatherStation.ViewModels
 {
     public class TemperatureHistoryWindowViewModel : HistoryWindowViewModel
     {

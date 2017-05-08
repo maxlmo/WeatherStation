@@ -5,10 +5,9 @@ using System.Windows.Input;
 using Prism.Events;
 using WeatherStation.Messages;
 using WeatherStation.Model;
-using WeatherStation.ViewModels.UnitSettings;
 using WeatherStation.Views.Converter;
 
-namespace WeatherStation.ViewModels.Main
+namespace WeatherStation.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {

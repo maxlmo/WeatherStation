@@ -1,14 +1,10 @@
 ﻿using Prism.Events;
+using WeatherStation.Commands;
 using WeatherStation.Handler;
 using WeatherStation.Properties;
 using WeatherStation.Sensor;
 using WeatherStation.Storage;
-using WeatherStation.ViewModels.DateAndTime;
-using WeatherStation.ViewModels.History;
-using WeatherStation.ViewModels.Main;
-using WeatherStation.ViewModels.Main.Commands;
-using WeatherStation.ViewModels.UnitSettings;
-using WeatherStation.ViewModels.UnitSettings.Commands;
+using WeatherStation.ViewModels;
 using WeatherStation.Views;
 using WeatherStation.Views.DateAndTime;
 using WeatherStation.Views.History;

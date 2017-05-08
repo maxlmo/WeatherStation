@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using Prism.Events;
 using WeatherStation.Handler;
-using WeatherStation.Messages;
 using WeatherStation.MVVM;
 using WeatherStation.Properties;
-using WeatherStation.ViewModels.Main;
+using WeatherStation.ViewModels;
 
-namespace WeatherStation.ViewModels.UnitSettings.Commands
+namespace WeatherStation.Commands
 {
     class ApplySettingsCommand : ICommand
     {

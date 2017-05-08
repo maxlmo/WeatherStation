@@ -103,7 +103,7 @@
     <Compile Include="Messages\SettingsSaved.cs" />
     <Compile Include="Handler\ApplicationWindowHandler.cs" />
     <Compile Include="MVVM\ViewType.cs" />
-    <Compile Include="ViewModels\DateAndTime\DateAndTimeSettingsWindowViewModel.cs" />
+    <Compile Include="ViewModels\DateAndTimeSettingsWindowViewModel.cs" />
     <Compile Include="Storage\Mapping\BarometricPressureMap.cs" />
     <Compile Include="Storage\Mapping\TemperatureMap.cs" />
     <Compile Include="Messages\NewBarometricPressureTrend.cs" />
@@ -122,12 +122,12 @@
     <Compile Include="Storage\FluentNHibernateHelper.cs" />
     <Compile Include="Storage\TemperatureDataBaseConnector.cs" />
     <Compile Include="Messages\TemperatureSaved.cs" />
-    <Compile Include="ViewModels\History\BarPressureHistoryWindowViewModel.cs" />
-    <Compile Include="ViewModels\History\HistoryWindowViewModel.cs" />
-    <Compile Include="ViewModels\Main\MeasurementUnitChanged.cs" />
-    <Compile Include="ViewModels\UnitSettings\Commands\ApplySettingsCommand.cs" />
-    <Compile Include="ViewModels\UnitSettings\Commands\CancelCommand.cs" />
-    <Compile Include="ViewModels\UnitSettings\UnitSettingsWindowViewModel.cs" />
+    <Compile Include="ViewModels\BarPressureHistoryWindowViewModel.cs" />
+    <Compile Include="ViewModels\HistoryWindowViewModel.cs" />
+    <Compile Include="ViewModels\MeasurementUnitChanged.cs" />
+    <Compile Include="Commands\ApplySettingsCommand.cs" />
+    <Compile Include="Commands\CancelCommand.cs" />
+    <Compile Include="ViewModels\UnitSettingsWindowViewModel.cs" />
     <Compile Include="Views\Converter\BarometricPressureMeasurementUnitConverter.cs" />
     <Compile Include="Views\Converter\UnitConverter.cs" />
     <Compile Include="Views\DateAndTime\DateAndTimeSettingsWindow.xaml.cs">
@@ -138,18 +138,18 @@
     <Compile Include="Views\Converter\TemperatureMeasurementUnitConverter.cs" />
     <Compile Include="Views\Converter\TimeStampToDateStringConverter.cs" />
     <Compile Include="Views\Converter\TimeStampToTimeStringConverter.cs" />
-    <Compile Include="ViewModels\History\TemperatureHistoryWindowViewModel.cs" />
-    <Compile Include="ViewModels\Main\Commands\ReadBarPressureCommand.cs" />
+    <Compile Include="ViewModels\TemperatureHistoryWindowViewModel.cs" />
+    <Compile Include="Commands\ReadBarPressureCommand.cs" />
     <Compile Include="Sensor\BarPressureSensor.cs" />
     <Compile Include="Sensor\ISensor.cs" />
     <Compile Include="Sensor\TemperatureSensor.cs" />
     <Compile Include="Threads\IThread.cs" />
     <Compile Include="Threads\MeasurementThread.cs" />
     <Compile Include="Threads\TimeThread.cs" />
-    <Compile Include="ViewModels\Main\Commands\CloseApplicationCommand.cs" />
-    <Compile Include="ViewModels\Main\Commands\ReadTemperatureCommand.cs" />
-    <Compile Include="ViewModels\Main\Commands\OpenWindowCommand.cs" />
-    <Compile Include="ViewModels\Main\MainWindowViewModel.cs" />
+    <Compile Include="Commands\CloseApplicationCommand.cs" />
+    <Compile Include="Commands\ReadTemperatureCommand.cs" />
+    <Compile Include="Commands\OpenWindowCommand.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\History\BarometricPressureHistoryControl.xaml.cs">
       <DependentUpon>BarometricPressureHistoryControl.xaml</DependentUpon>
     </Compile>
@@ -232,6 +232,7 @@
     <Resource Include="Views\Main\Images\rising.jpg" />
     <Resource Include="Views\Main\Images\stable.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

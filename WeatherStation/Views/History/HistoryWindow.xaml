@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:history="clr-namespace:WeatherStation.ViewModels.History"
         xmlns:views="clr-namespace:WeatherStation.Views.History"
+        xmlns:history="clr-namespace:WeatherStation.ViewModels"
         mc:Ignorable="d"
         Title="{Binding HistoryWindowName}" Height="500" Width="300">
     <Window.Resources>

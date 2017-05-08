@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Prism.Events;
 using WeatherStation.Messages;
 using WeatherStation.Model;
-using WeatherStation.ViewModels.Main;
+using WeatherStation.ViewModels;
 
 namespace WeatherStation.Test.ViewModels
 {

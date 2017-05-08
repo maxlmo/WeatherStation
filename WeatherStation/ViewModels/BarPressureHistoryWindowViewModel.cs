@@ -7,7 +7,7 @@ using WeatherStation.Model;
 using WeatherStation.Properties;
 using WeatherStation.Storage;
 
-namespace WeatherStation.ViewModels.History
+namespace WeatherStation.ViewModels
 {
     public class BarPressureHistoryWindowViewModel : HistoryWindowViewModel
     {

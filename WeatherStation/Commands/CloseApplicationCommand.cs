@@ -4,13 +4,13 @@ using Prism.Events;
 using WeatherStation.Handler;
 using WeatherStation.MVVM;
 
-namespace WeatherStation.ViewModels.UnitSettings.Commands
+namespace WeatherStation.Commands
 {
-    public class CancelCommand : ICommand
+    public class CloseApplicationCommand : ICommand
     {
         private readonly IEventAggregator _eventAggregator;
 
-        public CancelCommand(IEventAggregator eventAggregator)
+        public CloseApplicationCommand(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
         }
@@ -22,7 +22,7 @@ namespace WeatherStation.ViewModels.UnitSettings.Commands
 
         public void Execute(object parameter)
         {
-            _eventAggregator.GetEvent<CloseWindow>().Publish(ViewType.UnitSettings);
+            _eventAggregator.GetEvent<CloseWindow>().Publish(ViewType.MainWindow);
         }
 
         public event EventHandler CanExecuteChanged;

@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using WeatherStation.ViewModels.Main.Commands;
 
 namespace WeatherStation.Views.History
 {

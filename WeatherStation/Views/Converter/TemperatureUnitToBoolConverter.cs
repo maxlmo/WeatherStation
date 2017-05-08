@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using WeatherStation.ViewModels.UnitSettings;
+using WeatherStation.ViewModels;
 
 namespace WeatherStation.Views.Converter
 {
