@@ -1,6 +1,7 @@
 ﻿using Prism.Events;
 using WeatherStation.Commands;
 using WeatherStation.Handler;
+using WeatherStation.Model;
 using WeatherStation.Properties;
 using WeatherStation.Sensor;
 using WeatherStation.Services;
@@ -17,19 +18,19 @@ namespace WeatherStation.MVVM
 {
     public class MvvmWindowFactory : IWindowFactory
     {
-        private readonly IMeasurementsRepository _barometricPressureMeasurementsRepository;
+        private readonly IMeasurementsRepository<BarPressureMeasurement> _barometricPressureMeasurementsRepository;
         private readonly ISensor _barometricPressureSensor;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
-        private readonly IMeasurementsRepository _temperatuMeasurementsRepository;
+        private readonly IMeasurementsRepository<TemperatureMeasurement> _temperatuMeasurementsRepository;
         private readonly ISensor _temperatureSensor;
 
         public MvvmWindowFactory(
             IEventAggregator eventAggregator,
             ISensor temperatureSensor,
             ISensor barometricPressureSensor,
-            IMeasurementsRepository temperatuMeasurementsRepository,
-            IMeasurementsRepository barometricPressureMeasurementsRepository,
+            IMeasurementsRepository<TemperatureMeasurement> temperatuMeasurementsRepository,
+            IMeasurementsRepository<BarPressureMeasurement> barometricPressureMeasurementsRepository,
             ISettingsService settingsService)
         {
             _eventAggregator = eventAggregator;

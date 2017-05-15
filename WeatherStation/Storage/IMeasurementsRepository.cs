@@ -3,10 +3,10 @@ using WeatherStation.Model;
 
 namespace WeatherStation.Storage
 {
-    public interface IMeasurementsRepository
+    public interface IMeasurementsRepository<TMeasurement> where TMeasurement: IMeasurement
     {
-        IEnumerable<IMeasurement> GetSavedMeasurements();
+        IEnumerable<TMeasurement> GetSavedMeasurements();
 
-        void SaveMeasurement(IMeasurement measurement);
+        void SaveMeasurement(TMeasurement measurement);
     }
 }

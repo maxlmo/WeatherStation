@@ -7,7 +7,7 @@ using WeatherStation.Model;
 
 namespace WeatherStation.Storage
 {
-    public class BarometricPressureMeasurementsRepository : IMeasurementsRepository
+    public class BarometricPressureMeasurementsRepository : IMeasurementsRepository<BarPressureMeasurement>
     {
         private readonly IEventAggregator _eventAggregator;
 
@@ -16,7 +16,7 @@ namespace WeatherStation.Storage
             _eventAggregator = eventAggregator;
         }
 
-        public void SaveMeasurement(IMeasurement newMeasurement)
+        public void SaveMeasurement(BarPressureMeasurement newMeasurement)
         {
             using (var session = FluentNHibernateHelper.OpenSession())
             using (var transaction = session.BeginTransaction())
@@ -27,7 +27,7 @@ namespace WeatherStation.Storage
             _eventAggregator.GetEvent<BarometricPressureSaved>().Publish(newMeasurement);
         }
 
-        public IEnumerable<IMeasurement> GetSavedMeasurements()
+        public IEnumerable<BarPressureMeasurement> GetSavedMeasurements()
         {
             using (var session = FluentNHibernateHelper.OpenSession())
             {

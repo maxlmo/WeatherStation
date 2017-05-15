@@ -1,6 +1,7 @@
 ﻿using Prism.Events;
 using WeatherStation.Handler;
 using WeatherStation.Messages;
+using WeatherStation.Model;
 using WeatherStation.MVVM;
 using WeatherStation.Sensor;
 using WeatherStation.Services;
@@ -11,10 +12,10 @@ namespace WeatherStation
 {
     public class Bootstrap
     {
-        private IMeasurementsRepository _barometricPressureMeasurementsRepository;
+        private IMeasurementsRepository<BarPressureMeasurement> _barometricPressureMeasurementsRepository;
         private MeasurementThread _barPressureThread;
         private IEventAggregator _eventAggregator;
-        private IMeasurementsRepository _temperatureMeasurementsRepository;
+        private IMeasurementsRepository<TemperatureMeasurement> _temperatureMeasurementsRepository;
         private MeasurementThread _temperatureThread;
         private TimeThread _timeThread;
         private IWindowFactory _windowFactory;
