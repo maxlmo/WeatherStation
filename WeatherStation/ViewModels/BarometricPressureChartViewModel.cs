@@ -51,9 +51,9 @@ namespace WeatherStation.ViewModels
 
         private void SetAxisLimits(DateTime now, long interval)
         {
-            AxisMax = now.Ticks + TimeSpan.FromSeconds(interval + 1).Ticks; 
+            AxisMax = now.Ticks + TimeSpan.FromSeconds(interval + 1).Ticks;
             AxisMin = now.Ticks - TimeSpan.FromSeconds(interval + 10).Ticks;
-            AxisStep = TimeSpan.FromSeconds(_interval + 10).Ticks;
+            AxisStep = TimeSpan.FromSeconds(_interval * 10 + 2).Ticks;
         }
 
         public Func<double, string> DateTimeFormatter { get; set; }
@@ -85,6 +85,10 @@ namespace WeatherStation.ViewModels
             {
                 var now = DateTime.Now;
                 ChartValues.Add(barPressureMeasurement);
+                if (ChartValues.Count > 20)
+                {
+                    ChartValues.RemoveAt(0);
+                }
                 SetAxisLimits(now, _interval);
             });
         }

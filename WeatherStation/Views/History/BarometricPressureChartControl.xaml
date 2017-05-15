@@ -7,28 +7,27 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    
-<Grid>
-    <Label Width="Auto" HorizontalContentAlignment="Center" Content="Barometric Pressure Chart" />
-    <lvc:CartesianChart Grid.Row="1" AnimationsSpeed="0:0:0.5" Hoverable="False" DataTooltip="{x:Null}">
-        <lvc:CartesianChart.Series>
+
+    <Grid>
+        <lvc:CartesianChart Grid.Row="1" AnimationsSpeed="0:0:0.5" Hoverable="False" DataTooltip="{x:Null}">
+            <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding ChartValues}" 
                             PointGeometry="{x:Null}" 
                             LineSmoothness="0"
                             StrokeThickness="6" 
                             Stroke="Blue"
                             Fill="Transparent"/>
-        </lvc:CartesianChart.Series>
-        <lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart.Series>
+            <lvc:CartesianChart.AxisX>
                 <lvc:Axis LabelFormatter="{Binding DateTimeFormatter}" 
                       MaxValue="{Binding AxisMax}" 
                       MinValue="{Binding AxisMin}"
                       Unit="{Binding AxisUnit}">
-                <lvc:Axis.Separator>
+                    <lvc:Axis.Separator>
                         <lvc:Separator Step="{Binding AxisStep}" />
-                </lvc:Axis.Separator>
-            </lvc:Axis>
-        </lvc:CartesianChart.AxisX>
-    </lvc:CartesianChart>
-</Grid>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+        </lvc:CartesianChart>
+    </Grid>
 </UserControl>
