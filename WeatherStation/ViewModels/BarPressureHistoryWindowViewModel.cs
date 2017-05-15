@@ -5,6 +5,7 @@ using Prism.Events;
 using WeatherStation.Messages;
 using WeatherStation.Model;
 using WeatherStation.Properties;
+using WeatherStation.Services;
 using WeatherStation.Storage;
 
 namespace WeatherStation.ViewModels
@@ -18,7 +19,6 @@ namespace WeatherStation.ViewModels
 
             measurementsRepository.GetSavedMeasurements().ForEach(m => Measurements.Add(m));
             eventAggregator.GetEvent<BarometricPressureSaved>().Subscribe(NewBarPressure);
-            BarometricPressureChartViewModel = new BarometricPressureChartViewModel(measurementsRepository, eventAggregator);
         }
 
         public override string HistoryWindowName => Resources.BarometricPressureHistoryWindowName;

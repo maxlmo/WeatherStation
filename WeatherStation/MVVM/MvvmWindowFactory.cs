@@ -69,7 +69,11 @@ namespace WeatherStation.MVVM
         public IWindow CreateBarPressureHistory()
         {
             var barPressureViewModel = new BarPressureHistoryWindowViewModel(_barometricPressureMeasurementsRepository,
-                _eventAggregator);
+                _eventAggregator)
+            {
+                BarometricPressureChartViewModel =
+                    new BarometricPressureChartViewModel(_eventAggregator, _settingsService)
+            };
             var historyWindow = new HistoryWindow
             {
                 DataContext = barPressureViewModel,

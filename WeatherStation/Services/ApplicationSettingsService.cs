@@ -19,6 +19,11 @@ namespace WeatherStation.Services
             Settings.Default.Save();
         }
 
+        public TimeSpan LoadTimeSpanOffset()
+        {
+            return Settings.Default.TimeSpanOffset;
+        }
+
         public MeasurementIntervalsSettings LoadMeasurementIntervalsSettings()
         {
             return new MeasurementIntervalsSettings(Settings.Default.TemperatureMeasurementInterval,

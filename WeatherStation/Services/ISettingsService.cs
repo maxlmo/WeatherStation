@@ -7,5 +7,6 @@ namespace WeatherStation.Services
         void SaveDateTimeOffset(TimeSpan offset);
         void SaveMeasurementIntervals(MeasurementIntervalsSettings newMeasurementIntervalsSettings);
         MeasurementIntervalsSettings LoadMeasurementIntervalsSettings();
+        TimeSpan LoadTimeSpanOffset();
     }
 }

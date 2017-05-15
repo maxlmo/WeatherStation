@@ -10,38 +10,50 @@ using LiveCharts.Wpf;
 using Prism.Events;
 using WeatherStation.Messages;
 using WeatherStation.Model;
+using WeatherStation.Services;
 using WeatherStation.Storage;
 
 namespace WeatherStation.ViewModels
 {
     public class BarometricPressureChartViewModel : INotifyPropertyChanged
     {
+        private readonly ISettingsService _settingsService;
         private double _axisMax;
         private double _axisMin;
-        private double _trend;
+        private long _interval;
 
-        public BarometricPressureChartViewModel(IMeasurementsRepository<BarPressureMeasurement> repository, IEventAggregator eventAggregator)
+        public BarometricPressureChartViewModel(IEventAggregator eventAggregator, ISettingsService settingsService)
         {
-            var measurements = repository.GetSavedMeasurements().ToList();
-            var mapper = Mappers.Xy<BarPressureMeasurement>().X(model => model.TimeStamp.Ticks).Y(model => model.Value);
+            _settingsService = settingsService;
+            var mapper = Mappers.Xy<BarPressureMeasurement>()
+                .X(model => model.TimeStamp.Ticks)
+                .Y(model => model.Value);
             Charting.For<BarPressureMeasurement>(mapper);
             ChartValues = new ChartValues<BarPressureMeasurement>();
             eventAggregator.GetEvent<NewBarPressure>().Subscribe(NewBarometricPressureMeasurement);
+            eventAggregator.GetEvent<MeasurementIntervalChanged>().Subscribe(MeasurementIntervalChanged);
 
             DateTimeFormatter = value => new DateTime((long)value).ToString("mm:ss");
 
-            AxisStep = TimeSpan.FromSeconds(1).Ticks;
-            //AxisUnit forces lets the axis know that we are plotting seconds
-            //this is not always necessary, but it can prevent wrong labeling
+            _interval = _settingsService.LoadMeasurementIntervalsSettings().BarometricPressureInterval;
             AxisUnit = TimeSpan.TicksPerSecond;
 
-            SetAxisLimits(DateTime.Now);
+            SetAxisLimits(DateTime.Now, _interval);
         }
 
-        private void SetAxisLimits(DateTime now)
+        private void MeasurementIntervalChanged(MeasurementIntervalsSettings measurementIntervalsSettings)
         {
-            AxisMax = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 1 second ahead
-            AxisMin = now.Ticks - TimeSpan.FromSeconds(20).Ticks; // and 8 seconds behind
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                _interval = measurementIntervalsSettings.BarometricPressureInterval;
+            });
+        }
+
+        private void SetAxisLimits(DateTime now, long interval)
+        {
+            AxisMax = now.Ticks + TimeSpan.FromSeconds(interval + 1).Ticks; 
+            AxisMin = now.Ticks - TimeSpan.FromSeconds(interval + 10).Ticks;
+            AxisStep = TimeSpan.FromSeconds(_interval + 10).Ticks;
         }
 
         public Func<double, string> DateTimeFormatter { get; set; }
@@ -73,8 +85,7 @@ namespace WeatherStation.ViewModels
             {
                 var now = DateTime.Now;
                 ChartValues.Add(barPressureMeasurement);
-                SetAxisLimits(now);
-
+                SetAxisLimits(now, _interval);
             });
         }
 
