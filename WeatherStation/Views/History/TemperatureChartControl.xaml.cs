@@ -3,11 +3,11 @@
 namespace WeatherStation.Views.History
 {
     /// <summary>
-    /// Interaction logic for ViewB.xaml
+    /// Interaction logic for TemperatureListControl.xaml
     /// </summary>
-    public partial class TemperatureHistoryControl : UserControl
+    public partial class TemperatureChartControl : UserControl
     {
-        public TemperatureHistoryControl()
+        public TemperatureChartControl()
         {
             InitializeComponent();
         }

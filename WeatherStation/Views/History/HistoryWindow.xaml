@@ -8,15 +8,34 @@
         mc:Ignorable="d"
         Title="{Binding HistoryWindowName}" Height="500" Width="300">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type history:BarPressureHistoryWindowViewModel}">
-            <views:BarometricPressureHistoryControl/>
+        <DataTemplate x:Key="BarometricPressureListControl">
+            <views:BarometricPressureListControl />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type history:TemperatureHistoryWindowViewModel}">
-            <views:TemperatureHistoryControl/>
+        <DataTemplate x:Key="TemperatureListControl">
+            <views:TemperatureListControl />
         </DataTemplate>
+        <DataTemplate x:Key="BarometricPressureChartControl" DataType="{x:Type history:BarPressureHistoryWindowViewModel}">
+            <views:BarometricPressureChartControl></views:BarometricPressureChartControl>
+        </DataTemplate>
+        <DataTemplate x:Key="TemperatureChartControl">
+            <views:TemperatureChartControl></views:TemperatureChartControl>
+        </DataTemplate>
+        <views:ListViewSelector x:Key="ListViewSelector" 
+                                BarometricPressureListControl="{StaticResource BarometricPressureListControl}"
+                                TemperatureListControl="{StaticResource TemperatureListControl}"></views:ListViewSelector>
+        <views:ChartViewSelector x:Key="ChartViewSelector" 
+                                 BarometricPressureChartControl="{StaticResource BarometricPressureChartControl}"
+                                 TemperatureChartControl="{StaticResource TemperatureChartControl}">
+        </views:ChartViewSelector>
     </Window.Resources>
     <Grid>
-        <ContentControl Content="{Binding}">
-        </ContentControl>
+        <TabControl>
+            <TabItem Header="List View">
+                <ContentControl ContentTemplateSelector="{StaticResource ListViewSelector}" Content="{Binding}" ></ContentControl>
+            </TabItem>
+            <TabItem Header="Chart View">
+                <ContentControl ContentTemplateSelector="{StaticResource ChartViewSelector}" Content="{Binding}" ></ContentControl>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

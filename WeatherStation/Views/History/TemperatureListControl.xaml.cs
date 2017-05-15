@@ -3,11 +3,11 @@
 namespace WeatherStation.Views.History
 {
     /// <summary>
-    /// Interaction logic for BarometricPressureHistoryControl.xaml
+    /// Interaction logic for ViewB.xaml
     /// </summary>
-    public partial class BarometricPressureHistoryControl : UserControl
+    public partial class TemperatureListControl : UserControl
     {
-        public BarometricPressureHistoryControl()
+        public TemperatureListControl()
         {
             InitializeComponent();
         }
