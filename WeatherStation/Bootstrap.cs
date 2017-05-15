@@ -11,10 +11,10 @@ namespace WeatherStation
 {
     public class Bootstrap
     {
-        private IDataBaseConnector _barometricPressureDataBaseConnector;
+        private IMeasurementsRepository _barometricPressureMeasurementsRepository;
         private MeasurementThread _barPressureThread;
         private IEventAggregator _eventAggregator;
-        private IDataBaseConnector _temperatureDataBaseConnector;
+        private IMeasurementsRepository _temperatureMeasurementsRepository;
         private MeasurementThread _temperatureThread;
         private TimeThread _timeThread;
         private IWindowFactory _windowFactory;
@@ -31,8 +31,8 @@ namespace WeatherStation
                 _eventAggregator,
                 temperatureSensor,
                 barometricPressureSensor,
-                _temperatureDataBaseConnector,
-                _barometricPressureDataBaseConnector, 
+                _temperatureMeasurementsRepository,
+                _barometricPressureMeasurementsRepository, 
                 _settingsService);
             
             var applicationWindowHandler = CreateApplicationWindowHandler();
@@ -45,11 +45,11 @@ namespace WeatherStation
         {
             FluentNHibernateHelper.InitializeDatabase();
 
-            _barometricPressureDataBaseConnector = new BarometricPressureDataBaseConnector(_eventAggregator);
-            _temperatureDataBaseConnector = new TemperatureDataBaseConnector(_eventAggregator);
+            _barometricPressureMeasurementsRepository = new BarometricPressureMeasurementsRepository(_eventAggregator);
+            _temperatureMeasurementsRepository = new TemperatureMeasurementsRepository(_eventAggregator);
 
-            _eventAggregator.GetEvent<NewTemperature>().Subscribe(_temperatureDataBaseConnector.SaveMeasurement);
-            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(_barometricPressureDataBaseConnector.SaveMeasurement);
+            _eventAggregator.GetEvent<NewTemperature>().Subscribe(_temperatureMeasurementsRepository.SaveMeasurement);
+            _eventAggregator.GetEvent<NewBarPressure>().Subscribe(_barometricPressureMeasurementsRepository.SaveMeasurement);
         }
 
         private void StartThreads(ISensor barPressureSensor, ISensor temperatureSensor)

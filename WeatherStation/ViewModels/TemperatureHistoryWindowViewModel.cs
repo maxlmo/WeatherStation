@@ -12,10 +12,10 @@ namespace WeatherStation.ViewModels
     public class TemperatureHistoryWindowViewModel : HistoryWindowViewModel
     {
 
-        public TemperatureHistoryWindowViewModel(IDataBaseConnector dataBaseConnector, IEventAggregator eventAggregator) : base(dataBaseConnector,eventAggregator)
+        public TemperatureHistoryWindowViewModel(IMeasurementsRepository measurementsRepository, IEventAggregator eventAggregator) : base(measurementsRepository,eventAggregator)
         {
             Measurements = new ObservableCollection<TemperatureMeasurement>();
-            dataBaseConnector.GetSavedMeasurements().ForEach(m => Measurements.Add((TemperatureMeasurement)m));
+            measurementsRepository.GetSavedMeasurements().ForEach(m => Measurements.Add((TemperatureMeasurement)m));
             eventAggregator.GetEvent<TemperatureSaved>().Subscribe(NewTemperature);
         }
 

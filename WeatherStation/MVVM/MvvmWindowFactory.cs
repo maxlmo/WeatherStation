@@ -17,26 +17,26 @@ namespace WeatherStation.MVVM
 {
     public class MvvmWindowFactory : IWindowFactory
     {
-        private readonly IDataBaseConnector _barometricPressureDataBaseConnector;
+        private readonly IMeasurementsRepository _barometricPressureMeasurementsRepository;
         private readonly ISensor _barometricPressureSensor;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
-        private readonly IDataBaseConnector _temperatuDataBaseConnector;
+        private readonly IMeasurementsRepository _temperatuMeasurementsRepository;
         private readonly ISensor _temperatureSensor;
 
         public MvvmWindowFactory(
             IEventAggregator eventAggregator,
             ISensor temperatureSensor,
             ISensor barometricPressureSensor,
-            IDataBaseConnector temperatuDataBaseConnector,
-            IDataBaseConnector barometricPressureDataBaseConnector,
+            IMeasurementsRepository temperatuMeasurementsRepository,
+            IMeasurementsRepository barometricPressureMeasurementsRepository,
             ISettingsService settingsService)
         {
             _eventAggregator = eventAggregator;
             _temperatureSensor = temperatureSensor;
             _barometricPressureSensor = barometricPressureSensor;
-            _temperatuDataBaseConnector = temperatuDataBaseConnector;
-            _barometricPressureDataBaseConnector = barometricPressureDataBaseConnector;
+            _temperatuMeasurementsRepository = temperatuMeasurementsRepository;
+            _barometricPressureMeasurementsRepository = barometricPressureMeasurementsRepository;
             _settingsService = settingsService;
         }
 
@@ -55,7 +55,7 @@ namespace WeatherStation.MVVM
 
         public IWindow CreateTemperatureHistory()
         {
-            var temperatureViewModel = new TemperatureHistoryWindowViewModel(_temperatuDataBaseConnector,
+            var temperatureViewModel = new TemperatureHistoryWindowViewModel(_temperatuMeasurementsRepository,
                 _eventAggregator);
             var historyWindow = new HistoryWindow
             {
@@ -67,7 +67,7 @@ namespace WeatherStation.MVVM
 
         public IWindow CreateBarPressureHistory()
         {
-            var barPressureViewModel = new BarPressureHistoryWindowViewModel(_barometricPressureDataBaseConnector,
+            var barPressureViewModel = new BarPressureHistoryWindowViewModel(_barometricPressureMeasurementsRepository,
                 _eventAggregator);
             var historyWindow = new HistoryWindow
             {

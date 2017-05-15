@@ -129,10 +129,10 @@
     <Compile Include="Messages\NewAverageTemperature.cs" />
     <Compile Include="Model\IMeasurement.cs" />
     <Compile Include="Model\TemperatureMeasurement.cs" />
-    <Compile Include="Storage\BarometricPressureDataBaseConnector.cs" />
-    <Compile Include="Storage\IDataBaseConnector.cs" />
+    <Compile Include="Storage\BarometricPressureMeasurementsRepository.cs" />
+    <Compile Include="Storage\IMeasurementsRepository.cs" />
     <Compile Include="Storage\FluentNHibernateHelper.cs" />
-    <Compile Include="Storage\TemperatureDataBaseConnector.cs" />
+    <Compile Include="Storage\TemperatureMeasurementsRepository.cs" />
     <Compile Include="Messages\TemperatureSaved.cs" />
     <Compile Include="ViewModels\BarPressureHistoryWindowViewModel.cs" />
     <Compile Include="ViewModels\HistoryWindowViewModel.cs" />

@@ -7,11 +7,11 @@ using WeatherStation.Model;
 
 namespace WeatherStation.Storage
 {
-    public class BarometricPressureDataBaseConnector : IDataBaseConnector
+    public class TemperatureMeasurementsRepository : IMeasurementsRepository
     {
         private readonly IEventAggregator _eventAggregator;
 
-        public BarometricPressureDataBaseConnector(IEventAggregator eventAggregator)
+        public TemperatureMeasurementsRepository(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
         }
@@ -24,14 +24,14 @@ namespace WeatherStation.Storage
                 session.Save(newMeasurement);
                 transaction.Commit();
             }
-            _eventAggregator.GetEvent<BarometricPressureSaved>().Publish(newMeasurement);
+            _eventAggregator.GetEvent<TemperatureSaved>().Publish(newMeasurement);
         }
 
         public IEnumerable<IMeasurement> GetSavedMeasurements()
         {
             using (var session = FluentNHibernateHelper.OpenSession())
             {
-                return session.Query<BarPressureMeasurement>().ToList();
+                return session.Query<TemperatureMeasurement>().ToList();
             }
         }
     }

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using WeatherStation.Model;
 
 namespace WeatherStation.Storage
 {
-    public interface IDataBaseConnector
+    public interface IMeasurementsRepository
     {
         IEnumerable<IMeasurement> GetSavedMeasurements();
 
