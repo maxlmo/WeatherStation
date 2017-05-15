@@ -15,7 +15,7 @@
             <views:TemperatureListControl />
         </DataTemplate>
         <DataTemplate x:Key="BarometricPressureChartControl" DataType="{x:Type history:BarPressureHistoryWindowViewModel}">
-            <views:BarometricPressureChartControl></views:BarometricPressureChartControl>
+            <views:BarometricPressureChartControl DataContext="{Binding BarometricPressureChartViewModel}"></views:BarometricPressureChartControl>
         </DataTemplate>
         <DataTemplate x:Key="TemperatureChartControl">
             <views:TemperatureChartControl></views:TemperatureChartControl>

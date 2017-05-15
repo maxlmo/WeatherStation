@@ -11,23 +11,28 @@ namespace WeatherStation.ViewModels
 {
     public class BarPressureHistoryWindowViewModel : HistoryWindowViewModel
     {
-
-        public BarPressureHistoryWindowViewModel(IMeasurementsRepository<BarPressureMeasurement> measurementsRepository, IEventAggregator eventAggregator) 
+        public BarPressureHistoryWindowViewModel(IMeasurementsRepository<BarPressureMeasurement> measurementsRepository,
+            IEventAggregator eventAggregator)
         {
             Measurements = new ObservableCollection<BarPressureMeasurement>();
+
             measurementsRepository.GetSavedMeasurements().ForEach(m => Measurements.Add(m));
             eventAggregator.GetEvent<BarometricPressureSaved>().Subscribe(NewBarPressure);
-        }
-
-        private void NewBarPressure(IMeasurement newMeasurement)
-        {
-            Application.Current.Dispatcher.Invoke(delegate { Measurements.Add((BarPressureMeasurement) newMeasurement); });
+            BarometricPressureChartViewModel = new BarometricPressureChartViewModel(measurementsRepository, eventAggregator);
         }
 
         public override string HistoryWindowName => Resources.BarometricPressureHistoryWindowName;
 
         public ObservableCollection<BarPressureMeasurement> Measurements { get; set; }
 
-        
+        public BarometricPressureChartViewModel BarometricPressureChartViewModel { get; set; }
+
+        private void NewBarPressure(IMeasurement newMeasurement)
+        {
+            Application.Current.Dispatcher.Invoke(delegate
+            {
+                Measurements.Add((BarPressureMeasurement) newMeasurement);
+            });
+        }
     }
 }
