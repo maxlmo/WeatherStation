@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:WeatherStation" 
         xmlns:converter="clr-namespace:WeatherStation.Converter"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="560" MinWidth="640">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Weather Station" SizeToContent="WidthAndHeight" MinHeight="560" MinWidth="763">
     <Window.Resources>
         <converter:EnumToImageConverter x:Key="EnumToImageConverter"></converter:EnumToImageConverter>
         <converter:TimeSpanOffsetConverter x:Key="TimeSpanOffsetConverter"></converter:TimeSpanOffsetConverter>
