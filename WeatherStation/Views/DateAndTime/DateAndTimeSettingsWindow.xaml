@@ -77,7 +77,7 @@
             </Grid.ColumnDefinitions>
             <Button Command="{Binding ApplySettingsCommand}" Grid.Column="1" Content="Apply">
                 <Button.Style>
-                    <Style TargetType="Button">
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}" >
                         <Setter Property="IsEnabled" Value="True"/>
                         <Style.Triggers>
                             <MultiDataTrigger>
