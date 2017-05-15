@@ -6,10 +6,11 @@
         xmlns:validation="clr-namespace:WeatherStation.Validation"
         mc:Ignorable="d"
         Title="Date and Time Settings" Height="180" Width="320"
+        Icon="../Images/icon.png"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-       <validation:StringToDateValidationRule x:Key="StringToDateValidationRule"></validation:StringToDateValidationRule>
-       <validation:StringToTimeValidationRule x:Key="StringToTimeValidationRule"></validation:StringToTimeValidationRule>
+        <validation:StringToDateValidationRule x:Key="StringToDateValidationRule"></validation:StringToDateValidationRule>
+        <validation:StringToTimeValidationRule x:Key="StringToTimeValidationRule"></validation:StringToTimeValidationRule>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -47,7 +48,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            
+
             <Label Grid.Row="3" Grid.Column="1" Content="Time:"></Label>
             <TextBox Grid.Row="3" Grid.Column="3" Width="100" TextAlignment="Right" Name="TimeTextBox">
                 <TextBox.Text>
@@ -61,7 +62,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            
+
         </Grid>
 
         <Grid Row="1">

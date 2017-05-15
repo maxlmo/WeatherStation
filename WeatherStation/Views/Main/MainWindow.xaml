@@ -14,7 +14,8 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Weather Station" SizeToContent="WidthAndHeight" MinHeight="560" MinWidth="763">
+        
+        Title="Weather Station" SizeToContent="WidthAndHeight" MinHeight="560" MinWidth="900" Icon="../Images/icon.png">
     <Window.Resources>
         <converter:EnumToImageConverter x:Key="EnumToImageConverter"></converter:EnumToImageConverter>
         <converter:TimeSpanOffsetConverter x:Key="TimeSpanOffsetConverter"></converter:TimeSpanOffsetConverter>
@@ -38,93 +39,96 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="Auto" MinWidth="200"/>
-                <ColumnDefinition Width="Auto" MinWidth="70" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" MinWidth="60" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="50" />
-            </Grid.ColumnDefinitions>
+        <materialDesign:Card Margin="20">
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="Auto" MinWidth="200"/>
+                    <ColumnDefinition Width="Auto" MinWidth="70" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" MinWidth="60" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                <TextBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding CurrentDateTime, Converter={StaticResource TimeSpanOffsetConverter}, StringFormat='{}{0:dd.MM.yyyy}'}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
-            <TextBox Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                <TextBox Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding CurrentDateTime, Converter={StaticResource TimeSpanOffsetConverter}, StringFormat='{}{0:HH:mm:ss}'}" TextAlignment="Right" VerticalAlignment="Top" Width="120" FontSize="14" />
-            <TextBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                <TextBox Grid.Column="3" Grid.Row="5" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding Temperature}" TextAlignment="Right" VerticalAlignment="Top" Width="120"
                      FontSize="14" />
-            <TextBox Grid.Column="3" Grid.Row="8" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
+                <TextBox Grid.Column="3" Grid.Row="9" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"
                      Text="{Binding BarometricPressure}" VerticalAlignment="Top" TextAlignment="Right" Width="120"
                      FontSize="14" />
-            <TextBox Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Height="25"
+                <TextBox Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" Height="25"
                      Text="{Binding AverageTemperature}"
                      VerticalAlignment="Top" Width="120" TextAlignment="Right">
-                <TextBox.TextWrapping>Wrap</TextBox.TextWrapping>
-            </TextBox>
-            <Image Source="{Binding BarometricPressureTrend, Converter={StaticResource EnumToImageConverter}}" Grid.Row="10" Grid.Column="3" Height="50"></Image>
-            
+                    <TextBox.TextWrapping>Wrap</TextBox.TextWrapping>
+                </TextBox>
+                <Image Source="{Binding BarometricPressureTrend, Converter={StaticResource EnumToImageConverter}}" Grid.Row="11" Grid.Column="3" Height="50"></Image>
 
-            <Label Grid.Column="1" Grid.Row="2" Content="Time:" FontSize="14" HorizontalAlignment="Left"
+
+                <Label Grid.Column="1" Grid.Row="3" Content="Time:" FontSize="14" HorizontalAlignment="Left"
                    VerticalAlignment="Top" Height="33" />
-            <Label Grid.Column="1" Grid.Row="6" Content="Average Temperature:" FontSize="14" />
-            <Label Grid.Column="1" Grid.Row="0" Content="Date:" HorizontalAlignment="Left" VerticalAlignment="Top"
+                <Label Grid.Column="1" Grid.Row="7" Content="Average Temperature:" FontSize="14" />
+                <Label Grid.Column="1" Grid.Row="1" Content="Date:" HorizontalAlignment="Left" VerticalAlignment="Top" 
                    FontSize="14"
                    Height="33" />
-            <Label Grid.Column="1" Grid.Row="4" Content="Temperature:" HorizontalAlignment="Left"
+                <Label Grid.Column="1" Grid.Row="5" Content="Temperature:" HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="1" Grid.Row="8" Content="Barometric Pressure:" HorizontalAlignment="Left"
+                <Label Grid.Column="1" Grid.Row="9" Content="Barometric Pressure:" HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="1" Grid.Row="10" Content="Barometric Pressure Trend:" HorizontalAlignment="Left"
+                <Label Grid.Column="1" Grid.Row="11" Content="Barometric Pressure Trend:" HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="4" Grid.Row="4" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                <Label Grid.Column="4" Grid.Row="5" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="4" Grid.Row="6" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                <Label Grid.Column="4" Grid.Row="7" Content="{Binding TemperatureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="4" Grid.Row="8" Content="{Binding BarometricPressureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                <Label Grid.Column="4" Grid.Row="9" Content="{Binding BarometricPressureLabel}" HorizontalAlignment="Left" VerticalAlignment="Top"
                    FontSize="14" />
-            <Label Grid.Column="2" Grid.Row="4" Content="{Binding TemperatureWaitTime}"></Label>
-            <Label Grid.Column="2" Grid.Row="8" Content="{Binding BarometricPressureWaitTime}" ></Label>
+                <Label Grid.Column="2" Grid.Row="5" Content="{Binding TemperatureWaitTime}"></Label>
+                <Label Grid.Column="2" Grid.Row="9" Content="{Binding BarometricPressureWaitTime}" ></Label>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="4">
-                <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
+                <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="5">
+                    <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
                         Height="25" Command="{Binding ReadTemperatureCommand}" />
-                <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
+                    <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
                         Height="25" Command="{Binding OpenWindowCommand}" CommandParameter="TemperatureHistory"/>
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Grid.Column="5" Grid.Row="8" Orientation="Horizontal">
-                <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
+                <StackPanel Grid.Column="5" Grid.Row="9" Orientation="Horizontal">
+                    <Button Content="measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,0,10,0"
                         Height="25" Command="{Binding ReadBarometricPressureCommand}" />
 
-                <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
+                    <Button Content="history" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"
                         Height="25" Command="{Binding OpenWindowCommand}" CommandParameter="BarometricPressureHistory" />
-            </StackPanel>
+                </StackPanel>
 
-            <Button Grid.Column="3" Grid.Row="13"  Content="exit" Command="{Binding CloseApplicationCommand}" Width="60" Height="25"></Button>
+                <Button Grid.Column="3" Grid.Row="13"  Content="exit" Command="{Binding CloseApplicationCommand}" Width="60" Height="25"></Button>
 
-        </Grid>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </Window>

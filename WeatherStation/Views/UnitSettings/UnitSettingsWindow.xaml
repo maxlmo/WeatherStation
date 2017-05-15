@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converter="clr-namespace:WeatherStation.Converter"
         mc:Ignorable="d"
+        Icon="../Images/icon.png"
         Title="UnitSettingsWindow" Height="180" Width="320">
     <Window.Resources>
         <converter:TemperatureUnitToBoolConverter x:Key="TemperatureUnitToBoolConverter" />
@@ -15,7 +16,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"></RowDefinition>
@@ -43,7 +44,7 @@
             <RadioButton Grid.Row="3" Grid.Column="3" IsChecked="{Binding CurrentBarometricPressureUnit, Converter={StaticResource BarometricPressureToBoolConverter}, ConverterParameter=MBar }" Content="mbar" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
             <RadioButton Grid.Row="3" Grid.Column="5" IsChecked="{Binding CurrentBarometricPressureUnit, Converter={StaticResource BarometricPressureToBoolConverter}, ConverterParameter=InHg }" x:Name="InHgRadioButton" Content="inHg" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
         </Grid>
-        
+
         <Grid Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>

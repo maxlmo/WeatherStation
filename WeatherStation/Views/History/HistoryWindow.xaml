@@ -6,6 +6,7 @@
         xmlns:views="clr-namespace:WeatherStation.Views.History"
         xmlns:history="clr-namespace:WeatherStation.ViewModels"
         mc:Ignorable="d"
+        Icon="../Images/icon.png"
         Title="{Binding HistoryWindowName}" Height="500" Width="300">
     <Window.Resources>
         <DataTemplate x:Key="BarometricPressureListControl">
